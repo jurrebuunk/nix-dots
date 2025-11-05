@@ -1,12 +1,12 @@
-# nix-dots
+# ❄️ nix-dots
 
 Personal NixOS / Home Manager configuration using flakes
 
-## 🚀 Overview
+## Overview
 
 This repository contains my personal setup: a flake-based configuration for both system-level (NixOS) and user-level (Home Manager) settings.
 
-## 📂 Structure
+## Structure
 
 | Path         | Content                              |
 | ------------ | ------------------------------------ |
@@ -17,7 +17,7 @@ This repository contains my personal setup: a flake-based configuration for both
 | `flake.nix`  | Flake definition                     |
 | `flake.lock` | Locks dependencies                   |
 
-## 🛠️ Usage
+## Usage
 
 1. Clone the repository:
 
@@ -41,18 +41,18 @@ This repository contains my personal setup: a flake-based configuration for both
    home-manager switch --flake .#<username>
    ```
 
-## 🎯 Purpose
+## Purpose
 
 * Single source of truth for all system and user configurations
 * Reusable modules to quickly set up new systems
 * Clean, declarative configuration via flakes
 
-## ℹ️ Notes
+## ℹNotes
 
 * This is a **personal configuration**: modifications are needed for your own use
 * Some modules or settings may be hardware- or machine-dependent
 * Use at your own risk — back up your system before applying changes
 
-## ✅ Contributions & Ideas
+## Contributions & Ideas
 
 While this is my personal setup, suggestions or discussions are welcome! Feel free to open an issue or pull request.
