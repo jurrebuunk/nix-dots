@@ -11,7 +11,7 @@ in
     profiles.default.extensions = with pkgs.vscode-extensions; [
       jdinhlife.gruvbox
       yzhang.markdown-all-in-one
-      github.copilot      # <-- added Copilot
+      bradlc.vscode-tailwindcss
     ];
 
     userSettings = {
