@@ -102,19 +102,7 @@
     iproute2
     netcat
     firefox
-    mesa #test if needed opengldrivers
-    libglvnd #same
-    glxinfo #same is just toolkit for vieuwing
-    impala
   ];
-
-  networking.wireless.iwd.enable = true;
-
-  hardware.graphics = { #test if needed now that we use firefox
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [ mesa.drivers mesa ];
-  };
 
   environment.etc."bin/wifi".text = ''
     #!/bin/bash
@@ -123,8 +111,6 @@
 
   virtualisation.docker.enable = true;
 
-
-  
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";
