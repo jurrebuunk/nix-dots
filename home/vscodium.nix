@@ -7,7 +7,7 @@ in
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    
+
     profiles.default.extensions = with pkgs.vscode-extensions; [
       jdinhlife.gruvbox
       yzhang.markdown-all-in-one
@@ -15,10 +15,13 @@ in
     ];
 
     userSettings = {
-      "editor.fontFamily" = theme.fonts.main;
-      "terminal.integrated.fontFamily" = theme.fonts.main;
-      "markdown.preview.fontFamily" = theme.fonts.main;
+      "editor.fontFamily" = "CaskaydiaMono Nerd Font";
+      "terminal.integrated.fontFamily" = "CaskaydiaMono Nerd Font";
+      "markdown.preview.fontFamily" = "CaskaydiaMono Nerd Font";
       "workbench.colorTheme" = "Gruvbox Dark Hard";
+      "git.suggestSmartCommit" = false;
+      "git.confirmSync" = false;
     };
   };
 }
+
