@@ -5,7 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
 
     winapps = {
       url = "github:winapps-org/winapps";
@@ -13,7 +12,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, zen-browser, winapps }: {
+  outputs = inputs@{ self, nixpkgs, home-manager, winapps }: {
     nixosConfigurations = {
       nixos-usb = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
@@ -23,7 +22,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit zen-browser; };
             home-manager.users.jurre = import ./home/default.nix;
           }
 

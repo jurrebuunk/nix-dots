@@ -8,7 +8,7 @@
       ##################################
 
       RDP_USER="User"
-      RDP_PASS="REDACTED"
+      RDP_PASS="FUCKOFF"
       RDP_DOMAIN="."
       RDP_IP="192.168.1.99"
       VM_NAME=""

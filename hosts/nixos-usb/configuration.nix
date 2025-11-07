@@ -10,7 +10,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../../modules/sway.nix
-      ../../modules/zen-browser.nix
       ../../modules/development.nix
     ];
   # Use the systemd-boot EFI boot loader.

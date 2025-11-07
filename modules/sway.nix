@@ -21,6 +21,9 @@
     slurp
     sway
     wl-clipboard
+    swaybg
+    dmenu
+    i3status
   ];
 
   # Enable the gnome-keyring secrets vault.
