@@ -1,15 +1,9 @@
-{ pkgs, ... }: {
+{ pkgs, ... }: 
+
+{
+  #import configurations for user specific sway desktop environment
   imports = [
     ./sway.nix
-    ./wofi.nix
     ./i3status.nix
-  ];
-
-  home.packages = with pkgs; [
-    wl-clipboard
-    mako
-    dmenu
-    i3status
-    swaybg
   ];
 }
