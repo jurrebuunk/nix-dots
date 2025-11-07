@@ -40,6 +40,7 @@ in {
           "${mod}+x" = "kill";
 
           "${mod}+a" = "focus parent";
+          "${mod}+h" = "floating toggle";
           "${mod}+e" = "layout toggle split";
           "${mod}+f" = "fullscreen toggle";
           "${mod}+g" = "split h";
