@@ -8,6 +8,7 @@
       ./wayland
       ./element-desktop.nix
       ./winapps.nix
+      ./firefox.nix
     ];
   home = {
     username = "jurre";
