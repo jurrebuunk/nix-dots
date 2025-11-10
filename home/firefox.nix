@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 
+let
+  theme = import ../themes/theme.nix;
+  c = theme.colors;
+in
 {
   programs.firefox = {
     enable = true;
@@ -9,11 +13,11 @@
 
       userChrome = ''
         :root {
-          --toolbar-bgcolor: #1e1e2e !important;
-          --toolbar-text-color: #cdd6f4 !important;
-          --tab-selected-bgcolor: #313244 !important;
-          --tab-hover-bgcolor: #45475a !important;
-          --tab-line-color: #89b4fa !important;
+          --toolbar-bgcolor: ${c.bg} !important;
+          --toolbar-text-color: ${c.fg} !important;
+          --tab-selected-bgcolor: ${c.blue} !important;
+          --tab-hover-bgcolor: ${c.gray} !important;
+          --tab-line-color: ${c.orange} !important;
         }
 
         #navigator-toolbox {
@@ -36,6 +40,7 @@
 
       extraConfig = ''
         user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+        user_pref("layout.css.prefers-color-scheme.content-override", 1); // Force dark mode for websites
       '';
     };
   };
