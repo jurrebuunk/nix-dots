@@ -27,8 +27,6 @@
       SDL_VIDEODRIVER = "wayland";
 
       # Icon and GTK themes
-      XDG_ICON_THEME = "Adwaita";
-      GTK_THEME = "Adwaita:dark";
       GTK_FONT_NAME = "FiraCode Nerd 10";
       GDK_BACKEND = "wayland";
       GTK_APPLICATION_PREFER_DARK_THEME = "1"; # ensures GTK4 apps pick dark theme
@@ -37,7 +35,6 @@
     # Packages to install
     packages = with pkgs; [
       nerd-fonts.fira-code
-      adwaita-icon-theme
     ];
 
     # GTK 3 settings

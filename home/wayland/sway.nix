@@ -101,19 +101,4 @@ in {
   services.cliphist.enable = true;
   
   fonts.fontconfig.enable = true;
-
-  # Environment variables for GTK/Qt apps and Sway
-  home.sessionVariables = {
-    GTK_THEME = "Adwaita:dark";
-    QT_STYLE_OVERRIDE = "Adwaita-dark";
-    XDG_CURRENT_DESKTOP = "sway";
-  };
-
-  xdg.configFile."gtk-3.0/settings.ini" = {
-    text = ''
-      [Settings]
-      gtk-application-prefer-dark-theme=1
-    '';
-    force = true; # allows Home Manager to overwrite any existing file
-  };
 }

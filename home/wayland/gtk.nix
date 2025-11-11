@@ -5,7 +5,7 @@ let
     owner = "Fausto-Korpsvart";
     repo = "Gruvbox-GTK-Theme";
     rev = "578cd22"; # latest commit
-    sha256 = "0v6ncj5lffn8cld5c6qvmc9p5c5pz3kjyqv9xxpcc5l57b3j9d7f"; # prefetch required
+    sha256 = "1fmpma44hp9a7b2nklvm900l62ni8smmjc9g4a9y1x53ys7hyyj5";
   };
 in
 {
@@ -16,20 +16,31 @@ in
     gruvboxTheme
   ];
 
-  # GTK3
-  home.file.".config/gtk-3.0/settings.ini".text = ''
-    [Settings]
-    gtk-theme-name = Gruvbox
-    gtk-icon-theme-name = Suru
-    gtk-font-name = Cantarell 11
-  '';
+  # Environment variables for GTK/Qt apps and Sway
+  home.sessionVariables = {
+    GTK_THEME = "Gruvbox";
+    QT_STYLE_OVERRIDE = "Adwaita-dark";
+    XDG_CURRENT_DESKTOP = "sway";
+  };
 
-  # GTK4
-  home.file.".config/gtk-4.0/settings.ini".text = ''
-    [Settings]
-    gtk-theme-name = Gruvbox
-  '';
+  # GTK3 settings
+  xdg.configFile."gtk-3.0/settings.ini" = {
+    text = ''
+      [Settings]
+      gtk-theme-name = Gruvbox
+      gtk-icon-theme-name = Suru
+      gtk-font-name = Cantarell 11
+      gtk-application-prefer-dark-theme=1
+    '';
+    force = true;
+  };
 
-  # Optional: Flatpak override for GTK apps
-  home.sessionVariables.FLATPAK_OVERRIDE_THEMES = "--user --filesystem=$HOME/.themes";
+  # GTK4 settings
+  xdg.configFile."gtk-4.0/settings.ini" = {
+    text = ''
+      [Settings]
+      gtk-theme-name = Gruvbox
+    '';
+    force = true;
+  };
 }
