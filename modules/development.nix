@@ -12,6 +12,9 @@
     phpExtensions.fileinfo
     php84Packages.composer
     nodejs
+    python310Full                # Python
+    mariadb-connector-c          # MariaDB Connector/C
+
   ];
 
 

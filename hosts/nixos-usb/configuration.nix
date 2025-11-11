@@ -92,7 +92,6 @@
     fastfetch
     spotify
     cava
-    python3Full
     wezterm
     freerdp
     dialog

@@ -41,20 +41,20 @@
     ];
 
     # GTK 3 settings
-    file.".config/gtk-3.0/settings.ini".text = ''
-      [Settings]
-      gtk-theme-name = Adwaita-dark
-      gtk-font-name = FiraCode Nerd 10
-      gtk-icon-theme-name = Adwaita
-    '';
+    #file.".config/gtk-3.0/settings.ini".text = ''
+    #  [Settings]
+    #  gtk-theme-name = Adwaita-dark
+    #  gtk-font-name = FiraCode Nerd 10
+    #  gtk-icon-theme-name = Adwaita
+    #'';
 
     # GTK 4 settings
-    file.".config/gtk-4.0/settings.ini".text = ''
-      [Settings]
-      gtk-theme-name = Adwaita-dark
-      gtk-font-name = FiraCode Nerd 10
-      gtk-icon-theme-name = Adwaita
-      gtk-application-prefer-dark-theme = true
-    '';
+    #file.".config/gtk-4.0/settings.ini".text = ''
+    #  [Settings]
+    #  gtk-theme-name = Adwaita-dark
+    #  gtk-font-name = FiraCode Nerd 10
+    #  gtk-icon-theme-name = Adwaita
+    #  gtk-application-prefer-dark-theme = true
+    #'';
   };
 }

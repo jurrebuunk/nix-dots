@@ -12,6 +12,7 @@ in
       jdinhlife.gruvbox
       yzhang.markdown-all-in-one
       bradlc.vscode-tailwindcss
+      databricks.databricks
     ];
 
     userSettings = {
@@ -21,7 +22,28 @@ in
       "workbench.colorTheme" = "Gruvbox Dark Hard";
       "git.suggestSmartCommit" = false;
       "git.confirmSync" = false;
+
+      # dbcode extension settings
+      "dbcode.connections" = [
+        {
+          connectionId = "0h_zttEmBLle2vjmY4TZN";
+          name = "SYBAU";
+          driver = "mariadb";
+          connectionType = "host";
+          host = "145.74.104.79";
+          port = 3306;
+          ssl = true;
+          sslTrustCertificate = true;
+          username = "2170755";
+          password = "";
+          savePassword = "secretStorage";
+          readOnly = false;
+          postConnectionSqlType = "inline";
+          driverOptions = {
+            retrievePublickey = true;
+          };
+        }
+      ];
     };
   };
 }
-
