@@ -109,9 +109,11 @@ in {
     XDG_CURRENT_DESKTOP = "sway";
   };
 
-  # GTK3 settings
-  xdg.configFile."gtk-3.0/settings.ini".text = ''
-    [Settings]
-    gtk-application-prefer-dark-theme=1
-  '';
+  xdg.configFile."gtk-3.0/settings.ini" = {
+    text = ''
+      [Settings]
+      gtk-application-prefer-dark-theme=1
+    '';
+    force = true; # allows Home Manager to overwrite any existing file
+  };
 }
