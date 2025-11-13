@@ -16,9 +16,4 @@
     xorg.xorgserver
   ];
 
-  # optioneel, log locatie
-  environment.etc."ly/config.ini".text = ''
-    [general]
-    tty=2
-  '';
 }

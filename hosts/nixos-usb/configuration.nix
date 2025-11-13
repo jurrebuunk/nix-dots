@@ -11,6 +11,7 @@
       ./hardware-configuration.nix
       ../../modules/ly-dm.nix
       ../../modules/sway.nix
+      ../../modules/waylock.nix
       ../../modules/development.nix
     ];
   # Use the systemd-boot EFI boot loader.

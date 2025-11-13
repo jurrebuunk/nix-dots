@@ -47,6 +47,7 @@ in {
           "${mod}+s" = "layout stacking";
           "${mod}+v" = "split v";
           "${mod}+w" = "layout tabbed";
+          "${mod}+Shift+l" = "exec waylock";
 
           "${mod}+Shift+r" = "exec swaymsg reload";
           "--release Print" = "exec --no-startup-id ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
@@ -87,6 +88,12 @@ in {
           urgent_workspace   ${c.red} ${c.red} ${c.fg}
         }
       }
+
+      # Idle lock (5min) + DPMS off (10min)
+      exec swayidle -w \
+        timeout 300 'waylock' \
+        timeout 600 'swaymsg "output * dpms off"' \
+        resume 'swaymsg "output * dpms on"'
     '';
 
     systemd.enable = true;
