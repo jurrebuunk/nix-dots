@@ -8,7 +8,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./hw-config.nix
       ../../modules/ly-dm.nix
       ../../modules/sway.nix
       ../../modules/waylock.nix

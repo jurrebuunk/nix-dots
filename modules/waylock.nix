@@ -6,8 +6,4 @@
     waylock
     swayidle
   ];
-
-  services.logind.extraConfig = ''
-    HandleLidSwitch=lock
-  '';
 }
