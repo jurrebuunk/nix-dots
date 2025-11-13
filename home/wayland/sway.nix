@@ -52,6 +52,7 @@ in {
           "${mod}+Shift+r" = "exec swaymsg reload";
           "--release Print" = "exec --no-startup-id ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
           "${mod}+Ctrl+q" = "exit";
+          "${mod}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
         }
       ];
       focus.followMouse = false;
