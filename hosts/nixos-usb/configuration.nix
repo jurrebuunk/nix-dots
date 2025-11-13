@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/ly-dm.nix
       ../../modules/sway.nix
       ../../modules/development.nix
     ];
@@ -100,6 +101,7 @@
     iproute2
     netcat
     firefox
+    nautilus
   ];
 
   environment.etc."bin/wifi".text = ''

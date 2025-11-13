@@ -17,6 +17,11 @@
 
   ];
 
+  #fix for python cert files
+  environment.etc.certfile = {
+    source = "/etc/ssl/certs/ca-bundle.crt";
+    target = "ssl/cert.pem";
+  };
 
   # Laravel installer via Composer
   environment.shellInit = ''

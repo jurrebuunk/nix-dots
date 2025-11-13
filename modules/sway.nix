@@ -1,15 +1,15 @@
 {pkgs, ...}: rec {
   programs.dconf.enable = true;
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-        user = "jurre";
-      };
-    };
-  };
+  #services.greetd = {
+  #  enable = true;
+  #  settings = {
+  #    default_session = {
+  #      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+  #      user = "jurre";
+  #    };
+  #  };
+  #};
 
   security.polkit.enable = true;
   security.pam.services.swaylock = {};
