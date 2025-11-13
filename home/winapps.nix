@@ -8,14 +8,14 @@
       ##################################
 
       RDP_USER="User"
-      RDP_PASS="FUCKOFF"
+      RDP_PASS="#Buunkstra1448"
       RDP_DOMAIN="."
       RDP_IP="192.168.1.99"
       VM_NAME=""
       WAFLAVOR="manual"
       RDP_SCALE="100"
       REMOVABLE_MEDIA="/run/media"
-      RDP_FLAGS="/cert:tofu /sound /microphone +home-drive"
+      RDP_FLAGS="/cert:tofu /sound /microphone +home-drive /scale-desktop:100 /dynamic-resolution" 
       DEBUG="true"
       AUTOPAUSE="off"
       AUTOPAUSE_TIME="300"
