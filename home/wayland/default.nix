@@ -6,5 +6,6 @@
     ./sway.nix
     ./i3status.nix
     ./gtk.nix
+    ./mako.nix
   ];
 }
