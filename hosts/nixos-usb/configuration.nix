@@ -61,10 +61,17 @@
   # Enable sound.
   # services.pulseaudio.enable = true;
   # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  # Audio
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    pulse.enable = true;
+  };
+
+
+  # Camera (uaccess en v4l2)
+  hardware.enableAllFirmware = true;
+  boot.extraModulePackages = [ pkgs.v4l-utils ];
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
@@ -72,7 +79,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.jurre = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker"]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "docker" "video" "audio"]; # Enable ‘sudo’ for the user.
     initialPassword = "Welkom01";
   };
 
@@ -103,6 +110,7 @@
     netcat
     firefox
     nautilus
+    pavucontrol   # geluidsinstellingen
   ];
 
   environment.etc."bin/wifi".text = ''
