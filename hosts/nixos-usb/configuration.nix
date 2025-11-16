@@ -111,6 +111,7 @@
     firefox
     nautilus
     pavucontrol   # geluidsinstellingen
+    moonlight-qt
   ];
 
   environment.etc."bin/wifi".text = ''
