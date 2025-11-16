@@ -96,10 +96,10 @@ in {
       }
 
       # Idle lock (5min) + DPMS off (10min)
-      exec swayidle -w \
-        timeout 300 'waylock' \
-        timeout 600 'swaymsg "output * dpms off"' \
-        resume 'swaymsg "output * dpms on"'
+      #exec swayidle -w \
+      #  timeout 300 'waylock' \
+      #  timeout 600 'swaymsg "output * dpms off"' \
+      #  resume 'swaymsg "output * dpms on"'
     '';
 
     systemd.enable = true;
