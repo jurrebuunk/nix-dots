@@ -24,20 +24,26 @@ in
     order += "disk /"
     order += "load"
     order += "memory"
+    order += "volume master"
     order += "tztime local"
 
+    volume master {
+      format = " %volume"
+      format_muted = "%volume"
+    }
+
     wireless _first_ {
-      format_up = " %quality at %essid"
-      format_down = "睊 down"
+      format_up = "󰖩%quality %essid"
+      format_down = "󰖪down"
     }
 
     ethernet _first_ {
-      format_up = " %ip"
+      format_up = "󰈁%ip"
       format_down = ""
     }
 
     battery 0 {
-      format = " %percentage %remaining"
+      format = "󱊣 %percentage %remaining"
       format_down = "No battery"
       threshold_type = percentage
       low_threshold = 15
@@ -56,7 +62,7 @@ in
     }
 
     memory {
-      format = " %used / %total"
+      format = " %used/%total"
       threshold_degraded = "10%"
       format_degraded = "MEMORY: %used"
     }

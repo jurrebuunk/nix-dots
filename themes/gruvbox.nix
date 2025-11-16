@@ -15,7 +15,7 @@
   };
 
   fonts = {
-    main = "CaskaydiaMono Nerd Font";  # <- changed from FiraCode Nerd Font
+    main = "CaskaydiaMono Nerd Font";
     size = "10";
   };
 }
