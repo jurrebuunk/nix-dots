@@ -9,9 +9,8 @@
       ./element-desktop.nix
       ./winapps.nix
       ./firefox.nix
-      ./moonlight.nix
     ];
-    
+
   home = {
     username = "jurre";
     homeDirectory = "/home/jurre";
