@@ -112,6 +112,7 @@
     nautilus
     pavucontrol   # geluidsinstellingen
     moonlight-qt
+    kanshi
   ];
 
   environment.etc."bin/wifi".text = ''

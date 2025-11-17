@@ -16,6 +16,7 @@
 
   fonts = {
     main = "CaskaydiaMono Nerd Font";
+    package = "pkgs.nerd-fonts.caskaydia-cove"; # voeg package toe
     size = "10";
   };
 }

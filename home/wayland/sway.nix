@@ -68,6 +68,11 @@ in {
       # Border settings
       default_border pixel 2
 
+      for_window [window_role="x11-embed"] border pixel 2
+      for_window [window_type="dialog"] border pixel 2
+      for_window [window_type="utility"] border pixel 2
+      for_window [window_role="dialog"] border pixel 2
+
       exec_always swaybg -i ${theme.wallpaper} -m fill
 
       # Font from theme
@@ -100,6 +105,8 @@ in {
       #  timeout 300 'waylock' \
       #  timeout 600 'swaymsg "output * dpms off"' \
       #  resume 'swaymsg "output * dpms on"'
+
+      exec sleep 5; systemctl --user start kanshi.service
     '';
 
     systemd.enable = true;

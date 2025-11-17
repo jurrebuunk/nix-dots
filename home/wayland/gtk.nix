@@ -25,14 +25,15 @@ let
 
     button, button:focus, button:active, button:hover {
       background: @bg;
-      border: none;
+      color: @fg;
+      border: 2px solid @gray;
       box-shadow: none;
     }
 
     entry, spinbutton, combobox, menuitem {
       background-color: @bg;
       color: @fg;
-      border-width: 0;
+      border: 2px solid @gray;
       border-radius: 0;
     }
 
@@ -62,10 +63,12 @@ let
     }
 
     headerbar entry, headerbar button {
-      border-width: 0;
+      border: 1px solid @gray;
+      background: @bg;
       box-shadow: none;
     }
   '';
+
 in {
   xdg.configFile."gtk-3.0/gtk.css" = {
     text = gtkCss;
@@ -80,8 +83,7 @@ in {
   home.packages = with pkgs; [
     nerd-fonts.fira-code
     #papirus-icon-theme       # clean & modern
-    #flat-remix-icon-theme    # flat / Material Design stijl
-    moka-icon-theme          # minimalistische look
+    #flat-remix-icon-theme    # flat / Material Design stijl          # minimalistische look
     #numix-icon-theme         # strak en modern
   ];
 
@@ -96,17 +98,19 @@ in {
     GDK_BACKEND = "wayland";
   };
 
-  xdg.configFile."gtk-3.0/settings.ini".text = ''
-    [Settings]
-    gtk-icon-theme-name = Moka
-    gtk-font-name = ${theme.fonts.main} ${theme.fonts.size}
-    gtk-application-prefer-dark-theme = 1
-  '';
-
-  xdg.configFile."gtk-4.0/settings.ini".text = ''
-    [Settings]
-    gtk-icon-theme-name = Moka
-    gtk-font-name = ${theme.fonts.main} ${theme.fonts.size}
-    gtk-application-prefer-dark-theme = 1
-  '';
+  gtk = {
+    enable = true;
+    iconTheme = {
+      name = "Vimix-dark";
+      package = pkgs.vimix-icon-theme;
+    };
+    font = {
+      name = theme.fonts.main;
+      package = ${theme.fonts.package};
+      size = 10;
+    };
+    gtk3.extraConfig.Settings = "gtk-application-prefer-dark-theme=1";
+    gtk4.extraConfig.Settings = "gtk-application-prefer-dark-theme=1";
+  };
+  
 }
