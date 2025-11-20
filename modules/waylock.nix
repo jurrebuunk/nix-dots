@@ -3,7 +3,8 @@
 
 {
   environment.systemPackages = with pkgs; [
-    waylock
+    gtklock
     swayidle
+    swaylock
   ];
 }
