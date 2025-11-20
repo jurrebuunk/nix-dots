@@ -47,7 +47,8 @@ in {
           "${mod}+s" = "layout stacking";
           "${mod}+v" = "split v";
           "${mod}+w" = "layout tabbed";
-          "${mod}+Shift+l" = "exec waylock";
+          "${mod}+Shift+l" = "exec gtklock";
+          "${mod}+Ctrl+Shift+l" = "exec swaylock";
 
           "${mod}+Shift+r" = "exec swaymsg reload";
           "--release Print" = "exec --no-startup-id ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";

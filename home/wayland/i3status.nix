@@ -21,25 +21,23 @@ in
     order += "ethernet _first_"
     order += "battery 0"
     order += "cpu_usage"
-    order += "disk /"
-    order += "load"
     order += "memory"
     order += "volume master"
     order += "tztime local"
 
     volume master {
       format = " %volume"
-      format_muted = "%volume"
+      format_muted = " %volume"
     }
 
     wireless _first_ {
       format_up = "󰖩%quality %essid"
-      format_down = "󰖪down"
+      format_down = "󰖪 down"
     }
 
     ethernet _first_ {
-      format_up = "󰈁%ip"
-      format_down = ""
+      format_up = "󰈁 %ip"
+      format_down = "󰈂 down"
     }
 
     battery 0 {
@@ -51,14 +49,6 @@ in
 
     cpu_usage {
       format = " %usage"
-    }
-
-    disk "/" {
-      format = " %avail"
-    }
-
-    load {
-      format = " %1min"
     }
 
     memory {

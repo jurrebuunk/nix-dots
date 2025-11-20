@@ -7,5 +7,6 @@
     ./i3status.nix
     ./gtk.nix
     ./mako.nix
+    ./swaylock.nix
   ];
 }

@@ -7,21 +7,30 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hw-config.nix
-      ../../modules/ly-dm.nix
+    [
+      ./hw-config.nix                 # Hardware specific configurations
+      ../../modules/ly-dm.nix         # Login 
       ../../modules/sway.nix
       ../../modules/waylock.nix
       ../../modules/development.nix
     ];
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos-usb"; # Define your hostname.
-  # Pick only one of the below networking options.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  # Networking
+  networking = {
+    hostName = "nixos-usb";
+    networkmanager = {
+      enable = true;
+    };
+  };
+
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Amsterdam";
@@ -113,6 +122,7 @@
     pavucontrol   # geluidsinstellingen
     moonlight-qt
     kanshi
+    cava
   ];
 
   environment.etc."bin/wifi".text = ''
@@ -121,11 +131,6 @@
   '';
 
   virtualisation.docker.enable = true;
-
-  services.tailscale = {
-    enable = true;
-    useRoutingFeatures = "client";
-  };
 
   environment.variables.PATH = [ "/home/jurre/.local/bin" ];
 

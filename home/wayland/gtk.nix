@@ -56,10 +56,14 @@ let
       border-radius: 0;
     }
 
-    headerbar {
+    headerbar,
+    headerbar:backdrop,
+    .titlebar,
+    .titlebar:backdrop {
       background-color: @bg;
       color: @fg;
-      border-width: 0;
+      border: 0;
+      box-shadow: none;
     }
 
     headerbar entry, headerbar button {
@@ -82,9 +86,6 @@ in {
 
   home.packages = with pkgs; [
     nerd-fonts.fira-code
-    #papirus-icon-theme       # clean & modern
-    #flat-remix-icon-theme    # flat / Material Design stijl          # minimalistische look
-    #numix-icon-theme         # strak en modern
   ];
 
   home.sessionVariables = {
@@ -106,11 +107,10 @@ in {
     };
     font = {
       name = theme.fonts.main;
-      package = ${theme.fonts.package};
+      package = pkgs.nerd-fonts.caskaydia-cove;
       size = 10;
     };
     gtk3.extraConfig.Settings = "gtk-application-prefer-dark-theme=1";
     gtk4.extraConfig.Settings = "gtk-application-prefer-dark-theme=1";
   };
-  
 }
