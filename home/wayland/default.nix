@@ -7,6 +7,6 @@
     ./i3status.nix
     ./gtk.nix
     ./mako.nix
-    ./ly-dm.nix
+    ./kanshi.nix
   ];
 }

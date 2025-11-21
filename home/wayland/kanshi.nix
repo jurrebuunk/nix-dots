@@ -1,10 +1,25 @@
 { config, pkgs, ... }:
 
 {
-  xdg.configFile."kanshi/kanshi.conf".text = ''
-    profile "lg-only" {
-      output eDP-1 disabled
-      output DP-4 enabled resolution 2560x1080 position 0,0
-    }
-  '';
+  services.kanshi = {
+    enable = true;
+
+    profiles = {
+      ultrawide_only = {
+        outputs = [
+          {
+            criteria = "DP-4";
+            mode = "2560x1080@60Hz";
+            position = "0,0";
+            status = "enable";
+          }
+          {
+            criteria = "eDP-1";
+            status = "disable";
+          }
+        ];
+      };
+    };
+  };
 }
+
