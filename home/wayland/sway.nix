@@ -106,8 +106,6 @@ in {
       #  timeout 300 'waylock' \
       #  timeout 600 'swaymsg "output * dpms off"' \
       #  resume 'swaymsg "output * dpms on"'
-
-      exec sleep 5; systemctl --user start kanshi.service
     '';
 
     systemd.enable = true;
