@@ -13,6 +13,7 @@
       ../../modules/sway.nix
       ../../modules/waylock.nix
       ../../modules/development.nix
+      ../../modules/niri.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
