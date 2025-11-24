@@ -8,5 +8,6 @@
     ./gtk.nix
     ./mako.nix
     ./kanshi.nix
+    ./niri.nix
   ];
 }
