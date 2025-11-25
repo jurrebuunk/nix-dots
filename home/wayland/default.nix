@@ -9,5 +9,6 @@
     ./mako.nix
     ./kanshi.nix
     ./niri.nix
+    ./rofi.nix
   ];
 }
