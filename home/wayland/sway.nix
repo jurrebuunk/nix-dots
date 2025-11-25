@@ -35,7 +35,7 @@ in {
         {
           "${mod}+Return" = "exec --no-startup-id ${pkgs.wezterm}/bin/wezterm";
           #"${mod}+space" = "exec --no-startup-id wofi --show drun,run";
-          "${mod}+space" = "exec dmenu_run";
+          "${mod}+space" = "exec rofi -show drun";
 
           "${mod}+x" = "kill";
 
