@@ -14,6 +14,7 @@
       ../../modules/waylock.nix
       ../../modules/development.nix
       ../../modules/niri.nix
+      ../../modules/rofi.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -124,6 +125,7 @@
     moonlight-qt
     kanshi
     cava
+    fuzzel
   ];
 
   services.logind.lidSwitchDocked = "ignore";
