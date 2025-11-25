@@ -6,6 +6,7 @@
       ./vscodium.nix
       ./wezterm.nix
       ./wayland
+      ./rofi
       ./element-desktop.nix
       ./winapps.nix
       ./firefox.nix
