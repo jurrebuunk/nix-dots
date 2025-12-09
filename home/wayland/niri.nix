@@ -7,7 +7,7 @@ let
 in
 {
   home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
+    # NIXOS_OZONE_WL = "1";
   };
 
   home.file.".config/niri/config.kdl".text = ''
@@ -30,7 +30,7 @@ in
         QT_QPA_PLATFORMTHEME "kde"
         EDITOR "nano"
         TERMINAL "wezterm"
-        NIXOS_OZONE_WL "1"
+        // NIXOS_OZONE_WL "1"
     }
 
     // Input device configuration.
@@ -95,28 +95,20 @@ in
     // Find more information on the wiki:
     // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
     // Remember to uncomment the node by removing "/-"!
-    output "DP-2" {
-        mode "1920x1080@60.000"
+    output "eDP-1" {
+        mode "1920x1080@60.002"
+        scale 1.1
         transform "normal"
-        position x=0 y=500
+        position x=0 y=0
     }
-    output "DP-3" {
-        mode "2560x1440@164.835"
-        transform "normal"
-        position x=1920 y=0
-        //variable-refresh-rate
-    }
-    output "HDMI-A-1" {
-        mode "1600x900@60.000"
-        position x=4480 y=500
-    }
+
 
     // Settings that influence how windows are positioned and sized.
     // Find more information on the wiki:
     // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
     layout {
         // Set gaps around windows in logical pixels.
-        gaps 0
+        gaps 4
 
         // When to center a column when changing focus, options are:
         // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -143,7 +135,7 @@ in
         // preset-window-heights { }
 
         // You can change the default width of the new windows.
-        default-column-width { proportion 0.5; }
+        default-column-width { proportion 0.33333; }
         // If you leave the brackets empty, the windows themselves will decide their initial width.
         // default-column-width {}
 
@@ -164,7 +156,7 @@ in
             off
 
             // How many logical pixels the ring extends out from the windows.
-            width 2
+            width 4
 
             // Colors can be set in a variety of ways:
             // - CSS named colors: "red"
@@ -274,7 +266,7 @@ in
         // off
 
         // Slow down all animations by this factor. Values below 1 speed them up instead.
-        // slowdown 3.0
+        slowdown 1
     }
 
     // Window rules let you adjust behavior for individual windows.

@@ -115,7 +115,7 @@ in {
 
   home.file.".hm-graphical-session".text = pkgs.lib.concatStringsSep "\n" [
     "export MOZ_ENABLE_WAYLAND=1"
-    "export NIXOS_OZONE_WL=1"
+    # "export NIXOS_OZONE_WL=1"
   ];
 
   services.cliphist.enable = true;

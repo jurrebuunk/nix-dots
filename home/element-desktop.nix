@@ -5,7 +5,13 @@
 {
   # Ensure Element Desktop is installed
   home.packages = with pkgs; [
-    element-desktop
+    (element-desktop.overrideAttrs (old: {
+      nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ makeWrapper ];
+      postFixup = (old.postFixup or "") + ''
+        wrapProgram $out/bin/element-desktop \
+          --add-flags "--enable-features=WaylandWindowDecorations --ozone-platform=wayland"
+      '';
+    }))
   ];
 
   # Manage the Element config file declaratively

@@ -126,7 +126,9 @@
     kanshi
     cava
     fuzzel
-    pkgs.antigravity
+    (pkgs.antigravity.override {
+      commandLineArgs = "--enable-features=WaylandWindowDecorations --ozone-platform=wayland";
+    })
     rofi-bluetooth
     rofi-network-manager
     vlc
