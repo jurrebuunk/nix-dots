@@ -6,6 +6,10 @@ let
   f = theme.fonts;
 in
 {
+  home.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
+
   home.file.".config/niri/config.kdl".text = ''
     // This config is in the KDL format: https://kdl.dev
     // "/-" comments out the following node.
@@ -14,9 +18,9 @@ in
 
     spawn-at-startup "waybar"
     // Niri config files don't support using ~/ so you'll have to change it to your home directory yourself
-    spawn-at-startup "swaybg" "-i" "/home/kaylie/titlescreen-invert.png" "--mode" "fill"
+    spawn-at-startup "swaybg" "-i" "${theme.wallpaper}" "--mode" "fill"
     // Niri generally prefers GTK based apps/portals, so we'll go along
-    spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+    spawn-at-startup "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1"
     spawn-at-startup "fcitx5"
     environment {
         //QT_STYLE_OVERRIDE "Breeze"
@@ -26,6 +30,7 @@ in
         QT_QPA_PLATFORMTHEME "kde"
         EDITOR "nano"
         TERMINAL "wezterm"
+        NIXOS_OZONE_WL "1"
     }
 
     // Input device configuration.
@@ -111,7 +116,7 @@ in
     // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
     layout {
         // Set gaps around windows in logical pixels.
-        gaps 5
+        gaps 0
 
         // When to center a column when changing focus, options are:
         // - "never", default behavior, focusing an off-screen column will keep at the left
@@ -156,7 +161,7 @@ in
         // You can change how the focus ring looks.
         focus-ring {
             // Uncomment this line to disable the focus ring.
-            // off
+            off
 
             // How many logical pixels the ring extends out from the windows.
             width 2
@@ -167,10 +172,10 @@ in
             // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
 
             // Color of the ring on the active monitor.
-            active-color "#89b4fa"
+            active-color "${c.blue}"
 
             // Color of the ring on inactive monitors.
-            inactive-color "#505050"
+            inactive-color "${c.gray}"
 
             // You can also use gradients. They take precedence over solid colors.
             // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
@@ -192,11 +197,11 @@ in
         border {
             // The settings are the same as for the focus ring.
             // If you enable the border, you probably want to disable the focus ring.
-            off
+            // off
 
-            width 4
-            active-color "#ffc87f"
-            inactive-color "#505050"
+            width 2
+            active-color "${c.blue}"
+            inactive-color "${c.gray}"
 
             // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
             // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
@@ -344,9 +349,10 @@ in
 
         // Suggested binds for running programs: terminal, app launcher, screen locker.
         Mod+Return { spawn "wezterm"; }
-        Ctrl+Mod+Return { spawn "fuzzel"; }
         Super+Alt+L { spawn "swaylock"; }
         Mod+B {spawn "firefox";}
+        Mod+Space { spawn "rofi" "-show" "drun"; }
+        Mod+Alt+Space { spawn "rofi" "-show" "run"; }
 
         // You can also use a shell. Do this if you need pipes, multiple commands, etc.
         // Note: the entire command goes as a single argument in the end.

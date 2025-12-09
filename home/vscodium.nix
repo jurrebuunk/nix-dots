@@ -6,15 +6,16 @@ in
 {
   programs.vscode = {
     enable = true;
-    package = pkgs.vscodium;
+    package = pkgs.vscodium.override {
+      commandLineArgs = "--enable-features=WaylandWindowDecorations --ozone-platform=wayland";
+    };
 
     profiles.default.extensions = with pkgs.vscode-extensions; [
       jdinhlife.gruvbox
       yzhang.markdown-all-in-one
       bradlc.vscode-tailwindcss
-      databricks.databricks
     ];
-
+    
     userSettings = {
       "editor.fontFamily" = "CaskaydiaMono Nerd Font";
       "terminal.integrated.fontFamily" = "CaskaydiaMono Nerd Font";

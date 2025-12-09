@@ -126,8 +126,14 @@
     kanshi
     cava
     fuzzel
+    pkgs.antigravity
+    rofi-bluetooth
+    rofi-network-manager
+    vlc
   ];
 
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  
   services.logind.lidSwitchDocked = "ignore";
 
   environment.etc."bin/wifi".text = ''

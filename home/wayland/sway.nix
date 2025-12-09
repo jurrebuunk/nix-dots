@@ -36,6 +36,7 @@ in {
           "${mod}+Return" = "exec --no-startup-id ${pkgs.wezterm}/bin/wezterm";
           #"${mod}+space" = "exec --no-startup-id wofi --show drun,run";
           "${mod}+space" = "exec rofi -show drun";
+          "${mod}+Alt+space" = "exec rofi -show run";
 
           "${mod}+x" = "kill";
 

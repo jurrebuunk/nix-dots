@@ -8,9 +8,9 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "vmd" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "vmd" "nvme" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = lib.mkDefault [ "kvm-intel" "snd_hda_intel" "snd_soc_skl" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -29,21 +29,5 @@
     ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  hardware = {
-    enableAllFirmware = true;
-    cpu.intel.updateMicrocode = true;
-    graphics = {
-      enable = true;
-      extraPackages = with pkgs; [
-        intel-media-driver
-        intel-vaapi-driver
-        libva-vdpau-driver
-        libvdpau-va-gl
-        mesa
-      ];
-    };
-  };
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
