@@ -1,1 +1,1 @@
-import ./gruvbox.nix
+import ./teal-gradient.nix

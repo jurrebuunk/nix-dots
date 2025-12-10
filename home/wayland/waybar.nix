@@ -8,44 +8,22 @@ in
 {
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
+    systemd.enable = false; # We start it from niri config
+    package = pkgs.waybar;
     
     settings = {
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
-        spacing = 4;
+        height = 22;
+        spacing = 0;
         
-        modules-left = [ "niri/workspaces" "niri/window" ];
-        modules-center = [ "clock" ];
-        modules-right = [ "pulseaudio" "network" "cpu" "memory" "battery" "tray" ];
-        
-        "niri/workspaces" = {
-          format = "{icon}";
-          format-icons = {
-            "1" = "1";
-            "2" = "2";
-            "3" = "3";
-            "4" = "4";
-            "5" = "5";
-            "6" = "6";
-            "7" = "7";
-            "8" = "8";
-            "9" = "9";
-            default = "";
-          };
-        };
-        
-        "niri/window" = {
-          format = "{}";
-          max-length = 50;
-          separate-outputs = true;
-        };
+        modules-left = [ "clock" ];
+        modules-center = [ ];
+        modules-right = [ "cpu" "memory" "temperature" "pulseaudio" "network" "battery" ];
         
         clock = {
-          format = "{:%H:%M}";
-          format-alt = "{:%Y-%m-%d}";
+          format = "  {:%Y-%m-%d %H:%M}";
           tooltip-format = "<tt><small>{calendar}</small></tt>";
           calendar = {
             mode = "year";
@@ -60,64 +38,59 @@ in
               today = "<span color='${c.red}'><b><u>{}</u></b></span>";
             };
           };
-          actions = {
-            on-click-right = "mode";
-            on-scroll-up = "shift_up";
-            on-scroll-down = "shift_down";
-          };
         };
         
         cpu = {
-          format = " {usage}%";
-          tooltip = false;
+          interval = 2;
+          format = "  {usage}%";
+          tooltip-format = "CPU: {usage}%";
         };
         
         memory = {
-          format = " {}%";
+          interval = 2;
+          format = "  {used:0.1f}G/{total:0.1f}G";
+          tooltip-format = "RAM: {used:0.1f}G / {total:0.1f}G ({percentage}%)";
+        };
+        
+        temperature = {
+          interval = 2;
+          thermal-zone = 0;
+          critical-threshold = 80;
+          format = "{icon} {temperatureC}°C";
+          format-icons = [ "" "" "" "" "" ];
+          tooltip = false;
         };
         
         battery = {
+          interval = 10;
           states = {
             warning = 30;
             critical = 15;
           };
-          format = "{icon} {capacity}%";
-          format-charging = " {capacity}%";
-          format-plugged = " {capacity}%";
-          format-alt = "{icon} {time}";
-          format-icons = [ "" "" "" "" "" ];
+          format = "󱊣 {capacity}%";
+          format-charging = "󱊣 {capacity}%";
+          format-plugged = "󱊣 {capacity}%";
+          tooltip-format = "{capacity}% {timeTo}";
         };
         
         network = {
-          format-wifi = " {essid}";
-          format-ethernet = " {ipaddr}";
-          format-linked = " {ifname} (No IP)";
-          format-disconnected = "⚠ Disconnected";
-          tooltip-format = "{ifname} via {gwaddr}";
-          tooltip-format-wifi = "{essid} ({signalStrength}%)  ";
-          tooltip-format-ethernet = "{ifname}  ";
+          interval = 2;
+          format-wifi = "󰖩 {essid} {signalStrength}%";
+          format-ethernet = "󰈁 {ipaddr}";
+          format-disconnected = "󰖪";
+          tooltip-format-wifi = "{essid} ({signalStrength}%)";
+          tooltip-format-ethernet = "{ifname}: {ipaddr}";
           tooltip-format-disconnected = "Disconnected";
         };
         
         pulseaudio = {
-          format = "{icon} {volume}%";
-          format-bluetooth = "{icon} {volume}%";
-          format-bluetooth-muted = " {icon}";
+          format = " {volume}%";
+          format-bluetooth = " {volume}%";
+          format-bluetooth-muted = " {volume}%";
           format-muted = " {volume}%";
-          format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = [ "" "" "" ];
-          };
           on-click = "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-        };
-        
-        tray = {
-          spacing = 10;
+          on-click-right = "pavucontrol";
+          tooltip-format = "{desc}: {volume}%";
         };
       };
     };
@@ -126,93 +99,45 @@ in
       * {
         border: none;
         border-radius: 0;
-        font-family: ${f.main};
+        font-family: ${f.main}, "Font Awesome 6 Free";
         font-size: ${f.size}pt;
         min-height: 0;
+        margin: 0;
+        padding: 0;
       }
       
       window#waybar {
         background-color: ${c.bg};
         color: ${c.fg};
-        transition-property: background-color;
-        transition-duration: .5s;
       }
       
-      window#waybar.hidden {
-        opacity: 0.2;
-      }
-      
-      #workspaces button {
-        padding: 0 8px;
-        background-color: transparent;
-        color: ${c.gray};
-        border-bottom: 3px solid transparent;
-      }
-      
-      #workspaces button:hover {
-        background: rgba(0, 0, 0, 0.2);
-        box-shadow: inherit;
-        border-bottom: 3px solid ${c.gray};
-      }
-      
-      #workspaces button.active {
-        background-color: rgba(131, 165, 152, 0.2);
-        color: ${c.blue};
-        border-bottom: 3px solid ${c.blue};
-      }
-      
-      #workspaces button.urgent {
-        background-color: ${c.red};
-        color: ${c.fg};
-      }
-      
-      #clock,
-      #battery,
-      #cpu,
-      #memory,
-      #network,
-      #pulseaudio,
-      #tray,
-      #window {
-        padding: 0 10px;
-        color: ${c.fg};
-      }
-      
-      #window {
+      #clock {
         color: ${c.blue};
         font-weight: bold;
       }
       
-      #battery.charging, #battery.plugged {
-        color: ${c.green};
-      }
-      
-      #battery.critical:not(.charging) {
-        background-color: ${c.red};
-        color: ${c.fg};
-        animation-name: blink;
-        animation-duration: 0.5s;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-        animation-direction: alternate;
-      }
-      
-      @keyframes blink {
-        to {
-          background-color: ${c.bg};
-          color: ${c.red};
-        }
-      }
-      
       #cpu {
+        padding: 0 8px;
         color: ${c.green};
       }
       
       #memory {
+        padding: 0 8px;
         color: ${c.yellow};
       }
       
+      #temperature {
+        padding: 0 8px;
+        color: ${c.orange};
+      }
+      
+      #temperature.critical {
+        color: ${c.red};
+        font-weight: bold;
+      }
+      
       #network {
+        padding: 0 8px;
         color: ${c.cyan};
       }
       
@@ -221,6 +146,7 @@ in
       }
       
       #pulseaudio {
+        padding: 0 8px;
         color: ${c.magenta};
       }
       
@@ -228,17 +154,37 @@ in
         color: ${c.gray};
       }
       
-      #tray {
-        background-color: transparent;
+      #battery {
+        padding: 0 10px;
+        color: ${c.green};
       }
       
-      #tray > .passive {
-        -gtk-icon-effect: dim;
+      #battery.charging {
+        color: ${c.blue};
       }
       
-      #tray > .needs-attention {
-        -gtk-icon-effect: highlight;
-        background-color: ${c.red};
+      #battery.warning:not(.charging) {
+        color: ${c.yellow};
+      }
+      
+      #battery.critical:not(.charging) {
+        color: ${c.red};
+        animation: blink 1s linear infinite;
+      }
+      
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        49% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 0.5;
+        }
       }
     '';
   };
