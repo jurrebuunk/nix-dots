@@ -10,6 +10,7 @@
       ./element-desktop.nix
       ./winapps.nix
       ./firefox.nix
+      ./libreoffice.nix
     ];
 
   home = {

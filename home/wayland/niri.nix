@@ -97,7 +97,7 @@ in
     // Remember to uncomment the node by removing "/-"!
     output "eDP-1" {
         mode "1920x1080@60.002"
-        scale 1.1
+        scale 1
         transform "normal"
         position x=0 y=0
     }

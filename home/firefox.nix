@@ -53,6 +53,8 @@ in
       };
 
       settings = {
+        # Enable userChrome.css support
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         "browser.startup.homepage" = "about:home";
         "browser.disableResetPrompt" = true;
         "browser.download.panel.shown" = true;
