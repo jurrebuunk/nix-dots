@@ -1,8 +1,6 @@
-{ config, pkgs, ... }:
+{ pkgs, theme, ... }:
 
-# Import your theme
 let
-  theme = import ../themes/theme.nix;
   weztermConfig = ''
     local wezterm = require 'wezterm';
     return {

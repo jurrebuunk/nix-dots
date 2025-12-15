@@ -1,8 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, theme, ... }:
 
 let
-  theme = import ../../themes/theme.nix;
-
   gtkCss = ''
     @define-color bg        ${theme.colors.bg};
     @define-color fg        ${theme.colors.fg};

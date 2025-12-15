@@ -1,8 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, theme, ... }:
 
 let
-  theme = import ../../themes/theme.nix;
-
   c = theme.colors;
 in
 {

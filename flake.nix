@@ -20,7 +20,10 @@
       nixosConfigurations = {
         nixos-usb = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit winapps; };
+          specialArgs = {
+            inherit winapps;
+            theme = import ./themes/theme.nix;
+          };
           modules = [
             ./hosts/nixos-usb/configuration.nix
 
@@ -28,6 +31,9 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                theme = import ./themes/theme.nix;
+              };
               home-manager.users.jurre = import ./home/default.nix;
             }
 

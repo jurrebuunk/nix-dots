@@ -1,0 +1,12 @@
+{ pkgs, ... }:
+
+{
+  imports = [
+    ./firefox.nix
+    ./libreoffice.nix
+    ./element-desktop.nix
+    ./winapps.nix
+    ./vscodium.nix
+    ./wezterm.nix
+  ];
+}

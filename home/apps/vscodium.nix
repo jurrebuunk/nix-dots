@@ -1,8 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
-let
-  theme = import ../themes/theme.nix;
-in
 {
   programs.vscode = {
     enable = true;

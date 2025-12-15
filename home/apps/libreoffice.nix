@@ -1,8 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, theme, ... }:
 
-let
-  theme = import ../themes/theme.nix;
-in
 {
   # Install LibreOffice with all language support
   home.packages = with pkgs; [
@@ -10,7 +7,9 @@ in
   ];
 
   # Configure LibreOffice to look and feel like Windows Office
-  home.file.".config/libreoffice/4/user/registrymodifications.xcu".text = ''
+  home.file.".config/libreoffice/4/user/registrymodifications.xcu" = {
+    force = true;
+    text = ''
     <?xml version="1.0" encoding="UTF-8"?>
     <oor:items xmlns:oor="http://openoffice.org/2001/registry" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
       
@@ -44,7 +43,11 @@ in
       <item oor:path="/org.openoffice.Office.Common/History"><prop oor:name="PickListSize" oor:op="fuse"><value>25</value></prop></item>
       
       <!-- Show tip of the day (like Office) -->
-      <item oor:path="/org.openoffice.Office.Common/Misc"><prop oor:name="ShowTipOfTheDay" oor:op="fuse"><value>true</value></prop></item>
+      <!-- Disable tip of the day -->
+      <item oor:path="/org.openoffice.Office.Common/Misc"><prop oor:name="ShowTipOfTheDay" oor:op="fuse"><value>false</value></prop></item>
+
+      <!-- Disable First Start Wizard -->
+      <item oor:path="/org.openoffice.Setup/Office"><prop oor:name="FirstStartWizardCompleted" oor:op="fuse"><value>true</value></prop></item>
       
       <!-- Enable experimental features for better compatibility -->
       <item oor:path="/org.openoffice.Office.Common/Misc"><prop oor:name="ExperimentalMode" oor:op="fuse"><value>true</value></prop></item>
@@ -95,6 +98,7 @@ in
       
     </oor:items>
   '';
+  };
 
   # Additional LibreOffice configuration
   home.file.".config/libreoffice/4/user/autocorr/acor_en-US.dat".source = 

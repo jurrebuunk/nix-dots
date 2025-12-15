@@ -1,8 +1,5 @@
-{ config, pkgs, ... }:
-
-let
-  theme = import ../../themes/theme.nix;
-in {
+{ config, pkgs, lib, theme, ... }:
+{
   services.mako = {
     enable = true;
 

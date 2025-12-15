@@ -1,10 +1,20 @@
-{ config, pkgs, lib, ... }: 
+{ config, pkgs, lib, theme, ... }: 
 
 let
   mod = "Mod4";
 
-  # Import the theme
-  theme = import ../../themes/theme.nix;
+  #bash script to let dbus know about important env variables and to propagate them to restarted services
+  dbus-sway-environment = pkgs.writeTextFile {
+    name = "dbus-sway-environment";
+    destination = "/bin/dbus-sway-environment";
+    executable = true;
+
+    text = ''
+      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+      systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+      systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
+    '';
+  };
 
   # Short aliases for readability
   c = theme.colors;

@@ -3,14 +3,8 @@
 {
   imports =
     [
-      ./vscodium.nix
-      ./wezterm.nix
-      ./wayland
-      ./rofi
-      ./element-desktop.nix
-      ./winapps.nix
-      ./firefox.nix
-      ./libreoffice.nix
+      ./apps
+      ./desktop
     ];
 
   home = {

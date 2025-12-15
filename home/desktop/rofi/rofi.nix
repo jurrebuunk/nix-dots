@@ -1,8 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, theme, ... }:
 
 let
-  theme = import ../../themes/theme.nix;
-
   rofiLauncher = ''
     configuration {
       show-icons: true;

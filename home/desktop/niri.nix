@@ -1,7 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, theme, lib, ... }:
 
 let
-  theme = import ../../themes/theme.nix;
   c = theme.colors;
   f = theme.fonts;
 in
