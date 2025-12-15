@@ -51,5 +51,24 @@
           ];
         };
       };
+
+      devShells.x86_64-linux = let
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        envs = import ./modules/development/envs.nix { inherit pkgs; };
+      in {
+        python = pkgs.mkShell {
+          packages = envs.python.packages;
+          shellHook = envs.python.shellHook;
+        };
+        laravel = pkgs.mkShell {
+          packages = envs.laravel.packages;
+          shellHook = envs.laravel.shellHook;
+        };
+        # Composed shell: Laravel + Docker
+        laravel-docker = pkgs.mkShell {
+          packages = envs.laravel.packages ++ envs.docker.packages;
+          shellHook = envs.laravel.shellHook + envs.docker.shellHook;
+        };
+      };
     };
 }

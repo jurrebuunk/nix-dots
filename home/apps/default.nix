@@ -8,5 +8,6 @@
     ./winapps.nix
     ./vscodium.nix
     ./wezterm.nix
+    ./custom-desktop-entries.nix
   ];
 }

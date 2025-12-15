@@ -1,4 +1,4 @@
-{ config, pkgs, lib, theme, ... }: 
+{ config, pkgs, lib, theme, ... }:
 
 let
   mod = "Mod4";
@@ -15,109 +15,15 @@ let
       systemctl --user start pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr
     '';
   };
-
-  # Short aliases for readability
-  c = theme.colors;
-  f = theme.fonts;
 in {
   wayland.windowManager.sway = {
     enable = true;
     config = {
       modifier = mod;
-      keybindings = lib.attrsets.mergeAttrsList [
-        (lib.attrsets.mergeAttrsList (map (num: let
-          ws = toString num;
-        in {
-          "${mod}+${ws}" = "workspace ${ws}";
-          "${mod}+Ctrl+${ws}" = "move container to workspace ${ws}";
-        }) [1 2 3 4 5 6 7 8 9 0]))
-
-        (lib.attrsets.concatMapAttrs (key: direction: {
-            "${mod}+${key}" = "focus ${direction}";
-            "${mod}+Ctrl+${key}" = "move ${direction}";
-          }) {
-            h = "left";
-            j = "down";
-            k = "up";
-            l = "right";
-          })
-
-        {
-          "${mod}+Return" = "exec --no-startup-id ${pkgs.wezterm}/bin/wezterm";
-          #"${mod}+space" = "exec --no-startup-id wofi --show drun,run";
-          "${mod}+space" = "exec rofi -show drun";
-          "${mod}+Alt+space" = "exec rofi -show run";
-
-          "${mod}+x" = "kill";
-
-          "${mod}+a" = "focus parent";
-          "${mod}+h" = "floating toggle";
-          "${mod}+e" = "layout toggle split";
-          "${mod}+f" = "fullscreen toggle";
-          "${mod}+g" = "split h";
-          "${mod}+s" = "layout stacking";
-          "${mod}+v" = "split v";
-          "${mod}+w" = "layout tabbed";
-          "${mod}+Shift+l" = "exec gtklock";
-          "${mod}+Ctrl+Shift+l" = "exec swaylock";
-
-          "${mod}+Shift+r" = "exec swaymsg reload";
-          "--release Print" = "exec --no-startup-id ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
-          "${mod}+Ctrl+q" = "exit";
-          "${mod}+Shift+s" = "exec grim -g \"$(slurp)\" - | wl-copy";
-          "XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 0.05+";
-          "XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_SINK@ 0.05-";
-          "XF86AudioMute" = "exec wpctl set-mute @DEFAULT_SINK@ toggle";
-          "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
-          "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
-        }
-      ];
       focus.followMouse = false;
       workspaceAutoBackAndForth = true;
-      bars = [ ];
+      bars = [ ]; # Managed in theme.nix via extraConfig
     };
-    extraConfig = ''
-      # Border settings
-      default_border pixel 2
-
-      for_window [window_role="x11-embed"] border pixel 2
-      for_window [window_type="dialog"] border pixel 2
-      for_window [window_type="utility"] border pixel 2
-      for_window [window_role="dialog"] border pixel 2
-
-      exec_always swaybg -i ${theme.wallpaper} -m fill
-
-      # Font from theme
-      font pango:${f.main} ${f.size}
-
-      # Gruvbox colors from theme
-      client.focused          ${c.blue} ${c.blue} ${c.fg} ${c.blue} ${c.blue}
-      client.focused_inactive ${c.gray} ${c.gray} ${c.fg} ${c.gray} ${c.gray}
-      client.unfocused        ${c.gray} ${c.gray} ${c.gray} ${c.gray} ${c.gray}
-      client.urgent           ${c.red} ${c.red} ${c.fg} ${c.red} ${c.red}
-      client.placeholder      ${c.bg} ${c.bg} ${c.fg} ${c.bg} ${c.bg}
-
-      bar {
-        position top
-        status_command i3status
-        colors {
-          background ${c.bg}
-          statusline ${c.fg}
-          separator  ${c.gray}
-
-          focused_workspace  ${c.blue} ${c.blue} ${c.fg}
-          active_workspace   ${c.gray} ${c.gray} ${c.fg}
-          inactive_workspace ${c.bg} ${c.bg} ${c.gray}
-          urgent_workspace   ${c.red} ${c.red} ${c.fg}
-        }
-      }
-
-      # Idle lock (5min) + DPMS off (10min)
-      #exec swayidle -w \
-      #  timeout 300 'waylock' \
-      #  timeout 600 'swaymsg "output * dpms off"' \
-      #  resume 'swaymsg "output * dpms on"'
-    '';
 
     systemd.enable = true;
     wrapperFeatures = { gtk = true; };
