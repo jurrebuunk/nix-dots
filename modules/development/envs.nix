@@ -1,6 +1,6 @@
 { pkgs }:
 
-{
+rec {
   python = {
     packages = with pkgs; [
       python315
@@ -36,6 +36,63 @@
     ];
     shellHook = ''
       echo "🐳 Docker Tools Loaded"
+    '';
+  };
+
+  b302growpad = {
+    packages = laravel.packages ++ docker.packages;
+    shellHook = ''
+      ${laravel.shellHook}
+      ${docker.shellHook}
+      
+      growpad-start() {
+        # Backend
+        if ! screen -list | grep -q "\.b302growpad-be"; then
+          echo "🚀 Starting backend screen..."
+          screen -dmS b302growpad-be bash -c "cd ~/repos/2007-doorontwikkeling-growpad-be && docker compose up -d && php artisan serve"
+        else
+          echo "✅ Backend screen already running."
+        fi
+
+        # Frontend
+        if ! screen -list | grep -q "\.b302growpad-fe"; then
+          echo "🚀 Starting frontend screen..."
+          screen -dmS b302growpad-fe bash -c "cd ~/repos/2007-doorontwikkeling-growpad-fe && npm run dev"
+        else
+          echo "✅ Frontend screen already running."
+        fi
+      }
+
+      growpad-stop() {
+        screen -S b302growpad-be -X quit 2>/dev/null || echo "Backend not running."
+        echo "❌ Backend screen stopped."
+        screen -S b302growpad-fe -X quit 2>/dev/null || echo "Frontend not running."
+        echo "❌ Frontend screen stopped."
+      }
+
+      growpad-restart() {
+        growpad-stop
+        sleep 1
+        growpad-start
+      }
+
+      growpad-status() {
+        if screen -list | grep -q "\.b302growpad-be"; then
+            echo "Backend (Laravel):   Running (Screen: b302growpad-be)"
+        else
+            echo "Backend (Laravel):   Stopped"
+        fi
+
+        if screen -list | grep -q "\.b302growpad-fe"; then
+            echo "Frontend (Vite):     Running (Screen: b302growpad-fe)"
+        else
+            echo "Frontend (Vite):     Stopped"
+        fi
+      }
+
+      # Start services on shell entry
+      growpad-start
+      echo "Commands available: growpad-start, growpad-stop, growpad-restart, growpad-status"
     '';
   };
 }

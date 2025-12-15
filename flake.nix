@@ -56,18 +56,25 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         envs = import ./modules/development/envs.nix { inherit pkgs; };
       in {
+
+        docker = pkgs.mkShell {
+          packages = envs.docker.packages;
+          shellHook = envs.docker.shellHook;
+        };
+
         python = pkgs.mkShell {
           packages = envs.python.packages;
           shellHook = envs.python.shellHook;
         };
+
         laravel = pkgs.mkShell {
           packages = envs.laravel.packages;
           shellHook = envs.laravel.shellHook;
         };
-        # Composed shell: Laravel + Docker
-        laravel-docker = pkgs.mkShell {
-          packages = envs.laravel.packages ++ envs.docker.packages;
-          shellHook = envs.laravel.shellHook + envs.docker.shellHook;
+
+        b302growpad = pkgs.mkShell {
+          packages = envs.b302growpad.packages;
+          shellHook = envs.b302growpad.shellHook;
         };
       };
     };

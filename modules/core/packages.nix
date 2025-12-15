@@ -21,12 +21,11 @@
     moonlight-qt
     kanshi
     fuzzel
-    (pkgs.antigravity.override {
-      commandLineArgs = "--enable-features=WaylandWindowDecorations --ozone-platform=wayland";
-    })
+    pkgs.antigravity
     rofi-bluetooth
     rofi-network-manager
     vlc
+    screen
   ];
   
   programs.thunar.enable = true;
