@@ -45,11 +45,22 @@ rec {
       ${laravel.shellHook}
       ${docker.shellHook}
       
+      # Load environment variables
+      if [ -f .env ]; then
+        set -a
+        source .env
+        set +a
+      fi
+
+      # Set defaults
+      : ''${GROWPAD_BACKEND_PATH:=~/repos/2007-doorontwikkeling-growpad-be}
+      : ''${GROWPAD_FRONTEND_PATH:=~/repos/2007-doorontwikkeling-growpad-fe}
+
       growpad-start() {
         # Backend
         if ! screen -list | grep -q "\.b302growpad-be"; then
           echo "🚀 Starting backend screen..."
-          screen -dmS b302growpad-be bash -c "cd ~/repos/2007-doorontwikkeling-growpad-be && docker compose up -d && php artisan serve"
+          screen -dmS b302growpad-be bash -c "cd $GROWPAD_BACKEND_PATH && docker compose up -d && php artisan serve"
         else
           echo "✅ Backend screen already running."
         fi
@@ -57,7 +68,7 @@ rec {
         # Frontend
         if ! screen -list | grep -q "\.b302growpad-fe"; then
           echo "🚀 Starting frontend screen..."
-          screen -dmS b302growpad-fe bash -c "cd ~/repos/2007-doorontwikkeling-growpad-fe && npm run dev"
+          screen -dmS b302growpad-fe bash -c "cd $GROWPAD_FRONTEND_PATH && npm run dev"
         else
           echo "✅ Frontend screen already running."
         fi
