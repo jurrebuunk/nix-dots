@@ -1,8 +1,10 @@
 {
-  description = "A very basic flake";
+  description = "A very basic flake with sops-nix integration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    sops-nix.url = "github:Mic92/sops-nix";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -15,7 +17,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, winapps, ... }:
+  outputs = { self, nixpkgs, home-manager, sops-nix, winapps, ... }:
   {
     nixosConfigurations = {
       nixos-usb = nixpkgs.lib.nixosSystem {
@@ -24,12 +26,12 @@
         specialArgs = {
           inherit winapps;
           theme = import ./themes/theme.nix;
-          secrets = import ./secrets;
         };
 
         modules = [
           ./hosts/nixos-usb/configuration.nix
 
+          # Home Manager module
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -37,13 +39,23 @@
 
             home-manager.extraSpecialArgs = {
               theme = import ./themes/theme.nix;
-              secrets = import ./secrets;
             };
 
             home-manager.users.jurre = import ./home/default.nix;
           }
 
-          # WinApps integratie
+          # SOPS-Nix module
+          sops-nix.nixosModules.sops {
+            age = {
+              enable = true;
+              keyFiles = [ "/home/jurre/.config/sops/age/keys.txt" ];
+            };
+
+            # encrypted secrets bestand
+            defaultSopsFile = ./secrets/secrets.yaml;
+          }
+
+          # WinApps installatie (zonder config)
           ({ pkgs, ... }:
             let
               winpkgs = winapps.packages.${pkgs.system};
