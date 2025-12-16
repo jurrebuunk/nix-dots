@@ -39,5 +39,15 @@ in {
         urgent_workspace   ${c.red} ${c.red} ${c.fg}
       }
     }
+
+    # Gestures
+    bindgesture swipe:left workspace next
+    bindgesture swipe:right workspace prev
+
+    bindgesture pinch:inward+up move up
+    bindgesture pinch:inward+down move down
+    bindgesture pinch:inward+left move left
+    bindgesture pinch:inward+right move right
+
   '';
 }

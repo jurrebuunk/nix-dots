@@ -10,5 +10,6 @@
     ./wezterm.nix
     ./custom-desktop-entries.nix
     ./thunderbird.nix
+    ./alacritty.nix
   ];
 }

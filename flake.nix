@@ -1,15 +1,10 @@
 {
-  description = "A very basic flake with sops-nix integration";
+  description = "A very basic flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-
-    sops-nix.url = "github:Mic92/sops-nix";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     winapps = {
       url = "github:winapps-org/winapps";
@@ -17,65 +12,51 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, sops-nix, winapps, ... }:
-  {
-    nixosConfigurations = {
-      nixos-usb = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+  outputs = { self, nixpkgs, home-manager, winapps, ... }:
+    let
+      systems = [ "x86_64-linux" "aarch64-linux" ];
+    in
+    {
+      nixosConfigurations = {
+        nixos-usb = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit winapps;
+            theme = import ./themes/theme.nix;
+          };
+          modules = [
+            ./hosts/nixos-usb/configuration.nix
 
-        specialArgs = {
-          inherit winapps;
-          theme = import ./themes/theme.nix;
-        };
-
-        modules = [
-          ./hosts/nixos-usb/configuration.nix
-
-          # Home Manager module
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            home-manager.extraSpecialArgs = {
-              theme = import ./themes/theme.nix;
-            };
-
-            home-manager.users.jurre = import ./home/default.nix;
-          }
-
-          # SOPS-Nix module
-          sops-nix.nixosModules.sops {
-            age = {
-              enable = true;
-              keyFiles = [ "/home/jurre/.config/sops/age/keys.txt" ];
-            };
-
-            # encrypted secrets bestand
-            defaultSopsFile = ./secrets/secrets.yaml;
-          }
-
-          # WinApps installatie (zonder config)
-          ({ pkgs, ... }:
-            let
-              winpkgs = winapps.packages.${pkgs.system};
-            in {
-              environment.systemPackages = [
-                winpkgs.winapps
-                winpkgs.winapps-launcher
-              ];
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                theme = import ./themes/theme.nix;
+              };
+              home-manager.users.jurre = import ./home/default.nix;
             }
-          )
-        ];
-      };
-    };
 
-    devShells.x86_64-linux =
-      let
+            # WinApps integratie
+            ({ pkgs, ... }:
+              let
+                winpkgs = winapps.packages.${pkgs.system};
+              in {
+                environment.systemPackages = [
+                  winpkgs.winapps
+                  winpkgs.winapps-launcher
+                ];
+              }
+            )
+          ];
+        };
+      };
+
+      devShells.x86_64-linux = let
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         envs = import ./modules/development/envs.nix { inherit pkgs; };
-      in
-      {
+      in {
+
         docker = pkgs.mkShell {
           packages = envs.docker.packages;
           shellHook = envs.docker.shellHook;
@@ -96,5 +77,5 @@
           shellHook = envs.b302growpad.shellHook;
         };
       };
-  };
+    };
 }

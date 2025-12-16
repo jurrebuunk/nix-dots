@@ -1,10 +1,10 @@
-{ config, pkgs, secrets, ... }:
+{ config, pkgs, ... }:
 
 {
   users.users.jurre = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "docker" "video" "audio"];
-    initialPassword = secrets.user.initialPassword;
+    initialPassword = "Welkom01";
   };
 
   security.sudo.enable = true;

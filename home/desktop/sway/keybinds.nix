@@ -5,6 +5,7 @@ let
 in {
   wayland.windowManager.sway.config = {
     keybindings = lib.attrsets.mergeAttrsList [
+      # je bestaande keybindings
       (lib.attrsets.mergeAttrsList (map (num: let
         ws = toString num;
       in {
@@ -24,12 +25,9 @@ in {
 
       {
         "${mod}+Return" = "exec --no-startup-id ${pkgs.wezterm}/bin/wezterm";
-        #"${mod}+space" = "exec --no-startup-id wofi --show drun,run";
         "${mod}+space" = "exec rofi -show drun";
         "${mod}+Alt+space" = "exec rofi -show run";
-
         "${mod}+x" = "kill";
-
         "${mod}+a" = "focus parent";
         "${mod}+h" = "floating toggle";
         "${mod}+e" = "layout toggle split";
@@ -40,7 +38,6 @@ in {
         "${mod}+w" = "layout tabbed";
         "${mod}+Shift+l" = "exec gtklock";
         "${mod}+Ctrl+Shift+l" = "exec swaylock";
-
         "${mod}+Shift+r" = "exec swaymsg reload";
         "--release Print" = "exec --no-startup-id ${pkgs.sway-contrib.grimshot}/bin/grimshot copy area";
         "${mod}+Ctrl+q" = "exit";

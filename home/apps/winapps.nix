@@ -1,4 +1,4 @@
-{ config, pkgs, secrets, ... }:
+{ config, pkgs, ... }:
 
 {
   home.file.".config/winapps/winapps.conf" = {
@@ -6,11 +6,10 @@
       ##################################
       #   WINAPPS CONFIGURATION FILE   #
       ##################################
-
-      RDP_USER="${secrets.winapps.rdpUser}"
-      RDP_PASS="${secrets.winapps.rdpPass}"
+      RDP_USER="User"
+      RDP_PASS="REDACTED"
       RDP_DOMAIN="."
-      RDP_IP="${secrets.winapps.rdpIp}"
+      RDP_IP="192.168.1.99"
       VM_NAME=""
       WAFLAVOR="manual"
       RDP_SCALE="100"
