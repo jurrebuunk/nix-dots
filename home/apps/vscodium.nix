@@ -1,4 +1,4 @@
-{ pkgs, theme, ... }:
+{ pkgs, theme, secrets, ... }:
 
 {
   programs.vscode = {
@@ -28,11 +28,11 @@
           name = "SYBAU";
           driver = "mariadb";
           connectionType = "host";
-          host = "145.74.104.79";
+          host = secrets.db.host;
           port = 3306;
           ssl = true;
           sslTrustCertificate = true;
-          username = "2170755";
+          username = secrets.db.user;
           password = "";
           savePassword = "secretStorage";
           readOnly = false;

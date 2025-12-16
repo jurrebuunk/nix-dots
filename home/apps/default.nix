@@ -9,5 +9,6 @@
     ./vscodium.nix
     ./wezterm.nix
     ./custom-desktop-entries.nix
+    ./thunderbird.nix
   ];
 }

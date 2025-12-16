@@ -23,6 +23,7 @@
           specialArgs = {
             inherit winapps;
             theme = import ./themes/theme.nix;
+            secrets = import ./secrets.nix;
           };
           modules = [
             ./hosts/nixos-usb/configuration.nix
@@ -33,6 +34,7 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
                 theme = import ./themes/theme.nix;
+                secrets = import ./secrets.nix;
               };
               home-manager.users.jurre = import ./home/default.nix;
             }
