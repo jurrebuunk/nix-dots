@@ -11,176 +11,49 @@ in
       isDefault = true;
 
       userChrome = ''
-        /* Global Variables */
+        /* Minimal Thunderbird CSS */
+        
         :root {
-          --bg: ${c.bg} !important;
-          --fg: ${c.fg} !important;
-          --gray: ${c.gray} !important;
-          --blue: ${c.blue} !important;
-          
-          /* Thunderbird Variables Override */
-          --toolbar-bgcolor: var(--bg) !important;
-          --toolbar-text-color: var(--fg) !important;
-          --tab-selected-bgcolor: var(--blue) !important;
-          --tab-hover-bgcolor: var(--gray) !important;
-          --tab-line-color: transparent !important;
-          
-          --tree-view-bg: var(--bg) !important;
-          --tree-view-text: var(--fg) !important;
-          --tree-view-row-height: 28px !important;
-          
-          --message-list-header-background-color: var(--bg) !important;
-          --message-list-header-color: var(--fg) !important;
-          
-          --sidebar-background-color: var(--bg) !important;
-          --sidebar-text-color: var(--fg) !important;
+          --toolbar-bgcolor: ${c.bg} !important;
+          --toolbar-text-color: ${c.fg} !important;
+          --tab-selected-bgcolor: ${c.blue} !important;
+          --tab-hover-bgcolor: ${c.gray} !important;
+          --tab-line-color: ${c.orange} !important;
         }
 
-        /* Global Reset to match GTK */
-        * {
-          border-radius: 0 !important;
-          box-shadow: none !important;
-          border: none !important;
+        /* Hide Status Bar */
+        #status-bar, #statusbar-display {
+          display: none !important;
         }
 
-        /* Main UI Elements */
-        #mail-toolbox, 
-        #navigation-toolbox, 
-        #tabmail-container,
-        .tabmail-tab,
-        .tab-background,
-        #folderPane, 
-        #threadTree,
-        #messagePane,
-        #msgHeaderView,
-        window,
-        dialog,
-        box, hbox, vbox {
-          background-color: var(--bg) !important;
-          color: var(--fg) !important;
+        /* Match Firefox Toolbar Styling */
+        #mail-toolbox, #navigation-toolbox, #tabmail-container {
+          background-color: var(--toolbar-bgcolor) !important;
+          color: var(--toolbar-text-color) !important;
         }
 
-        /* Folder Pane & Thread Pane */
-        #folderTree, 
-        #threadTree {
-          background-color: var(--bg) !important;
-          color: var(--fg) !important;
-        }
-
-        /* List Rows (Newer TB versions use HTML tables/divs) */
-        tr, td, .thread-card-container {
-           background-color: var(--bg) !important;
-           color: var(--fg) !important;
-        }
-
-        /* Selected Items */
-        .selected,
-        tr.selected,
-        tr[is="thread-row"].selected,
-        .folder-row.selected {
-          background-color: var(--blue) !important;
-          color: var(--bg) !important;
-        }
-        
-        /* Hover Items */
-        tr:hover,
-        .folder-row:hover {
-           background-color: var(--gray) !important;
-        }
-
-        /* Inputs & Search */
-        input, 
-        textarea, 
-        searchbar, 
-        #search-box {
-          background-color: var(--bg) !important;
-          color: var(--fg) !important;
-          border: 2px solid var(--gray) !important;
-        }
-
-        /* Buttons */
-        button, 
-        .button, 
-        toolbarbutton {
-          background-color: var(--bg) !important;
-          color: var(--fg) !important;
-          border: 2px solid var(--gray) !important;
-          margin: 2px !important;
-        }
-        
-        button:hover,
-        toolbarbutton:hover {
-           background-color: var(--gray) !important;
-           color: var(--bg) !important;
-        }
-
-        /* Headers (Message List Columns) */
-        th, 
-        .tree-table-header {
-          background-color: var(--bg) !important;
-          color: var(--fg) !important;
-          border-bottom: 2px solid var(--gray) !important;
-        }
-
-        /* Hide Clutter */
-        #status-bar, 
-        #statusbar-display, 
-        .titlebar-buttonbox-container, 
-        #toolbar-menubar {
+        /* Hide Window Controls (Close/Min/Max) if CSD is enabled */
+        .titlebar-buttonbox-container {
           display: none !important;
         }
         
-        /* Message Header View */
-        #msgHeaderView {
-           border-bottom: 2px solid var(--gray) !important;
-        }
-      '';
-
-      userContent = ''
-        /* Global Variables */
-        :root {
-          --bg: ${c.bg} !important;
-          --fg: ${c.fg} !important;
-          --blue: ${c.blue} !important;
-          --gray: ${c.gray} !important;
+        /* Hide Menu Bar (use Alt to show if needed, or rely on hamburger menu) */
+        #toolbar-menubar {
+          display: none !important;
         }
 
-        /* Message Body Styling (The emails themselves) */
-        body {
-          background-color: var(--bg) !important;
-          color: var(--fg) !important;
+        /* Tab Styling */
+        .tab-background[selected="true"] {
+          background-color: var(--tab-selected-bgcolor) !important;
         }
         
-        /* Links */
-        a {
-          color: var(--blue) !important;
-        }
-
-        /* Selection */
-        ::selection {
-          background-color: var(--blue) !important;
-          color: var(--bg) !important;
-        }
-
-        /* Scrollbars */
-        scrollbar {
-           background-color: var(--bg) !important;
-        }
-
-        /* User provided snippet for focus visibility */
-        :focus-visible {
-          outline: var(--gray) 3px dotted !important;
+        .tab-line[selected="true"] {
+          background-color: var(--tab-line-color) !important;
         }
       '';
 
       settings = {
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        
-        # DevTools & Debugging (Requested by user)
-        "devtools.chrome.enabled" = true;
-        "devtools.debugger.remote-enabled" = true;
-        "devtools.debugger.prompt-connection" = false;
-        "devtools.inspector.showAllAnonymousContent" = true;
         
         # General Settings
         "mail.tabs.drawInTitlebar" = true;

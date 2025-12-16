@@ -3,8 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     winapps = {
       url = "github:winapps-org/winapps";
@@ -13,52 +16,54 @@
   };
 
   outputs = { self, nixpkgs, home-manager, winapps, ... }:
-    let
-      systems = [ "x86_64-linux" "aarch64-linux" ];
-    in
-    {
-      nixosConfigurations = {
-        nixos-usb = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit winapps;
-            theme = import ./themes/theme.nix;
-            secrets = import ./secrets.nix;
-          };
-          modules = [
-            ./hosts/nixos-usb/configuration.nix
+  {
+    nixosConfigurations = {
+      nixos-usb = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
 
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = {
-                theme = import ./themes/theme.nix;
-                secrets = import ./secrets.nix;
-              };
-              home-manager.users.jurre = import ./home/default.nix;
-            }
-
-            # WinApps integratie
-            ({ pkgs, ... }:
-              let
-                winpkgs = winapps.packages.${pkgs.system};
-              in {
-                environment.systemPackages = [
-                  winpkgs.winapps
-                  winpkgs.winapps-launcher
-                ];
-              }
-            )
-          ];
+        specialArgs = {
+          inherit winapps;
+          theme = import ./themes/theme.nix;
+          secrets = import ./secrets;
         };
-      };
 
-      devShells.x86_64-linux = let
+        modules = [
+          ./hosts/nixos-usb/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.extraSpecialArgs = {
+              theme = import ./themes/theme.nix;
+              secrets = import ./secrets;
+            };
+
+            home-manager.users.jurre = import ./home/default.nix;
+          }
+
+          # WinApps integratie
+          ({ pkgs, ... }:
+            let
+              winpkgs = winapps.packages.${pkgs.system};
+            in {
+              environment.systemPackages = [
+                winpkgs.winapps
+                winpkgs.winapps-launcher
+              ];
+            }
+          )
+        ];
+      };
+    };
+
+    devShells.x86_64-linux =
+      let
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         envs = import ./modules/development/envs.nix { inherit pkgs; };
-      in {
-
+      in
+      {
         docker = pkgs.mkShell {
           packages = envs.docker.packages;
           shellHook = envs.docker.shellHook;
@@ -79,5 +84,5 @@
           shellHook = envs.b302growpad.shellHook;
         };
       };
-    };
+  };
 }
