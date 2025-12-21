@@ -22,4 +22,5 @@
     #!/bin/bash
     wezterm start -- bash -c 'echo -ne \"\\033]0;nmtui\\007\"; nmtui' & sleep 0.2 && swaymsg '[title=\"nmtui\"] floating enable' && swaymsg '[title=\"nmtui\"] resize grow height 2'
   '';
+
 }

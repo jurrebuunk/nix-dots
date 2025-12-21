@@ -8,5 +8,6 @@
     ./user.nix
     ./fonts.nix
     ./packages.nix
+    ./overlays.nix
   ];
 }

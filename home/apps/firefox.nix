@@ -10,32 +10,133 @@ in
     profiles.default = {
       name = "default";
 
-      userChrome = ''
+    userChrome = ''
+      :root {
+        --toolbar-bgcolor: ${c.bg} !important;
+        --toolbar-text-color: ${c.fg} !important;
+
+        --tab-border-color: ${c.gray} !important; /* use gray for all borders */
+
+        --tab-border-radius: 0px !important;
+        --toolbarbutton-border-radius: 0px !important;
+        --urlbar-border-radius: 0px !important;
+        --toolbarbutton-border-color: #4a5c63;  /* Cha ffnge the border color here */
+        --toolbarbutton-hover-bg: #4a5c63;      /* Background on hover */
+        --toolbarbutton-padding: 0px 0px;       /* Adjust padding inside buttons */
+        --toolbarbutton-radius: 0px;            /* Border radius for buttons */
+        --toolbarbutton-spacing: 2px;           /* Space between buttons */
+        --toolbarbutton-first-left: 9px;       /* Left margin for first button (Back) */
+      }
+
+      /* Toolbar */
+      #navigator-toolbox {
+        background-color: var(--toolbar-bgcolor) !important;
+        color: var(--toolbar-text-color) !important;
+      }
+
+      /* === TABS === */
+      #tabbrowser-tabs {
+        --tab-border-radius: 0px !important;
+      }
+
+      .tab-background {
+        border-radius: 0 !important;
+        background-color: ${c.bg} !important;
+
+        /* Kill Proton visuals */
+        outline: none !important;
+        box-shadow: none !important;
+        clip-path: none !important;
+
+        /* Real square border */
+        border: 2px solid var(--tab-border-color) !important;
+        margin: 0 9 0 9px !important;
+      }
+
+      .tab-background[selected="true"] {
+        background-color: ${c.gray} !important;
+      }
+
+      .tab-background:hover {
+        background-color: ${c.gray} !important;
+      }
+
+      /* Remove Proton separators */
+      .tab-background::before,
+      .tab-background::after {
+        display: none !important;
+      }
+
+      /* === TOOLBAR BUTTONS (Back, Forward, Reload, etc.) === */
+      /* Base style for all toolbar buttons */
+      #nav-bar .toolbarbutton-1 {
+          border-radius: var(--toolbarbutton-radius) !important;
+          box-shadow: none !important;
+          outline: none !important;
+
+          border: 2px solid var(--toolbarbutton-border-color) !important; /* Gray border */
+          box-sizing: border-box;   /* Border included in size */
+
+          /* Add 2px vertical margin so border doesn't span entire toolbar height */
+          margin-top: 2px !important;
+          margin-bottom: 2px !important;
+
+          /* Padding inside the button (adjust for snug fit) */
+          padding: var(--toolbarbutton-padding) !important;
+      }
+
+      /* Left margin only for the first button (Back) */
+      #nav-bar .toolbarbutton-1:first-child {
+          margin-left: var(--toolbarbutton-first-left) !important;
+      }
+
+      /* Spacing between other buttons */
+      #nav-bar .toolbarbutton-1 + .toolbarbutton-1 {
+          margin-left: var(--toolbarbutton-spacing) !important;
+      }
+
+      /* Hover and active states */
+      #nav-bar .toolbarbutton-1:hover,
+      #nav-bar .toolbarbutton-1:active {
+          border: 2px solid var(--toolbarbutton-border-color) !important;
+          background-color: var(--toolbarbutton-hover-bg) !important;
+      }
+
+
+
+
+      /* === URL BAR === */
+      #urlbar,
+      #urlbar-background {
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        outline: none !important;
+        border: 2px solid var(--tab-border-color) !important;
+      }
+
+      /* REMOVE border only from the inner input */
+      #urlbar input,
+      #urlbar .textbox-input-box {
+        border: 0 !important;
+        box-shadow: none !important;
+        outline: none !important;
+        background: transparent !important;
+      }
+    '';
+
+    userContent = ''
+      @-moz-document url-prefix("about:"), url-prefix("chrome:") {
         :root {
-          --toolbar-bgcolor: ${c.bg} !important;
-          --toolbar-text-color: ${c.fg} !important;
-          --tab-selected-bgcolor: ${c.blue} !important;
-          --tab-hover-bgcolor: ${c.gray} !important;
-          --tab-line-color: ${c.orange} !important;
+          --border-radius-medium: 0px !important;
         }
 
-        #navigator-toolbox {
-          background-color: var(--toolbar-bgcolor) !important;
-          color: var(--toolbar-text-color) !important;
+        .top-site-outer .tile {
+          border-radius: 0px !important;
+          box-shadow: none !important;
         }
+      }
+    '';
 
-        .tab-background[selected="true"] {
-          background-color: var(--tab-selected-bgcolor) !important;
-        }
-
-        .tab-background:hover {
-          background-color: var(--tab-hover-bgcolor) !important;
-        }
-
-        .tab-line[selected="true"] {
-          background-color: var(--tab-line-color) !important;
-        }
-      '';
 
       search = {
         force = true;

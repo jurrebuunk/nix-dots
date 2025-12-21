@@ -26,6 +26,9 @@
     rofi-network-manager
     vlc
     screen
+    alacritty
+    opencloud-desktop
+    gemini-cli
   ];
   
   programs.thunar.enable = true;
