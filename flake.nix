@@ -10,9 +10,13 @@
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    copyparty = {
+      url = "github:9001/copyparty";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, winapps, ... }:
+  outputs = { self, nixpkgs, home-manager, winapps, copyparty, ... }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" ];
     in
@@ -21,11 +25,16 @@
         nixos-usb = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit winapps;
+            inherit winapps copyparty;
             theme = import ./themes/theme.nix;
           };
           modules = [
             ./hosts/nixos-usb/configuration.nix
+
+            copyparty.nixosModules.default
+            ({ pkgs, ... }: {
+              nixpkgs.overlays = [ copyparty.overlays.default ];
+            })
 
             home-manager.nixosModules.home-manager
             {
@@ -62,19 +71,24 @@
           shellHook = envs.docker.shellHook;
         };
 
+        net = pkgs.mkShell {
+          packages = envs.net.packages;
+          shellHook = envs.net.shellHook;
+        };
+
         python = pkgs.mkShell {
           packages = envs.python.packages;
           shellHook = envs.python.shellHook;
         };
 
-        laravel = pkgs.mkShell {
-          packages = envs.laravel.packages;
-          shellHook = envs.laravel.shellHook;
+        growpad = pkgs.mkShell {
+          packages = envs.growpad.packages;
+          shellHook = envs.growpad.shellHook;
         };
 
-        b302growpad = pkgs.mkShell {
-          packages = envs.b302growpad.packages;
-          shellHook = envs.b302growpad.shellHook;
+        meldcoach = pkgs.mkShell {
+          packages = envs.meldcoach.packages;
+          shellHook = envs.meldcoach.shellHook;
         };
       };
     };

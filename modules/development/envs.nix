@@ -1,6 +1,10 @@
 { pkgs }:
 
-rec {
+let
+  # ---------------------------------------------------------------------------
+  # Modular Environment Definitions
+  # ---------------------------------------------------------------------------
+
   python = {
     packages = with pkgs; [
       python315
@@ -10,22 +14,50 @@ rec {
     '';
   };
 
-  laravel = {
+  php82-env = {
     packages = with pkgs; [
-      php
-      phpExtensions.mbstring
-      phpExtensions.bcmath
-      phpExtensions.curl
-      phpExtensions.sqlite3
-      phpExtensions.dom
-      phpExtensions.fileinfo
-      php84Packages.composer
-      nodejs
+      (php82.withExtensions ({ enabled, all }: enabled ++ [
+        all.mbstring
+        all.bcmath
+        all.curl
+        all.sqlite3
+        all.dom
+        all.fileinfo
+      ]))
+      php82Packages.composer
       mariadb-connector-c
     ];
     shellHook = ''
-      echo "🐘 Laravel/PHP Environment Loaded"
+      echo "🐘 PHP 8.2 Environment Loaded"
       export PATH=$HOME/.config/composer/vendor/bin:$PATH
+    '';
+  };
+
+  php84-env = {
+    packages = with pkgs; [
+      (php84.withExtensions ({ enabled, all }: enabled ++ [
+        all.mbstring
+        all.bcmath
+        all.curl
+        all.sqlite3
+        all.dom
+        all.fileinfo
+      ]))
+      php84Packages.composer
+      mariadb-connector-c
+    ];
+    shellHook = ''
+      echo "🐘 PHP 8.4 Environment Loaded"
+      export PATH=$HOME/.config/composer/vendor/bin:$PATH
+    '';
+  };
+
+  node = {
+    packages = with pkgs; [
+      nodejs
+    ];
+    shellHook = ''
+      echo "📦 Node/NPM Environment Loaded"
     '';
   };
 
@@ -39,10 +71,34 @@ rec {
     '';
   };
 
-  b302growpad = {
-    packages = laravel.packages ++ docker.packages;
+  net = {
+    packages = with pkgs; [
+      nmap
+      tcpdump
+      mtr
+      dnsutils
+      wirelesstools
+      tshark
+    ];
     shellHook = ''
-      ${laravel.shellHook}
+      echo "🌐 Networking Tools Loaded"
+    '';
+  };
+
+in
+{
+  # ---------------------------------------------------------------------------
+  # Composed Shells
+  # ---------------------------------------------------------------------------
+
+  inherit python docker net;
+
+  # Project: Growpad
+  growpad = {
+    packages = php84-env.packages ++ node.packages ++ docker.packages;
+    shellHook = ''
+      ${php84-env.shellHook}
+      ${node.shellHook}
       ${docker.shellHook}
       
       # Load environment variables
@@ -58,26 +114,26 @@ rec {
 
       growpad-start() {
         # Backend
-        if ! screen -list | grep -q "\.b302growpad-be"; then
+        if ! screen -list | grep -q "\.growpad-be"; then
           echo "🚀 Starting backend screen..."
-          screen -dmS b302growpad-be bash -c "cd $GROWPAD_BACKEND_PATH && docker compose up -d && php artisan serve"
+          screen -dmS growpad-be bash -c "cd $GROWPAD_BACKEND_PATH && docker compose up -d && php artisan serve"
         else
           echo "✅ Backend screen already running."
         fi
 
         # Frontend
-        if ! screen -list | grep -q "\.b302growpad-fe"; then
+        if ! screen -list | grep -q "\.growpad-fe"; then
           echo "🚀 Starting frontend screen..."
-          screen -dmS b302growpad-fe bash -c "cd $GROWPAD_FRONTEND_PATH && npm run dev"
+          screen -dmS growpad-fe bash -c "cd $GROWPAD_FRONTEND_PATH && npm run dev"
         else
           echo "✅ Frontend screen already running."
         fi
       }
 
       growpad-stop() {
-        screen -S b302growpad-be -X quit 2>/dev/null || echo "Backend not running."
+        screen -S growpad-be -X quit 2>/dev/null || echo "Backend not running."
         echo "❌ Backend screen stopped."
-        screen -S b302growpad-fe -X quit 2>/dev/null || echo "Frontend not running."
+        screen -S growpad-fe -X quit 2>/dev/null || echo "Frontend not running."
         echo "❌ Frontend screen stopped."
       }
 
@@ -88,14 +144,14 @@ rec {
       }
 
       growpad-status() {
-        if screen -list | grep -q "\.b302growpad-be"; then
-            echo "Backend (Laravel):   Running (Screen: b302growpad-be)"
+        if screen -list | grep -q "\.growpad-be"; then
+            echo "Backend (Laravel):   Running (Screen: growpad-be)"
         else
             echo "Backend (Laravel):   Stopped"
         fi
 
-        if screen -list | grep -q "\.b302growpad-fe"; then
-            echo "Frontend (Vite):     Running (Screen: b302growpad-fe)"
+        if screen -list | grep -q "\.growpad-fe"; then
+            echo "Frontend (Vite):     Running (Screen: growpad-fe)"
         else
             echo "Frontend (Vite):     Stopped"
         fi
@@ -104,6 +160,17 @@ rec {
       # Start services on shell entry
       growpad-start
       echo "Commands available: growpad-start, growpad-stop, growpad-restart, growpad-status"
+    '';
+  };
+
+  # Project: Meldcoach
+  meldcoach = {
+    packages = php82-env.packages ++ node.packages ++ docker.packages;
+    shellHook = ''
+      ${php82-env.shellHook}
+      ${node.shellHook}
+      ${docker.shellHook}
+      echo "🚀 Meldcoach Environment Loaded"
     '';
   };
 }

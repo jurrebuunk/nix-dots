@@ -29,6 +29,7 @@
     alacritty
     opencloud-desktop
     gemini-cli
+    copyparty
   ];
   
   programs.thunar.enable = true;

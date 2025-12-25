@@ -11,5 +11,6 @@
     ./custom-desktop-entries.nix
     ./thunderbird.nix
     ./alacritty.nix
+    ./upfs.nix
   ];
 }
