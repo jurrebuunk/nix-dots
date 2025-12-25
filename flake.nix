@@ -10,13 +10,9 @@
       url = "github:winapps-org/winapps";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    copyparty = {
-      url = "github:9001/copyparty";
-    };
   };
 
-  outputs = { self, nixpkgs, home-manager, winapps, copyparty, ... }:
+  outputs = { self, nixpkgs, home-manager, winapps, ... }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" ];
     in
@@ -25,16 +21,11 @@
         nixos-usb = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
-            inherit winapps copyparty;
+            inherit winapps;
             theme = import ./themes/theme.nix;
           };
           modules = [
             ./hosts/nixos-usb/configuration.nix
-
-            copyparty.nixosModules.default
-            ({ pkgs, ... }: {
-              nixpkgs.overlays = [ copyparty.overlays.default ];
-            })
 
             home-manager.nixosModules.home-manager
             {

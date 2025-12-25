@@ -30,6 +30,7 @@
     opencloud-desktop
     gemini-cli
     copyparty
+    rclone
   ];
   
   programs.thunar.enable = true;
