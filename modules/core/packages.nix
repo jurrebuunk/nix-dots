@@ -29,10 +29,12 @@
     alacritty
     opencloud-desktop
     gemini-cli
-    copyparty
     rclone
+    fuse3
   ];
   
+  programs.fuse.userAllowOther = true;
+
   programs.thunar.enable = true;
   services.openssh.enable = true;
   

@@ -11,7 +11,6 @@
     ./custom-desktop-entries.nix
     ./thunderbird.nix
     ./alacritty.nix
-    ./partyfuse.nix
     ./rclone-mount.nix
   ];
 }
