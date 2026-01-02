@@ -2,36 +2,54 @@
 
 let
   battery-notify = pkgs.writeShellScriptBin "battery-notify" ''
+    export PATH=$PATH:${pkgs.coreutils}/bin
+
     # Thresholds
     LOW=10
     CRITICAL=5
     URGENT=1
 
-    # State file to avoid repeated notifications
+    # State files to avoid repeated notifications
     STATE_FILE="/tmp/battery_notify_state"
+    CHARGE_STATE_FILE="/tmp/battery_charge_state"
 
-    # Ensure state file is removed on start
-    rm -f "$STATE_FILE"
+    # Ensure state files are removed on start
+    rm -f "$STATE_FILE" "$CHARGE_STATE_FILE"
 
     while true; do
         if [ -d /sys/class/power_supply/BAT0 ]; then
             CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
             STATUS=$(cat /sys/class/power_supply/BAT0/status)
 
+            # Handle charging/discharging notifications
+            if [ -f "$CHARGE_STATE_FILE" ]; then
+                LAST_STATUS=$(cat "$CHARGE_STATE_FILE")
+                if [ "$STATUS" != "$LAST_STATUS" ]; then
+                    if [ "$STATUS" = "Charging" ]; then
+                        ${pkgs.libnotify}/bin/notify-send -c status-update "󱐋 Charging (''${CAPACITY}%)"
+                    elif [ "$STATUS" = "Discharging" ]; then
+                        ${pkgs.libnotify}/bin/notify-send -c status-update "󱐌 Discharging (''${CAPACITY}%)"
+                    fi
+                    echo "$STATUS" > "$CHARGE_STATE_FILE"
+                fi
+            else
+                echo "$STATUS" > "$CHARGE_STATE_FILE"
+            fi
+
             if [ "$STATUS" = "Discharging" ]; then
                 if [ "$CAPACITY" -le "$URGENT" ]; then
                     if [ ! -f "$STATE_FILE" ] || [ "$(cat $STATE_FILE)" != "urgent" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -u critical "Battery Urgent" "Battery level is at ''${CAPACITY}%!"
+                        ${pkgs.libnotify}/bin/notify-send -u critical "󰂃 Battery Urgent (''${CAPACITY}%)"
                         echo "urgent" > "$STATE_FILE"
                     fi
                 elif [ "$CAPACITY" -le "$CRITICAL" ]; then
                     if [ ! -f "$STATE_FILE" ] || [ "$(cat $STATE_FILE)" != "critical" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -u critical "Battery Critical" "Battery level is at ''${CAPACITY}%!"
+                        ${pkgs.libnotify}/bin/notify-send -u critical "󰂃 Battery Critical (''${CAPACITY}%)"
                         echo "critical" > "$STATE_FILE"
                     fi
                 elif [ "$CAPACITY" -le "$LOW" ]; then
                     if [ ! -f "$STATE_FILE" ] || [ "$(cat $STATE_FILE)" != "low" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -u normal "Battery Low" "Battery level is at ''${CAPACITY}%!"
+                        ${pkgs.libnotify}/bin/notify-send -u normal "󰂃 Battery Low (''${CAPACITY}%)"
                         echo "low" > "$STATE_FILE"
                     fi
                 else
@@ -43,7 +61,7 @@ let
                 rm -f "$STATE_FILE"
             fi
         fi
-        sleep 60
+        sleep 5
     done
   '';
 in

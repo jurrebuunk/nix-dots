@@ -9,5 +9,6 @@
     ./waybar.nix
     ./rofi
     ./battery-notify.nix
+    ./volume-control.nix
   ];
 }

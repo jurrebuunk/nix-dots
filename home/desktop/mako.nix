@@ -21,6 +21,14 @@
       [urgency=high]
       border-color=${theme.colors.red}
       default-timeout=0
+
+      [category=status-update]
+      anchor=top-center
+      margin=25,0,0,0
+      padding=5
+      width=300
+      text-alignment=center
+      default-timeout=3000
     '';
   };
 }
