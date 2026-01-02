@@ -16,5 +16,11 @@
       font = "${theme.fonts.main} ${theme.fonts.size}";
       anchor = "top-right";
     };
+
+    extraConfig = ''
+      [urgency=high]
+      border-color=${theme.colors.red}
+      default-timeout=0
+    '';
   };
 }

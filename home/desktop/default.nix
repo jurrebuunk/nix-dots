@@ -8,5 +8,6 @@
     ./mako.nix
     ./waybar.nix
     ./rofi
+    ./battery-notify.nix
   ];
 }
