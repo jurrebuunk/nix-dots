@@ -2,7 +2,7 @@
 
 let
   volume-control = pkgs.writeShellScriptBin "volume-control" ''
-    export PATH=$PATH:${pkgs.coreutils}/bin:${pkgs.wireplumber}/bin:${pkgs.libnotify}/bin:${pkgs.gnugrep}/bin:${pkgs.sed}/bin
+    export PATH=$PATH:${pkgs.coreutils}/bin:${pkgs.wireplumber}/bin:${pkgs.libnotify}/bin:${pkgs.gnugrep}/bin:${pkgs.gnused}/bin:${pkgs.gawk}/bin:${pkgs.mako}/bin
 
     case "$1" in
         up)
@@ -21,8 +21,11 @@ let
     VOLUME=$(echo "$VOL_INFO" | grep -oP '\d\.\d+' | awk '{print $1 * 100}')
     MUTED=$(echo "$VOL_INFO" | grep -o "MUTED")
 
+    # Dismiss any existing status-update notifications
+    makoctl dismiss -a -c status-update
+
     if [ -n "$MUTED" ]; then
-        notify-send -c status-update -h string:x-mako-tag:volume "󰝟 Muted"
+        notify-send -c status-update -h string:x-mako-tag:status-update -h int:value:0 "󰝟 Muted"
     else
         if [ "$VOLUME" -eq 0 ]; then
             ICON="󰝟"
@@ -31,7 +34,7 @@ let
         else
             ICON="󰕾"
         fi
-        notify-send -c status-update -h string:x-mako-tag:volume "$ICON Volume: ''${VOLUME}%"
+        notify-send -c status-update -h string:x-mako-tag:status-update -h int:value:"$VOLUME" "$ICON Volume: ''${VOLUME}%"
     fi
   '';
 in

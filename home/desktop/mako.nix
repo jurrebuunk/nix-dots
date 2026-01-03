@@ -15,6 +15,8 @@
       margin = 20;
       font = "${theme.fonts.main} ${theme.fonts.size}";
       anchor = "top-right";
+      max-visible = 5;
+      layer = "overlay";
     };
 
     extraConfig = ''
@@ -24,11 +26,15 @@
 
       [category=status-update]
       anchor=top-center
-      margin=25,0,0,0
+      margin=15,0,0,0
       padding=5
       width=300
       text-alignment=center
+      group-by=category
+      format=%s
       default-timeout=3000
+      border-color=${theme.colors.gray}
+      progress-color=${theme.colors.gray}
     '';
   };
 }

@@ -2,7 +2,7 @@
 
 let
   battery-notify = pkgs.writeShellScriptBin "battery-notify" ''
-    export PATH=$PATH:${pkgs.coreutils}/bin
+    export PATH=$PATH:${pkgs.coreutils}/bin:${pkgs.mako}/bin
 
     # Thresholds
     LOW=10
@@ -25,10 +25,11 @@ let
             if [ -f "$CHARGE_STATE_FILE" ]; then
                 LAST_STATUS=$(cat "$CHARGE_STATE_FILE")
                 if [ "$STATUS" != "$LAST_STATUS" ]; then
+                    makoctl dismiss -a -c status-update
                     if [ "$STATUS" = "Charging" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -c status-update "󱐋 Charging (''${CAPACITY}%)"
+                        ${pkgs.libnotify}/bin/notify-send -c status-update -h string:x-mako-tag:status-update -h int:value:"$CAPACITY" "󱐋 Charging (''${CAPACITY}%)"
                     elif [ "$STATUS" = "Discharging" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -c status-update "󱐌 Discharging (''${CAPACITY}%)"
+                        ${pkgs.libnotify}/bin/notify-send -c status-update -h string:x-mako-tag:status-update -h int:value:"$CAPACITY" "󱐌 Discharging (''${CAPACITY}%)"
                     fi
                     echo "$STATUS" > "$CHARGE_STATE_FILE"
                 fi

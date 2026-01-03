@@ -45,8 +45,8 @@ in {
         "XF86AudioRaiseVolume" = "exec volume-control up";
         "XF86AudioLowerVolume" = "exec volume-control down";
         "XF86AudioMute" = "exec volume-control mute";
-        "XF86MonBrightnessUp" = "exec brightnessctl set +10%";
-        "XF86MonBrightnessDown" = "exec brightnessctl set 10%-";
+        "XF86MonBrightnessUp" = "exec brightness-control up";
+        "XF86MonBrightnessDown" = "exec brightness-control down";
       }
     ];
   };

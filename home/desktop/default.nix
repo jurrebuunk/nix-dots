@@ -10,5 +10,6 @@
     ./rofi
     ./battery-notify.nix
     ./volume-control.nix
+    ./brightness-control.nix
   ];
 }
