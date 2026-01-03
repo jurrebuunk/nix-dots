@@ -40,8 +40,5 @@
   # Environment Variables
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   
-  # Power Management
-  services.logind.lidSwitchDocked = "ignore";
-
   system.stateVersion = "25.05"; 
 }

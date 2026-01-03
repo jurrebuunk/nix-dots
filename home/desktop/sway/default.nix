@@ -7,5 +7,6 @@
     ./theme.nix
     ./i3status.nix
     ./kanshi.nix
+    ./swayidle.nix
   ];
 }
