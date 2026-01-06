@@ -6,10 +6,10 @@
       ##################################
       #   WINAPPS CONFIGURATION FILE   #
       ##################################
-      RDP_USER="User"
+      RDP_USER="Administrator"
       RDP_PASS="REDACTED"
       RDP_DOMAIN="."
-      RDP_IP="192.168.1.99"
+      RDP_IP="winsrv1.lan.buunk.org"
       VM_NAME=""
       WAFLAVOR="manual"
       RDP_SCALE="100"

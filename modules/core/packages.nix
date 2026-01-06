@@ -35,7 +35,13 @@
   
   programs.fuse.userAllowOther = true;
 
-  programs.thunar.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
   services.openssh.enable = true;
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

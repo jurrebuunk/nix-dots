@@ -12,5 +12,6 @@
     ./thunderbird.nix
     ./alacritty.nix
     ./rclone-mount.nix
+    ./thunar.nix
   ];
 }

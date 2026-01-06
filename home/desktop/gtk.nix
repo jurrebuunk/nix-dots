@@ -13,6 +13,18 @@ let
     @define-color orange    ${theme.colors.orange};
     @define-color gray      ${theme.colors.gray};
 
+    /* Override standard GTK colors */
+    @define-color theme_bg_color @bg;
+    @define-color theme_fg_color @fg;
+    @define-color theme_base_color @bg;
+    @define-color theme_text_color @fg;
+    @define-color theme_selected_bg_color @blue;
+    @define-color theme_selected_fg_color @bg;
+    @define-color window_bg_color @bg;
+    @define-color window_fg_color @fg;
+    @define-color view_bg_color @bg;
+    @define-color view_fg_color @fg;
+
     * {
       background-color: @bg;
       color: @fg;
@@ -56,6 +68,7 @@ let
 
     headerbar,
     headerbar:backdrop,
+    window,
     .titlebar,
     .titlebar:backdrop {
       background-color: @bg;
@@ -108,7 +121,11 @@ in {
       package = pkgs.nerd-fonts.caskaydia-cove;
       size = 10;
     };
-    gtk3.extraConfig.Settings = "gtk-application-prefer-dark-theme=1";
-    gtk4.extraConfig.Settings = "gtk-application-prefer-dark-theme=1";
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
   };
 }
