@@ -12,5 +12,6 @@
     ./alacritty.nix
     ./rclone-mount.nix
     ./thunar.nix
+    ./loupe.nix
   ];
 }

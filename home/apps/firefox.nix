@@ -20,18 +20,31 @@ in
         --tab-border-radius: 0px !important;
         --toolbarbutton-border-radius: 0px !important;
         --urlbar-border-radius: 0px !important;
-        --toolbarbutton-border-color: #4a5c63;  /* Cha ffnge the border color here */
-        --toolbarbutton-hover-bg: #4a5c63;      /* Background on hover */
+        --toolbarbutton-border-color: ${c.gray};  /* Cha ffnge the border color here */
+        --toolbarbutton-hover-bg: ${c.gray};      /* Background on hover */
         --toolbarbutton-padding: 0px 0px;       /* Adjust padding inside buttons */
         --toolbarbutton-radius: 0px;            /* Border radius for buttons */
         --toolbarbutton-spacing: 2px;           /* Space between buttons */
-        --toolbarbutton-first-left: 9px;       /* Left margin for first button (Back) */
+        --toolbarbutton-first-left: 6px;       /* Left margin for first button (Back) */
       }
 
       /* Toolbar */
       #navigator-toolbox {
         background-color: var(--toolbar-bgcolor) !important;
         color: var(--toolbar-text-color) !important;
+      }
+
+      /* === SIDEBAR === */
+      #sidebar-box,
+      #sidebar-main,
+      #sidebar-main[expanded],
+      .sidebar-panel,
+      #vertical-tabs {
+        min-width: 10px !important;
+        /* Force a specific thin width since dragging is fought by internal JS.
+           Adjust 42px to your preference. */
+        width: 42px !important; 
+        max-width: none !important;
       }
 
       /* === TABS === */
@@ -50,7 +63,54 @@ in
 
         /* Real square border */
         border: 2px solid var(--tab-border-color) !important;
-        margin: 0 9 0 9px !important;
+        margin: 0 5 0 5px !important;
+      }
+      
+      /* Target native vertical tabs specifically */
+      #tabbrowser-tabs[orient="vertical"] .tab-background,
+      #vertical-tabs .tab-background {
+         margin-left: 6px !important;
+         padding-left: 0px !important;
+      }
+      
+      #tabbrowser-tabs[orient="vertical"] .tab-content,
+      #vertical-tabs .tab-content {
+         padding-left: 0 !important;
+         margin-left: 0 !important;
+      }
+
+      #tabbrowser-tabs[orient="vertical"] .tab-icon-image,
+      #vertical-tabs .tab-icon-image {
+         margin-left: 14px !important;
+      }
+      
+      #tabbrowser-tabs[orient="vertical"],
+      #vertical-tabs {
+         padding-inline: 0px !important;
+         margin-inline: 0 !important;
+      }
+      
+      /* New Tab Button in Vertical Sidebar */
+      #tabs-newtab-button,
+      #new-tab-button,
+      .tabs-newtab-button {
+        padding-left: 0 !important;
+        margin-left: 5px !important;
+        width: calc(100% - 5px) !important;
+        justify-content: flex-start !important;
+      }
+      
+      /* Sidebar Tools/Settings Button at bottom */
+      #sidebar-main-tools,
+      #sidebar-main-tools > toolbarbutton,
+      #sidebar-main-tools > .toolbarbutton-1,
+      #sidebar-switcher-target,
+      .sidebar-footer-button {
+         padding-left: 0 !important;
+         margin-left: 5px !important;
+         justify-content: flex-start !important;
+         width: calc(100% - 5px) !important;
+         display: flex !important;
       }
 
       .tab-background[selected="true"] {
@@ -74,15 +134,27 @@ in
           box-shadow: none !important;
           outline: none !important;
 
-          border: 2px solid var(--toolbarbutton-border-color) !important; /* Gray border */
+          border: 2px solid ${c.gray} !important; /* Gray border */
           box-sizing: border-box;   /* Border included in size */
 
-          /* Add 2px vertical margin so border doesn't span entire toolbar height */
-          margin-top: 2px !important;
-          margin-bottom: 2px !important;
+          /* Enforce explicit square size (16px icon + 2*6px padding + 2*2px border = 32px) */
+          width: 32px !important;
+          height: 32px !important;
+          
+          /* Center vertically in the toolbar */
+          margin-top: auto !important;
+          margin-bottom: auto !important;
 
-          /* Padding inside the button (adjust for snug fit) */
-          padding: var(--toolbarbutton-padding) !important;
+          /* Remove default padding */
+          padding: 0 !important;
+      }
+
+      /* Explicitly link button size to inner padding to prevent icon resizing issues */
+      #nav-bar .toolbarbutton-1 > .toolbarbutton-icon {
+          padding: 6px !important;
+          width: 16px !important;
+          height: 16px !important;
+          box-sizing: content-box !important;
       }
 
       /* Left margin only for the first button (Back) */
@@ -95,11 +167,15 @@ in
           margin-left: var(--toolbarbutton-spacing) !important;
       }
 
+      /* Right margin for the last button */
+      #nav-bar .toolbarbutton-1:last-child {
+          margin-right: 6px !important;
+      }
+
       /* Hover and active states */
       #nav-bar .toolbarbutton-1:hover,
       #nav-bar .toolbarbutton-1:active {
-          border: 2px solid var(--toolbarbutton-border-color) !important;
-          background-color: var(--toolbarbutton-hover-bg) !important;
+          border: 2px solid ${c.gray} !important;
       }
 
 

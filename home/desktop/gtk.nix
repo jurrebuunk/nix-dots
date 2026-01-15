@@ -25,13 +25,8 @@ let
     @define-color view_bg_color @bg;
     @define-color view_fg_color @fg;
 
-    * {
-      background-color: @bg;
-      color: @fg;
-      border-width: 0;
-      border-radius: 0;
-      box-shadow: none;
-    }
+    /* Removed '*' selector as it overrides background on all elements, breaking many widgets */
+
 
     button, button:focus, button:active, button:hover {
       background: @bg;

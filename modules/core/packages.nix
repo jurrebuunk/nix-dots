@@ -29,6 +29,7 @@
     gemini-cli
     rclone
     fuse3
+    vscode
   ];
   
   programs.fuse.userAllowOther = true;
@@ -40,6 +41,11 @@
       thunar-volman
     ];
   };
+
+  services.gvfs.enable = true;
+  services.tumbler.enable = true;
+  services.gnome.glib-networking.enable = true;
+  
   services.openssh.enable = true;
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

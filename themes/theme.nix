@@ -1,1 +1,1 @@
-import ./orange-gradient.nix
+import ./gruvbox.nix
