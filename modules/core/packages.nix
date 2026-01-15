@@ -8,7 +8,6 @@
     fastfetch
     spotify
     cava
-    wezterm
     freerdp
     dialog
     libnotify
@@ -27,7 +26,6 @@
     vlc
     screen
     alacritty
-    opencloud-desktop
     gemini-cli
     rclone
     fuse3
@@ -37,7 +35,7 @@
 
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-archive-plugin
       thunar-volman
     ];

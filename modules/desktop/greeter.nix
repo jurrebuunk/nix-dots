@@ -4,9 +4,13 @@
   services.greetd = {
     enable = true;
     settings = {
+      initial_session = {
+        command = "${pkgs.sway}/bin/sway";
+        user = "jurre";
+      };
       default_session = {
         command = "${pkgs.sway}/bin/sway --config /etc/greetd/sway";
-        user = "jurre";  # default username
+        user = "jurre";
       };
     };
   };

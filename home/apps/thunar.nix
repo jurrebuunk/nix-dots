@@ -18,14 +18,16 @@
     "last-image-preview-visible" = true;
     "last-sort-column" = "THUNAR_COLUMN_NAME";
     "last-sort-order" = "GTK_SORT_DESCENDING";
-    "misc-terminal-command" = "${pkgs.wezterm}/bin/wezterm";
+    "misc-terminal-command" = "${pkgs.alacritty}/bin/alacritty";
   };
 
   xfconf.settings.exo-1 = {
-    "TerminalEmulator" = "${pkgs.wezterm}/bin/wezterm";
+    "TerminalEmulator" = "${pkgs.alacritty}/bin/alacritty";
   };
 
-  xdg.configFile."Thunar/uca.xml".text = ''
+  xdg.configFile."Thunar/uca.xml" = {
+    force = true;
+    text = ''
     <?xml version="1.0" encoding="UTF-8"?>
     <actions>
     <action>
@@ -33,7 +35,7 @@
             <name>Open Terminal Here</name>
             <submenu></submenu>
             <unique-id>1765145165427669-1</unique-id>
-            <command>${pkgs.wezterm}/bin/wezterm start --working-directory %f</command>
+            <command>${pkgs.alacritty}/bin/alacritty --working-directory %f</command>
             <description>Open terminal in the current directory</description>
             <range></range>
             <patterns>*</patterns>
@@ -42,4 +44,5 @@
     </action>
     </actions>
   '';
+  };
 }

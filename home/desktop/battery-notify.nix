@@ -16,6 +16,11 @@ let
     # Ensure state files are removed on start
     rm -f "$STATE_FILE" "$CHARGE_STATE_FILE"
 
+    # Icons
+    ICON_CHARGING=$(printf "\uf040b")
+    ICON_DISCHARGING=$(printf "\uf040c")
+    ICON_ALERT=$(printf "\uf0083")
+
     while true; do
         if [ -d /sys/class/power_supply/BAT0 ]; then
             CAPACITY=$(cat /sys/class/power_supply/BAT0/capacity)
@@ -27,9 +32,9 @@ let
                 if [ "$STATUS" != "$LAST_STATUS" ]; then
                     makoctl dismiss -a -c status-update
                     if [ "$STATUS" = "Charging" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -c status-update -h string:x-mako-tag:status-update -h int:value:"$CAPACITY" "󱐋 Charging (''${CAPACITY}%)"
+                        ${pkgs.libnotify}/bin/notify-send -c status-update -h string:x-mako-tag:status-update -h int:value:"$CAPACITY" "$ICON_CHARGING Charging (''${CAPACITY}%)"
                     elif [ "$STATUS" = "Discharging" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -c status-update -h string:x-mako-tag:status-update -h int:value:"$CAPACITY" "󱐌 Discharging (''${CAPACITY}%)"
+                        ${pkgs.libnotify}/bin/notify-send -c status-update -h string:x-mako-tag:status-update -h int:value:"$CAPACITY" "$ICON_DISCHARGING Discharging (''${CAPACITY}%)"
                     fi
                     echo "$STATUS" > "$CHARGE_STATE_FILE"
                 fi
@@ -40,17 +45,17 @@ let
             if [ "$STATUS" = "Discharging" ]; then
                 if [ "$CAPACITY" -le "$URGENT" ]; then
                     if [ ! -f "$STATE_FILE" ] || [ "$(cat $STATE_FILE)" != "urgent" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -u critical "󰂃 Battery Urgent (''${CAPACITY}%)"
+                        ${pkgs.libnotify}/bin/notify-send -u critical "Battery Warning" "$ICON_ALERT Battery is at ''${CAPACITY}% (Urgent)"
                         echo "urgent" > "$STATE_FILE"
                     fi
                 elif [ "$CAPACITY" -le "$CRITICAL" ]; then
                     if [ ! -f "$STATE_FILE" ] || [ "$(cat $STATE_FILE)" != "critical" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -u critical "󰂃 Battery Critical (''${CAPACITY}%)"
+                        ${pkgs.libnotify}/bin/notify-send -u critical "Battery Warning" "$ICON_ALERT Battery is at ''${CAPACITY}% (Critical)"
                         echo "critical" > "$STATE_FILE"
                     fi
                 elif [ "$CAPACITY" -le "$LOW" ]; then
                     if [ ! -f "$STATE_FILE" ] || [ "$(cat $STATE_FILE)" != "low" ]; then
-                        ${pkgs.libnotify}/bin/notify-send -u normal "󰂃 Battery Low (''${CAPACITY}%)"
+                        ${pkgs.libnotify}/bin/notify-send -u normal "Battery Warning" "$ICON_ALERT Battery is at ''${CAPACITY}% (Low)"
                         echo "low" > "$STATE_FILE"
                     fi
                 else

@@ -19,13 +19,15 @@
       ../../modules/desktop/waylock.nix
       ../../modules/desktop/rofi.nix
       
+      
       # Other Modules
       ../../modules/development
     ];
 
   # Bootloader
+  boot.loader.timeout = 0;
   boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.canTouchEfiVariables = false;
 
   # Time and Locale
   time.timeZone = "Europe/Amsterdam";

@@ -81,6 +81,11 @@
           packages = envs.meldcoach.packages;
           shellHook = envs.meldcoach.shellHook;
         };
+
+        windows = pkgs.mkShell {
+          packages = envs.windows.packages;
+          shellHook = envs.windows.shellHook;
+        };
       };
     };
 }

@@ -4,9 +4,8 @@
   networking = {
     hostName = "nixos-usb";
     networkmanager.enable = true;
-    # firewall.allowedTCPPorts = [ ... ];
-    # firewall.allowedUDPPorts = [ ... ];
-    # firewall.enable = false;
+    firewall.allowedTCPPorts = [ 445 139 ];
+    firewall.allowedUDPPorts = [ 137 138 ];
   };
 
   services.tailscale = {

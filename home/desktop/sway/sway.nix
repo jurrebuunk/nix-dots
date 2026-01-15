@@ -22,6 +22,9 @@ in {
       modifier = mod;
       focus.followMouse = false;
       workspaceAutoBackAndForth = true;
+      startup = [
+        { command = "${pkgs.gtklock}/bin/gtklock -d"; }
+      ];
       bars = [ ]; # Managed in theme.nix via extraConfig
     };
 

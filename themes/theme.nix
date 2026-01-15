@@ -1,1 +1,1 @@
-import ./teal-gradient.nix
+import ./orange-gradient.nix
