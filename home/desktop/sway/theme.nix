@@ -7,11 +7,19 @@ in {
   wayland.windowManager.sway.extraConfig = ''
     # Border settings
     default_border pixel 2
+    default_floating_border pixel 2
 
-    for_window [window_role="x11-embed"] border pixel 2
+    # Force borders for Libadwaita/CSD apps and dialogs
+    for_window [app_id=".*"] border pixel 2
+    for_window [window_role=".*"] border pixel 2
     for_window [window_type="dialog"] border pixel 2
     for_window [window_type="utility"] border pixel 2
-    for_window [window_role="dialog"] border pixel 2
+    for_window [window_type="toolbar"] border pixel 2
+    for_window [window_type="splash"] border pixel 2
+    for_window [window_type="menu"] border pixel 2
+    for_window [window_type="dropdown_menu"] border pixel 2
+    for_window [window_type="popup_menu"] border pixel 2
+    for_window [window_type="tooltip"] border pixel 2
 
     exec_always swaybg -i ${theme.wallpaper} -m fill
 

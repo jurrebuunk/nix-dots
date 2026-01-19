@@ -5,6 +5,12 @@
     loupe
   ];
 
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":";
+    };
+  };
+
   xdg.mimeApps.defaultApplications = {
     "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
     "image/png" = [ "org.gnome.Loupe.desktop" ];
