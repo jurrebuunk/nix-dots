@@ -22,6 +22,7 @@
       
       # Other Modules
       ../../modules/development
+      ../../modules/proxmox
     ];
 
   # Bootloader
@@ -38,6 +39,15 @@
   services.xserver.videoDrivers = [ "intel" ];
   hardware.enableAllFirmware = true;
   boot.extraModulePackages = [ pkgs.v4l-utils ];
+  
+  # Proxmox Management
+  custom.proxmox = {
+    enable = true;
+    host = "192.168.1.13";
+    user = "root@pam";
+    tokenId = "root@pam!nixos";
+    tokenSecret = "29cbc214-8dd7-417e-99d8-24a012e9e563";
+  };
 
   # Environment Variables
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

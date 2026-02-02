@@ -1,1 +1,1 @@
-import ./starship.nix
+import ./teal-gradient.nix

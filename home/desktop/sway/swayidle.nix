@@ -1,25 +1,51 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
+let
+  cfg = config.custom.desktop.autoLock;
+in
 {
-  services.swayidle = {
-    enable = true;
-    events = {
-      before-sleep = "${pkgs.gtklock}/bin/gtklock -d";
-      lock = "${pkgs.gtklock}/bin/gtklock -d";
+  options.custom.desktop.autoLock = {
+    enable = lib.mkEnableOption "auto lock screen" // {
+      default = true;
     };
-    timeouts = [
-      {
-        timeout = 300;
-        command = "${pkgs.gtklock}/bin/gtklock -d";
-      }
-      {
-        timeout = 600;
-        command = "${pkgs.sway}/bin/swaymsg \"output * power off\"";
-        resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * power on\"";
-      }
-    ];
+    
+    lockTimeout = lib.mkOption {
+      type = lib.types.int;
+      default = 300;
+      description = "Time in seconds before locking the screen";
+    };
+    
+    screenOffTimeout = lib.mkOption {
+      type = lib.types.int;
+      default = 600;
+      description = "Time in seconds before turning off the screen";
+    };
   };
 
-  # Ensure gtklock is installed
-  home.packages = [ pkgs.gtklock ];
+  config = lib.mkIf cfg.enable {
+    services.swayidle = {
+      enable = true;
+      events = {
+        before-sleep = "${pkgs.gtklock}/bin/gtklock -d";
+        lock = "${pkgs.gtklock}/bin/gtklock -d";
+      };
+      timeouts = [
+        {
+          timeout = cfg.lockTimeout;
+          command = "${pkgs.gtklock}/bin/gtklock -d";
+        }
+        {
+          timeout = cfg.screenOffTimeout;
+          command = "${pkgs.sway}/bin/swaymsg \"output * power off\"";
+          resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * power on\"";
+        }
+      ];
+    };
+
+    # Ensure gtklock is installed
+    home.packages = [ pkgs.gtklock ];
+
+    # Disable auto lock
+    custom.desktop.autoLock.enable = false;
+  };
 }

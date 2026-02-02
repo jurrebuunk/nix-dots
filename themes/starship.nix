@@ -2,16 +2,32 @@
   wallpaper = "/home/jurre/nixos/themes/wallpapers/starship-stage-sep.jpg";
 
   colors = {
-    bg        = "#05070a";  # Deep space black
-    fg        = "#dee7ef";  # Starship silver / atmospheric highlight
-    red       = "#f28b82";  # Soft red
-    green     = "#81c995";  # Soft green
-    yellow    = "#fdd663";  # Solar highlight / Sun
-    blue      = "#4285f4";  # Earth blue
-    magenta   = "#c58af9";  # Space glow
-    cyan      = "#4fc3f7";  # Atmospheric edge
-    orange    = "#ffab40";  # Metal highlight / Thruster hint
-    gray      = "#5f6368";  # Dark steel ship hull
+    bg        = "#010409";
+    fg        = "#e6edf3";
+
+    # Normal colors
+    black     = "#484f58";
+    red       = "#ff7b72";
+    green     = "#3fb950";
+    yellow    = "#d29922";
+    blue      = "#58a6ff";
+    magenta   = "#bc8cff";
+    cyan      = "#39c5cf";
+    white     = "#b1bac4";
+
+    # Bright colors
+    brightBlack   = "#6e7681";
+    brightRed     = "#ffa198";
+    brightGreen   = "#56d364";
+    brightYellow  = "#e3b341";
+    brightBlue    = "#79c0ff";
+    brightMagenta = "#d2a8ff";
+    brightCyan    = "#56d4dd";
+    brightWhite   = "#ffffff";
+
+    # Legacy mappings (for tools expecting the older theme structure)
+    orange    = "#d29922"; # Mapping yellow to orange as fallback
+    gray      = "#484f58";
   };
 
   fonts = {
