@@ -51,6 +51,9 @@
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.permittedInsecurePackages = [
+    "ciscoPacketTracer8-8.2.2"
+  ];
   
   environment.variables.PATH = [ "/home/jurre/.local/bin" ];
 }
