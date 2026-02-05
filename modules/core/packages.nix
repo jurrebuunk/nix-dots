@@ -30,6 +30,7 @@
     rclone
     fuse3
     vscode
+    pipx
   ];
   
   programs.fuse.userAllowOther = true;

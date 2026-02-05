@@ -13,5 +13,6 @@
     ./rclone-mount.nix
     ./thunar.nix
     ./loupe.nix
+    ./packet-tracer.nix
   ];
 }

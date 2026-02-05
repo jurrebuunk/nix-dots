@@ -45,7 +45,7 @@
     enable = true;
     host = "192.168.1.13";
     user = "root@pam";
-    tokenId = "root@pam!nixos";
+    tokenId = "root@pam!nixos-laptop";
     tokenSecret = "29cbc214-8dd7-417e-99d8-24a012e9e563";
   };
 

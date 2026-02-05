@@ -44,8 +44,5 @@ in
 
     # Ensure gtklock is installed
     home.packages = [ pkgs.gtklock ];
-
-    # Disable auto lock
-    custom.desktop.autoLock.enable = false;
   };
 }
