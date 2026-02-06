@@ -1,1 +1,1 @@
-import ./teal-gradient.nix
+import ./hue-gradient.nix
