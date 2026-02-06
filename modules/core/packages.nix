@@ -31,6 +31,7 @@
     fuse3
     vscode
     pipx
+    python3
   ];
   
   programs.fuse.userAllowOther = true;

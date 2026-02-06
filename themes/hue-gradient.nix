@@ -16,7 +16,7 @@
   };
 
   fonts = {
-    main = "IBM Plex Mono";
+    main = "CaskaydiaMono Nerd Font";
     size = "10";
   };
 }
