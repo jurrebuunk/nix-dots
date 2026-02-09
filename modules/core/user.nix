@@ -3,7 +3,7 @@
 {
   users.users.jurre = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "docker" "video" "audio"];
+    extraGroups = [ "wheel" "networkmanager" "docker" "video" "audio" "wireshark"];
     initialPassword = "Welkom01";
   };
 

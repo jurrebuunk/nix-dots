@@ -10,7 +10,8 @@ let
   pythonPackages = with pkgs; [
     python3Packages.numpy
     python3Packages.notebook
-    jupyter
+    python3Packages.jupyter
+    python3Packages.pip
   ];
 
   pythonSystemPackages = pythonBase ++ pythonPackages;
