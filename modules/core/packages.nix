@@ -32,6 +32,8 @@
     vscode
     pipx
     python3
+    wireshark
+    opencode
   ];
   
   programs.fuse.userAllowOther = true;
@@ -44,6 +46,8 @@
     ];
   };
 
+  services.dbus.packages = [ pkgs.xfconf ];
+  services.udisks2.enable = true;
   services.gvfs.enable = true;
   services.tumbler.enable = true;
   services.gnome.glib-networking.enable = true;

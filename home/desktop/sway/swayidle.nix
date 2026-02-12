@@ -11,13 +11,13 @@ in
     
     lockTimeout = lib.mkOption {
       type = lib.types.int;
-      default = 300;
+      default = 30000;
       description = "Time in seconds before locking the screen";
     };
     
     screenOffTimeout = lib.mkOption {
       type = lib.types.int;
-      default = 600;
+      default = 60000;
       description = "Time in seconds before turning off the screen";
     };
   };
