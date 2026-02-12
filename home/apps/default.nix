@@ -14,5 +14,6 @@
     ./thunar.nix
     ./loupe.nix
     ./packet-tracer.nix
+    ./openclaw.nix
   ];
 }
