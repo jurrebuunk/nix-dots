@@ -15,14 +15,10 @@
     iproute2
     netcat
     firefox
-    nautilus
     pavucontrol
     moonlight-qt
     kanshi
     fuzzel
-    pkgs.antigravity
-    rofi-bluetooth
-    rofi-network-manager
     vlc
     screen
     alacritty
@@ -30,10 +26,17 @@
     rclone
     fuse3
     vscode
-    pipx
     python3
     wireshark
     opencode
+    sshfs
+    antigravity
+    chromium
+    yt-dlp
+    ffmpeg
+    wdisplays
+    feishin
+    wlr-randr
   ];
   
   programs.fuse.userAllowOther = true;
@@ -57,8 +60,8 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
-    "ciscoPacketTracer8-8.2.2"
+    "cisco-packet-tracer-8.2.2"
   ];
-  
+
   environment.variables.PATH = [ "/home/jurre/.local/bin" ];
 }

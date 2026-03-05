@@ -18,7 +18,7 @@
       ExecStartPre = "${pkgs.coreutils}/bin/mkdir -p %h/openclaw";
       # Mount /home/jurre/.openclaw from this machine via ssh to preserve any
       # SSH-specific behaviour. Uses IdentityFile from the user's SSH config.
-      ExecStart = "${pkgs.sshfs}/bin/sshfs -o allow_other,follow_symlinks,StrictHostKeyChecking=no jurre@localhost:/home/jurre/.openclaw %h/openclaw";
+      ExecStart = "${pkgs.sshfs}/bin/sshfs -o allow_other,follow_symlinks,StrictHostKeyChecking=no jurre@openclaw.lan.buunk.org:/home/jurre/.openclaw /home/jurre/openclaw";
       ExecStop = "/run/wrappers/bin/fusermount3 -u %h/openclaw";
       Restart = "on-failure";
       RestartSec = "10";

@@ -5,7 +5,6 @@
     ./firefox.nix
     ./libreoffice.nix
     ./element-desktop.nix
-    ./winapps.nix
     ./vscodium.nix
     ./custom-desktop-entries.nix
     ./thunderbird.nix
