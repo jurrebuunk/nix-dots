@@ -5,7 +5,7 @@
     [
       ./apps
       ./desktop
-      ./moonlight.nix
+      #./moonlight.nix
     ];
 
   home = {
