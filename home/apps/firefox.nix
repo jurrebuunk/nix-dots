@@ -108,6 +108,12 @@ in
         width: calc(100% - 5px) !important;
         justify-content: flex-start !important;
       }
+
+      #tabs-newtab-button .toolbarbutton-icon,
+      #new-tab-button .toolbarbutton-icon,
+      .tabs-newtab-button .toolbarbutton-icon {
+        margin-left: 8px !important;
+      }
       
       /* Sidebar Tools/Settings Button at bottom */
       #sidebar-main-tools,
@@ -120,6 +126,26 @@ in
          justify-content: flex-start !important;
          width: calc(100% - 5px) !important;
          display: flex !important;
+      }
+
+      /* Hide sidebar customize/settings controls across Firefox UI variants */
+      #sidebar-customize-button,
+      #sidebar-customize,
+      #sidebar-settings-button,
+      #sidebar-settings-expand-button,
+      #sidebar-main-tools [id*="customize"],
+      #sidebar-main-tools [data-l10n-id*="customize"],
+      #sidebar-main-tools [data-l10n-id*="settings"],
+      #sidebar-main-tools [aria-label*="customize" i],
+      #sidebar-main-tools [aria-label*="settings" i],
+      #sidebar-main-tools [tooltiptext*="customize" i],
+      #sidebar-main-tools [tooltiptext*="settings" i],
+      #sidebar-main-tools [label*="customize" i],
+      #sidebar-main-tools [label*="settings" i],
+      #sidebar-box [oncommand*="customizeSidebar"],
+      #sidebar-box [command*="customize"] {
+        display: none !important;
+        visibility: collapse !important;
       }
 
       .tab-background[selected="true"] {
@@ -218,6 +244,26 @@ in
         .top-site-outer .tile {
           border-radius: 0px !important;
           box-shadow: none !important;
+        }
+      }
+
+      @-moz-document url("about:home"), url("about:newtab") {
+        :root,
+        body,
+        html,
+        .activity-stream,
+        .activity-stream .outer-wrapper,
+        .activity-stream .outer-wrapper::before {
+          background: ${c.bg} !important;
+          background-image: none !important;
+        }
+
+        /* Hide new tab "Customize" button (selector varies by version) */
+        .personalize-button,
+        button.personalize-button,
+        #personalizeButton,
+        [data-l10n-id="newtab-personalize-button"] {
+          display: none !important;
         }
       }
     '';

@@ -4,9 +4,7 @@
   environment.systemPackages = with pkgs; [
     git
     wget
-    yazi
     fastfetch
-    spotify
     cava
     freerdp
     dialog
@@ -18,7 +16,6 @@
     pavucontrol
     moonlight-qt
     kanshi
-    fuzzel
     vlc
     screen
     alacritty
@@ -29,14 +26,14 @@
     python3
     wireshark
     opencode
-    sshfs
-    antigravity
     chromium
-    yt-dlp
     ffmpeg
     wdisplays
     feishin
     wlr-randr
+    codex
+    geary
+    fractal
   ];
   
   programs.fuse.userAllowOther = true;
@@ -48,6 +45,10 @@
       thunar-volman
     ];
   };
+
+  # gnome calendar services
+  programs.dconf.enable = true;
+  services.gnome.evolution-data-server.enable = true;
 
   services.dbus.packages = [ pkgs.xfconf ];
   services.udisks2.enable = true;
