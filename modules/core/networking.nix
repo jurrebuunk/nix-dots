@@ -4,7 +4,7 @@
   networking = {
     hostName = "nixos-usb";
     networkmanager.enable = true;
-    firewall.allowedTCPPorts = [ 445 139 ];
+    firewall.allowedTCPPorts = [ 445 139 3000];
     firewall.allowedUDPPorts = [ 137 138 ];
   };
 

@@ -38,6 +38,7 @@
   # Hardware / Drivers
   services.xserver.videoDrivers = [ "intel" ];
   hardware.enableAllFirmware = true;
+  environment.systemPackages = [ pkgs.displaylink ];
   boot.extraModulePackages = [ pkgs.v4l-utils ];
   
   # Proxmox Management
