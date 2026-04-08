@@ -1,4 +1,4 @@
-{pkgs, ...}: rec {
+{pkgs, inputs, ...}: rec {
   programs.dconf.enable = true;
 
   security.polkit.enable = true;
@@ -10,6 +10,7 @@
     mako
     slurp
     sway
+    inputs.scroll-flake.packages.${pkgs.stdenv.hostPlatform.system}.default
     wl-clipboard
     swaybg
     dmenu

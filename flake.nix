@@ -5,9 +5,13 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    scroll-flake = {
+      url = "github:Diax170/scroll-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" ];
       forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -34,6 +38,7 @@
         nixos-usb = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
+            inherit inputs;
             theme = import ./themes/theme.nix;
           };
           modules = [
@@ -44,6 +49,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = {
+                inherit inputs;
                 theme = import ./themes/theme.nix;
               };
               home-manager.users.jurre = import ./home/default.nix;

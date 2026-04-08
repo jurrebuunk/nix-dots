@@ -4,6 +4,7 @@
   #import configurations for user specific sway desktop environment
   imports = [
     ./sway
+    ./scroll.nix
     ./gtk.nix
     ./mako.nix
     ./waybar.nix
