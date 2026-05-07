@@ -40,6 +40,15 @@
   hardware.enableAllFirmware = true;
   environment.systemPackages = [ pkgs.displaylink ];
   boot.extraModulePackages = [ pkgs.v4l-utils ];
+
+  # Printing / Scanning
+  services.printing.enable = true;
+  services.printing.drivers = with pkgs; [
+    hplip
+    splix
+  ];
+  services.avahi.enable = true; # for network discovery
+  hardware.sane.enable = true; # optional (scanner support, safe to include)
   
   # Proxmox Management
   custom.proxmox = {
@@ -47,8 +56,13 @@
     host = "192.168.1.13";
     user = "root@pam";
     tokenId = "root@pam!nixos-laptop";
-    tokenSecret = "29cbc214-8dd7-417e-99d8-24a012e9e563";
+    tokenSecret = "";
   };
+
+  age.identityPaths = [ "/home/jurre/.ssh/id_ed25519" ];
+  age.secrets.proxmox-token-secret.file = ../../secrets/proxmox-token-secret.age;
+
+  environment.sessionVariables.PROXMOX_TOKEN_SECRET_FILE = config.age.secrets.proxmox-token-secret.path;
 
   # Environment Variables
   environment.sessionVariables.NIXOS_OZONE_WL = "1";

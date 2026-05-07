@@ -5,11 +5,11 @@
     enable = true;
     settings = {
       initial_session = {
-        command = "${pkgs.sway}/bin/sway";
+        command = "/run/current-system/sw/bin/scroll";
         user = "jurre";
       };
       default_session = {
-        command = "${pkgs.sway}/bin/sway --config /etc/greetd/sway";
+        command = "/run/current-system/sw/bin/scroll --config /etc/greetd/scroll";
         user = "jurre";
       };
     };
@@ -19,14 +19,15 @@
     gtkgreet
   ];
 
-  ## Sway-config voor greetd
-  environment.etc."greetd/sway".text = ''
+  ## Scroll-config for greetd
+  environment.etc."greetd/scroll".text = ''
     # start gtkgreet fullscreen / borderless
     exec ${pkgs.gtkgreet}/bin/gtkgreet -l
   '';
 
   ## Sessies die beschikbaar zijn in gtkgreet
   environment.etc."greetd/environments".text = ''
+    scroll
     sway
     bash
   '';

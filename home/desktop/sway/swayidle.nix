@@ -26,7 +26,8 @@ in
     services.swayidle = {
       enable = true;
       events = {
-        before-sleep = "${pkgs.gtklock}/bin/gtklock -d";
+        before-sleep = "${pkgs.systemd}/bin/loginctl lock-session && ${pkgs.gtklock}/bin/gtklock -d && ${pkgs.coreutils}/bin/sleep 2";
+        after-resume = "${pkgs.gtklock}/bin/gtklock -d";
         lock = "${pkgs.gtklock}/bin/gtklock -d";
       };
       timeouts = [
@@ -36,13 +37,13 @@ in
         }
         {
           timeout = cfg.screenOffTimeout;
-          command = "${pkgs.sway}/bin/swaymsg \"output * power off\"";
-          resumeCommand = "${pkgs.sway}/bin/swaymsg \"output * power on\"";
+          command = "/run/current-system/sw/bin/scrollmsg \"output * power off\" || ${pkgs.sway}/bin/swaymsg \"output * power off\"";
+          resumeCommand = "/run/current-system/sw/bin/scrollmsg \"output * power on\" || ${pkgs.sway}/bin/swaymsg \"output * power on\"";
         }
       ];
     };
 
-    # Ensure gtklock is installed
+    # Ensure lock tool is installed
     home.packages = [ pkgs.gtklock ];
   };
 }

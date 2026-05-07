@@ -9,7 +9,7 @@
     settings = {
       Login = {
         HandleLidSwitch = "suspend-then-hibernate";
-        HandleLidSwitchExternalPower = "lock";
+        HandleLidSwitchExternalPower = "suspend-then-hibernate";
         HandleLidSwitchDocked = "ignore";
         HandlePowerKey = "suspend-then-hibernate";
         IdleAction = "suspend-then-hibernate";

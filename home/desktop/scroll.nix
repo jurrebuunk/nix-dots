@@ -7,13 +7,26 @@ in
 {
   xdg.configFile."scroll/config".text = ''
     set $mod Mod4
+    floating_modifier $mod normal
 
     font pango:${f.main} ${toString f.size}
 
     default_border pixel 2
     default_floating_border pixel 2
+    focus_follows_mouse no
+    mouse_warping none
 
     output * bg ${theme.wallpaper} fill
+
+    input type:touchpad {
+      dwt enabled
+      tap enabled
+      tap_button_map lrm
+      natural_scroll enabled
+      middle_emulation enabled
+      scroll_method two_finger
+      click_method button_areas
+    }
 
     client.focused          ${c.blue} ${c.blue} ${c.fg} ${c.blue} ${c.blue}
     client.focused_inactive ${c.gray} ${c.gray} ${c.fg} ${c.gray} ${c.gray}
@@ -22,16 +35,35 @@ in
     client.placeholder      ${c.bg} ${c.bg} ${c.fg} ${c.bg} ${c.bg}
 
     # Gestures
-    bindgesture swipe:left workspace next
-    bindgesture swipe:right workspace prev
+    bindgesture swipe:3:left focus right
+    bindgesture swipe:3:right focus left
+    bindgesture swipe:3:up workspace prev
+    bindgesture swipe:3:down workspace next
+    bindgesture swipe:4:right workspace next
+    bindgesture swipe:4:left workspace prev
+    bindgesture swipe:4:up scale_workspace overview
+    bindgesture swipe:4:down scale_workspace reset
 
     bindgesture pinch:inward+up move up
     bindgesture pinch:inward+down move down
     bindgesture pinch:inward+left move left
     bindgesture pinch:inward+right move right
 
+    animations {
+      enabled yes
+      default yes 110 var 3 [ 0.24 0.78 0.25 1 ]
+      window_open yes 95 var 3 [ 0 0 1 1 ]
+      window_move yes 110 var 3 [ 0.24 0.78 0.25 1 ] off 0.02 6 [0 0.6 0.4 0 1 0 0.4 -0.6 1 -0.6]
+      window_size yes 95 var 3 [ -0.35 0 0 0.5 ]
+      workspace_switch yes 120 var simple [ 0.24 0.78 0.25 1 ]
+      window_fullscreen yes 120 var simple [ 0.3 0.5 0.4 1 ]
+    }
+
     # Startup
     exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=scroll
+    exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    exec_always systemctl --user restart kanshi.service
+    exec ${pkgs.gtklock}/bin/gtklock -d
 
     # Workspaces
     bindsym $mod+1 workspace 1
@@ -84,6 +116,9 @@ in
     bindsym $mod+s layout stacking
     bindsym $mod+w layout tabbed
     bindsym $mod+d floating toggle
+    bindsym $mod+Shift+f floating toggle
+    bindsym $mod+minus cycle_size h prev
+    bindsym $mod+equal cycle_size h next
 
     # Lockscreen
     bindsym $mod+Shift+l exec ${pkgs.gtklock}/bin/gtklock -d
@@ -107,6 +142,8 @@ in
         background ${c.bg}
         statusline ${c.fg}
         separator  ${c.gray}
+        binding_mode ${c.bg} ${c.bg} ${c.gray}
+        scroller ${c.bg} ${c.bg} ${c.gray}
 
         focused_workspace  ${c.blue} ${c.blue} ${c.fg}
         active_workspace   ${c.gray} ${c.gray} ${c.fg}

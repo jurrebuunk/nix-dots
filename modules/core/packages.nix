@@ -34,6 +34,7 @@
     codex
     geary
     fractal
+    obsidian
   ];
   
   programs.fuse.userAllowOther = true;

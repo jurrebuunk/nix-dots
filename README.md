@@ -71,6 +71,24 @@ This configuration uses a modular approach for development environments to keep 
         *   `*-restart`: Restart services.
         *   `*-status`: Check if services are running.
 
+## Secrets with agenix
+
+This repo now includes `agenix` for encrypted secrets:
+
+* Recipient definitions live in `secrets/secrets.nix`
+* Encrypted secret files live in `secrets/*.age`
+* NixOS wiring is enabled in `flake.nix` and `hosts/nixos-usb/configuration.nix`
+
+Common commands:
+
+```bash
+# Edit or create a secret (uses secrets/secrets.nix)
+nix run github:ryantm/agenix -- -e secrets/proxmox-token-secret.age
+
+# Rebuild and activate
+sudo nixos-rebuild switch --flake .#nixos-usb
+```
+
 ## Purpose
 
 * Single source of truth for all system and user configurations

@@ -30,7 +30,7 @@ in {
         "${mod}+x" = "kill";
         "${mod}+a" = "focus parent";
         "${mod}+h" = "floating toggle";
-        "${mod}+d" = "floating toggle, resize set width 100ppt height 100ppt, resize shrink width 80 px, resize shrink height 80 px, move position center";
+        "${mod}+d" = "floating toggle, move position center";
         "${mod}+e" = "layout toggle split";
         "${mod}+f" = "fullscreen toggle";
         "${mod}+g" = "split h";

@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     scroll-flake = {
       url = "github:Diax170/scroll-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,6 +47,7 @@
           };
           modules = [
             ./hosts/nixos-usb/configuration.nix
+            inputs.agenix.nixosModules.default
 
             home-manager.nixosModules.home-manager
             {
