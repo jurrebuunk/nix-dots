@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./kernel.nix
     ./networking.nix
     ./power.nix
     ./sound.nix

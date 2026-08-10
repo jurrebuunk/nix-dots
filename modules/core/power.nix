@@ -19,10 +19,8 @@
   };
 
   # Configure suspend-then-hibernate timeout
-  # This sets how long to stay in suspend before hibernating
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=30min
-  '';
+  # This sets how long to stay suspended before hibernating
+  systemd.sleep.settings.Sleep.HibernateDelaySec = "15min";
 
   # Fix networking and DNS on wake
   # This service runs after the system resumes from sleep or hibernation

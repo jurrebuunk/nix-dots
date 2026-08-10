@@ -18,6 +18,7 @@
       ../../modules/desktop/sway.nix
       ../../modules/desktop/waylock.nix
       ../../modules/desktop/rofi.nix
+      ../../modules/desktop/swayosd.nix
       
       
       # Other Modules
@@ -41,14 +42,16 @@
   environment.systemPackages = [ pkgs.displaylink ];
   boot.extraModulePackages = [ pkgs.v4l-utils ];
 
-  # Printing / Scanning
-  services.printing.enable = true;
-  services.printing.drivers = with pkgs; [
-    hplip
-    splix
-  ];
-  services.avahi.enable = true; # for network discovery
-  hardware.sane.enable = true; # optional (scanner support, safe to include)
+  # Niri needs xdg-desktop-portal-gnome for Wayland/PipeWire screen capture.
+  programs.niri = {
+    enable = true;
+    useNautilus = false;
+  };
+
+  # Printing / Scanning disabled to reduce idle services.
+  services.printing.enable = false;
+  services.avahi.enable = false;
+  hardware.sane.enable = false;
   
   # Proxmox Management
   custom.proxmox = {
@@ -65,7 +68,10 @@
   environment.sessionVariables.PROXMOX_TOKEN_SECRET_FILE = config.age.secrets.proxmox-token-secret.path;
 
   # Environment Variables
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = lib.mkForce "";
+    XCURSOR_SIZE = "12";
+  };
   
   system.stateVersion = "25.05"; 
 }

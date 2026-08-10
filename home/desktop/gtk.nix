@@ -172,7 +172,54 @@ let
     }
   '';
 
+  mcMojaveCursors = pkgs.stdenvNoCC.mkDerivation {
+    pname = "mcmojave-cursors";
+    version = "2024-03-17";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "vinceliuice";
+      repo = "McMojave-cursors";
+      rev = "7d0bfc1f91028191cdc220b87fd335a235ee4439";
+      hash = "sha256-4YqSucpxA7jsuJ9aADjJfKRPgPR89oq2l0T1N28+GV0=";
+    };
+
+    dontBuild = true;
+
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/share/icons
+      cp -r dist $out/share/icons/McMojave-cursors
+      runHook postInstall
+    '';
+  };
+
 in {
+  xdg.desktopEntries.code = {
+    name = "Visual Studio Code";
+    exec = "/run/current-system/sw/bin/code %F";
+    terminal = false;
+    type = "Application";
+    categories = [ "Development" "IDE" "TextEditor" ];
+  };
+
+  xdg.desktopEntries.chromium = {
+    name = "Chromium";
+    exec = "/run/current-system/sw/bin/chromium %U";
+    terminal = false;
+    type = "Application";
+    categories = [ "Network" "WebBrowser" ];
+    mimeType = [ "text/html" "x-scheme-handler/http" "x-scheme-handler/https" ];
+  };
+
+  xdg.desktopEntries."chromium-browser" = {
+    name = "Chromium Browser";
+    exec = "/run/current-system/sw/bin/chromium %U";
+    terminal = false;
+    type = "Application";
+    categories = [ "Network" "WebBrowser" ];
+    mimeType = [ "text/html" "x-scheme-handler/http" "x-scheme-handler/https" ];
+  };
+
   xdg.configFile."gtk-3.0/gtk.css" = {
     text = gtkCss;
     force = true;
@@ -185,6 +232,7 @@ in {
 
   home.packages = with pkgs; [
     nerd-fonts.fira-code
+    mcMojaveCursors
   ];
 
   home.sessionVariables = {
@@ -196,6 +244,12 @@ in {
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     SDL_VIDEODRIVER = "wayland";
     GDK_BACKEND = "wayland";
+    NIXOS_OZONE_WL = "";
+    ELECTRON_OZONE_PLATFORM_HINT = "x11";
+    ELECTRON_ENABLE_WAYLAND = "0";
+    OZONE_PLATFORM = "x11";
+    XCURSOR_SIZE = "12";
+    XCURSOR_THEME = "McMojave-cursors";
   };
 
   gtk = {
@@ -204,6 +258,11 @@ in {
       name = "Vimix-dark";
       package = pkgs.vimix-icon-theme;
     };
+    cursorTheme = {
+      name = "McMojave-cursors";
+      package = mcMojaveCursors;
+      size = 12;
+    };
     font = {
       name = theme.fonts.main;
       package = pkgs.nerd-fonts.caskaydia-cove;
@@ -211,9 +270,13 @@ in {
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
+      gtk-cursor-theme-name = "McMojave-cursors";
+      gtk-cursor-theme-size = 12;
     };
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
+      gtk-cursor-theme-name = "McMojave-cursors";
+      gtk-cursor-theme-size = 12;
     };
   };
 }

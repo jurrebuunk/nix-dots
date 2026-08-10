@@ -23,6 +23,7 @@ in {
       focus.followMouse = false;
       workspaceAutoBackAndForth = true;
       startup = [
+        { command = "${pkgs.swayosd}/bin/swayosd-server"; always = true; }
         { command = "${pkgs.gtklock}/bin/gtklock -d"; }
       ];
       bars = [ ]; # Managed in theme.nix via extraConfig

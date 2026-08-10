@@ -1,8 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
     [
+      inputs.nix-index-database.homeModules.default
       ./apps
       ./desktop
       #./moonlight.nix

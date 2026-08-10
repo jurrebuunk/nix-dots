@@ -8,13 +8,15 @@ in
     general {
       output_format = "i3bar"
       colors = true
-      interval = 5
+      interval = 1
 
       color_good    = "${c.blue}"
       color_degraded = "${c.gray}"
       color_bad     = "${c.red}"
     }
 
+    order += "read_file pi_answer"
+    order += "read_file pi_status"
     order += "wireless _first_"
     order += "ethernet _first_"
     order += "battery 0"
@@ -22,6 +24,24 @@ in
     order += "memory"
     order += "volume master"
     order += "tztime local"
+
+    read_file pi_answer {
+      path = "${config.home.homeDirectory}/.cache/pi-answer.txt"
+      format = "%content"
+      format_bad = "%content"
+      color_good = "${c.fg}"
+      color_degraded = "${c.fg}"
+      color_bad = "${c.fg}"
+    }
+
+    read_file pi_status {
+      path = "${config.home.homeDirectory}/.cache/pi-status.txt"
+      format = "%content"
+      format_bad = "%content"
+      color_good = "${c.gray}"
+      color_degraded = "${c.gray}"
+      color_bad = "${c.gray}"
+    }
 
     volume master {
       format = " %volume"

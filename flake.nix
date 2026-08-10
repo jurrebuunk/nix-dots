@@ -9,6 +9,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     scroll-flake = {
       url = "github:Diax170/scroll-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,11 +52,13 @@
           modules = [
             ./hosts/nixos-usb/configuration.nix
             inputs.agenix.nixosModules.default
+            inputs.nix-index-database.nixosModules.default
 
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 theme = import ./themes/theme.nix;

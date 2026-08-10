@@ -1,3 +1,46 @@
+# Environment / secrets
 .env
-result
+.env.*
+!.env.example
 secrets.nix
+
+# Nix build outputs
+result
+result-*
+*.drv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+.venv/
+venv/
+
+# Node / JS tooling
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# direnv / local shells
+.direnv/
+
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.tmp
+*.temp
+*~
+
+# Logs
+*.log

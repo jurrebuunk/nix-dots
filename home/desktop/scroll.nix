@@ -1,10 +1,35 @@
-{ pkgs, theme, ... }:
+{ config, pkgs, theme, ... }:
 
 let
   c = theme.colors;
   f = theme.fonts;
 in
 {
+  home.packages = [ pkgs.pi-coding-agent ];
+
+  home.file.".local/bin/pi-bar" = {
+    source = ./scripts/pi_bar.py;
+    executable = true;
+  };
+
+  home.file.".local/bin/pi-i3status" = {
+    source = ./scripts/pi_i3status.py;
+    executable = true;
+  };
+
+  home.file.".local/bin/pi-prompt" = {
+    source = ./scripts/pi_prompt.py;
+    executable = true;
+  };
+
+  xdg.configFile."i3blocks/config".text = ''
+    [pi]
+    command=${config.home.homeDirectory}/.local/bin/pi-bar --cache ${config.xdg.cacheHome}/pi-last.json
+    interval=2
+    label=
+    separator=false
+  '';
+
   xdg.configFile."scroll/config".text = ''
     set $mod Mod4
     floating_modifier $mod normal
@@ -62,7 +87,10 @@ in
     # Startup
     exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=scroll
     exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    exec_always systemctl --user restart swayidle.service
     exec_always systemctl --user restart kanshi.service
+    exec_always ${pkgs.swayosd}/bin/swayosd-server
+    exec_always sh -lc 'mkdir -p ${config.xdg.cacheHome}; : > ${config.xdg.cacheHome}/pi-answer.txt; : > ${config.xdg.cacheHome}/pi-status.txt; [ -f ${config.xdg.cacheHome}/pi-last.json ] && ${config.home.homeDirectory}/.local/bin/pi-bar --cache ${config.xdg.cacheHome}/pi-last.json --answer-file ${config.xdg.cacheHome}/pi-answer.txt >/dev/null || :'
     exec ${pkgs.gtklock}/bin/gtklock -d
 
     # Workspaces
@@ -105,6 +133,7 @@ in
     bindsym $mod+Alt+space exec rofi -show run
     bindsym $mod+x kill
     bindsym $mod+Shift+r reload
+    bindsym $mod+Shift+p exec ${config.home.homeDirectory}/.local/bin/pi-prompt
     bindsym $mod+Ctrl+q exit
 
     # Layout and window controls
@@ -119,6 +148,7 @@ in
     bindsym $mod+Shift+f floating toggle
     bindsym $mod+minus cycle_size h prev
     bindsym $mod+equal cycle_size h next
+    bindsym XF86Launch8 exec ${config.home.homeDirectory}/.local/bin/pi-prompt
 
     # Lockscreen
     bindsym $mod+Shift+l exec ${pkgs.gtklock}/bin/gtklock -d
@@ -129,15 +159,22 @@ in
     bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
 
     # Media keys
-    bindsym XF86AudioRaiseVolume exec volume-control up
-    bindsym XF86AudioLowerVolume exec volume-control down
-    bindsym XF86AudioMute exec volume-control mute
-    bindsym XF86MonBrightnessUp exec brightness-control up
-    bindsym XF86MonBrightnessDown exec brightness-control down
+    bindsym XF86AudioRaiseVolume exec ${pkgs.swayosd}/bin/swayosd-client --output-volume raise
+    bindsym XF86AudioLowerVolume exec ${pkgs.swayosd}/bin/swayosd-client --output-volume lower
+    bindsym XF86AudioMute exec ${pkgs.swayosd}/bin/swayosd-client --output-volume mute-toggle
+    bindsym XF86AudioMicMute exec ${pkgs.swayosd}/bin/swayosd-client --input-volume mute-toggle
+    bindsym XF86AudioPlay exec ${pkgs.swayosd}/bin/swayosd-client --playerctl play-pause
+    bindsym XF86AudioPause exec ${pkgs.swayosd}/bin/swayosd-client --playerctl pause
+    bindsym XF86AudioStop exec ${pkgs.swayosd}/bin/swayosd-client --playerctl stop
+    bindsym XF86AudioNext exec ${pkgs.swayosd}/bin/swayosd-client --playerctl next
+    bindsym XF86AudioPrev exec ${pkgs.swayosd}/bin/swayosd-client --playerctl prev
+    bindsym XF86MonBrightnessUp exec ${pkgs.swayosd}/bin/swayosd-client --brightness raise
+    bindsym XF86MonBrightnessDown exec ${pkgs.swayosd}/bin/swayosd-client --brightness lower
 
     bar {
       position top
-      status_command i3status
+      height 20
+      status_command ${pkgs.i3status}/bin/i3status -c ${config.xdg.configHome}/i3status/config
       colors {
         background ${c.bg}
         statusline ${c.fg}

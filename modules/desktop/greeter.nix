@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       initial_session = {
-        command = "/run/current-system/sw/bin/scroll";
+        command = "/run/current-system/sw/bin/niri --session";
         user = "jurre";
       };
       default_session = {
@@ -17,6 +17,7 @@
 
   environment.systemPackages = with pkgs; [
     gtkgreet
+    niri
   ];
 
   ## Scroll-config for greetd
@@ -27,6 +28,7 @@
 
   ## Sessies die beschikbaar zijn in gtkgreet
   environment.etc."greetd/environments".text = ''
+    niri --session
     scroll
     sway
     bash

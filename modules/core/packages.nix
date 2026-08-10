@@ -32,9 +32,12 @@
     feishin
     wlr-randr
     codex
-    geary
     fractal
     obsidian
+    comma
+    evolution
+    teams-for-linux
+    mpv
   ];
   
   programs.fuse.userAllowOther = true;
@@ -51,19 +54,17 @@
   programs.dconf.enable = true;
   services.gnome.evolution-data-server.enable = true;
 
+  services.dbus.implementation = "dbus";
   services.dbus.packages = [ pkgs.xfconf ];
   services.udisks2.enable = true;
   services.gvfs.enable = true;
   services.tumbler.enable = true;
   services.gnome.glib-networking.enable = true;
   
-  services.openssh.enable = true;
+  services.openssh.enable = false;
   
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "cisco-packet-tracer-8.2.2"
-  ];
 
   environment.variables.PATH = [ "/home/jurre/.local/bin" ];
 }

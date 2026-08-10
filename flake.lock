@@ -73,11 +73,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1771531206,
-        "narHash": "sha256-1R3Wx6KUkMb4x4E5UOhW9p6rqiexzSGGWxZqSHqW5n0=",
+        "lastModified": 1780099287,
+        "narHash": "sha256-efIPwVGtIWIjWcznhaop6XN6HxnOL8800hF6CBNvlqQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "91be7cce763fa4022c7cf025a71b0c366d1b6e77",
+        "rev": "7d8127d308c3fb9664f7e643eec944be74ebb37d",
         "type": "github"
       },
       "original": {
@@ -86,13 +86,33 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1780210899,
+        "narHash": "sha256-4axz3OBPTKa6LIkXV8n0lc63MQU+et2CB5DGobEAi6k=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "97df9dc0b7c924344b793a15c1e8e4522ebb854e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1771369470,
-        "narHash": "sha256-0NBlEBKkN3lufyvFegY4TYv5mCNHbi5OmBDrzihbBMQ=",
+        "lastModified": 1779560665,
+        "narHash": "sha256-tpyBcxPpcQb8ukyNF7DoCwfSY3VPsxHoYwj00Cayv5o=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "0182a361324364ae3f436a63005877674cf45efb",
+        "rev": "64c08a7ca051951c8eae34e3e3cb1e202fe36786",
         "type": "github"
       },
       "original": {
@@ -106,6 +126,7 @@
       "inputs": {
         "agenix": "agenix",
         "home-manager": "home-manager_2",
+        "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "scroll-flake": "scroll-flake"
       }
@@ -119,11 +140,11 @@
         "scroll-stable": "scroll-stable"
       },
       "locked": {
-        "lastModified": 1775611330,
-        "narHash": "sha256-uE75ELuATE/7FQHROK7HLKYR92GAV314OhfV+fJAKeU=",
+        "lastModified": 1780281465,
+        "narHash": "sha256-6jIu2GKvU3WOpLyfDHs9UGt69NWsHmFBciUffxFx6oE=",
         "owner": "Diax170",
         "repo": "scroll-flake",
-        "rev": "b9ea5b0f3afd4950d64a46b9266f2130e0c2707d",
+        "rev": "fe49064b7ebfc16c88cd3f3271fc6ee0b39facd1",
         "type": "github"
       },
       "original": {
@@ -135,11 +156,11 @@
     "scroll-git": {
       "flake": false,
       "locked": {
-        "lastModified": 1775577704,
-        "narHash": "sha256-x/AXSKT2ploEffRw1i5I3a118Xiwse4/kpDV0KFbuaE=",
+        "lastModified": 1780250254,
+        "narHash": "sha256-VXSmWvWBF63eY1zjqrIEF+ZuGrZDMZMuANOYrudRw48=",
         "ref": "master",
-        "rev": "84d229618a6268ffd7455ba263125ffd5cc5a9e8",
-        "revCount": 8294,
+        "rev": "433a3692a3b4dfc88e86c5bc92ad66a4c95432c5",
+        "revCount": 8427,
         "type": "git",
         "url": "https://github.com/dawsers/scroll"
       },
@@ -152,16 +173,16 @@
     "scroll-stable": {
       "flake": false,
       "locked": {
-        "lastModified": 1774099486,
-        "narHash": "sha256-XcHE8QKmpHLYBOY+Jlz9zNeLYnMIJ5Aw/dCGVRUAzWE=",
-        "ref": "refs/tags/1.12.8",
-        "rev": "c18bc40bf4475b9c78b2cedd2ab3a7ab9d89413c",
-        "revCount": 8253,
+        "lastModified": 1779743761,
+        "narHash": "sha256-NbeQO+iVgpzD/R9TBhqG9T0eS/Hpn5FVqCg+upS5cSQ=",
+        "ref": "refs/tags/1.12.15",
+        "rev": "03cc80e83294913b7289dcc6607a406a2a5c67ac",
+        "revCount": 8420,
         "type": "git",
         "url": "https://github.com/dawsers/scroll"
       },
       "original": {
-        "ref": "refs/tags/1.12.8",
+        "ref": "refs/tags/1.12.15",
         "type": "git",
         "url": "https://github.com/dawsers/scroll"
       }

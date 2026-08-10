@@ -30,8 +30,6 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   hardware = {
     enableAllFirmware = true;
     cpu.intel.updateMicrocode = true;

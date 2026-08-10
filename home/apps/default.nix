@@ -182,11 +182,10 @@ in
     ./firefox.nix
     ./libreoffice.nix
     ./alacritty.nix
-    ./rclone-mount.nix
     ./supersonic.nix
+    ./agents
     ./thunar.nix
     ./loupe.nix
-    ./packet-tracer.nix
   ];
 
   home.file."Documents/vault/.obsidian/themes/System Flat/theme.css" = {

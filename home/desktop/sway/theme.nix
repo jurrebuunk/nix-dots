@@ -33,20 +33,7 @@ in {
     client.urgent           ${c.red} ${c.red} ${c.fg} ${c.red} ${c.red}
     client.placeholder      ${c.bg} ${c.bg} ${c.fg} ${c.bg} ${c.bg}
 
-    bar {
-      position top
-      status_command i3status
-      colors {
-        background ${c.bg}
-        statusline ${c.fg}
-        separator  ${c.gray}
-
-        focused_workspace  ${c.blue} ${c.blue} ${c.fg}
-        active_workspace   ${c.gray} ${c.gray} ${c.fg}
-        inactive_workspace ${c.bg} ${c.bg} ${c.gray}
-        urgent_workspace   ${c.red} ${c.red} ${c.fg}
-      }
-    }
+    # Swaybar disabled for now; the SwayNC side panel carries the system info.
 
     # Gestures
     bindgesture swipe:left workspace next
