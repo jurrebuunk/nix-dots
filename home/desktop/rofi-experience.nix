@@ -71,7 +71,7 @@ let
 in
 {
   # Keep Jurre's launcher behavior while rofi's main visual theme comes from
-  # inputs.jurre-theme.homeManagerModules.rofi.
+  # inputs.flatwork-ui.homeManagerModules.rofi.
   home.file.".local/bin/rofi-bar-launcher" = {
     executable = true;
     text = ''

@@ -180,7 +180,7 @@ in
 
 {
   imports = [
-    inputs.jurre-theme.homeManagerModules.apps
+    inputs.flatwork-ui.homeManagerModules.apps
 
     ./libreoffice.nix
     ./supersonic.nix

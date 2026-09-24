@@ -45,6 +45,26 @@
         "type": "github"
       }
     },
+    "flatwork-ui": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790256714,
+        "narHash": "sha256-L4o0wmnA7Q7GnRu6A2KQhjTjLnWNvnVDawk0pPvUjvo=",
+        "owner": "jurrebuunk",
+        "repo": "flatwork-ui",
+        "rev": "29984a55ff1b70c66b0fe7d2e15c7e21da926c6e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jurrebuunk",
+        "repo": "flatwork-ui",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -86,26 +106,6 @@
         "type": "github"
       }
     },
-    "jurre-theme": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1790255743,
-        "narHash": "sha256-S5X+yrErxM02bJXx4MdIyKuRjwgl1RXQgPsPA5HzoDc=",
-        "ref": "refs/heads/main",
-        "rev": "849ab7478a1e83da1aaebb5a205e9f18ad32d217",
-        "revCount": 10,
-        "type": "git",
-        "url": "https://github.com/jurrebuunk/jurre-theme.git"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://github.com/jurrebuunk/jurre-theme.git"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -145,8 +145,8 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "flatwork-ui": "flatwork-ui",
         "home-manager": "home-manager_2",
-        "jurre-theme": "jurre-theme",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "scroll-flake": "scroll-flake"

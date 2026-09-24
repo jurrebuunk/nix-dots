@@ -12,7 +12,7 @@
       
       # Core System Configuration
       ../../modules/core
-      inputs.jurre-theme.nixosModules.fonts
+      inputs.flatwork-ui.nixosModules.fonts
 
       # Desktop Environment Modules
       ../../modules/desktop/greeter.nix

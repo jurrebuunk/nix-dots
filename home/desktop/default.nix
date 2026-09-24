@@ -1,10 +1,10 @@
 { pkgs, inputs, ... }:
 
 {
-  # Theme/styling modules are provided by the public jurre-theme flake.
+  # Theme/styling modules are provided by the public flatwork-ui flake.
   # Local modules below keep machine/session behavior.
   imports = [
-    inputs.jurre-theme.homeManagerModules.desktop
+    inputs.flatwork-ui.homeManagerModules.desktop
 
     ./sway
     ./scroll.nix
