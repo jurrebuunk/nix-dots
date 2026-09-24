@@ -16,9 +16,8 @@
 
       # Desktop Environment Modules
       ../../modules/desktop/greeter.nix
-      ../../modules/desktop/sway.nix
+      ../../modules/desktop/wayland.nix
       ../../modules/desktop/waylock.nix
-      ../../modules/desktop/rofi.nix
       ../../modules/desktop/swayosd.nix
       
       

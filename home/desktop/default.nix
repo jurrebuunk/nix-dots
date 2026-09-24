@@ -6,12 +6,10 @@
   imports = [
     inputs.flatwork-ui.homeManagerModules.desktop
 
-    ./sway
-    ./scroll.nix
     ./niri.nix
+    ./kanshi.nix
+    ./swayidle.nix
     ./rofi-experience.nix
     ./battery-notify.nix
-    ./volume-control.nix
-    ./brightness-control.nix
   ];
 }

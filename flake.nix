@@ -13,10 +13,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    scroll-flake = {
-      url = "github:Diax170/scroll-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flatwork-ui = {
       url = "github:jurrebuunk/flatwork-ui";
       inputs.nixpkgs.follows = "nixpkgs";

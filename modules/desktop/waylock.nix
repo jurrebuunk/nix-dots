@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     gtklock
     swayidle
+    swaylock
   ];
 
   # Ensure PAM can be found
