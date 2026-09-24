@@ -2,6 +2,12 @@
 
 let
   c = theme.colors;
+  g = theme.geometry;
+  spacing = theme.layout.spacing;
+  # Keep outer gaps at the theme's 8px while making inner gaps 3px larger.
+  innerWindowGap = spacing.md + 3;
+  outerGapCompensation = spacing.md - innerWindowGap;
+  cursor = theme.cursor;
 in
 {
   home.packages = with pkgs; [
@@ -16,8 +22,8 @@ in
 
     environment {
       DISPLAY ":12"
-      XCURSOR_SIZE "12"
-      XCURSOR_THEME "McMojave-cursors"
+      XCURSOR_SIZE "${toString cursor.size}"
+      XCURSOR_THEME "${cursor.name}"
       NIXOS_OZONE_WL ""
       ELECTRON_OZONE_PLATFORM_HINT "x11"
       ELECTRON_ENABLE_WAYLAND "0"
@@ -25,8 +31,8 @@ in
     }
 
     cursor {
-      xcursor-theme "McMojave-cursors"
-      xcursor-size 12
+      xcursor-theme "${cursor.name}"
+      xcursor-size ${toString cursor.size}
     }
 
     hotkey-overlay {
@@ -49,26 +55,38 @@ in
     }
 
     layout {
-      gaps 8
+      gaps ${toString innerWindowGap}
+      struts {
+        left ${toString outerGapCompensation}
+        right ${toString outerGapCompensation}
+        top ${toString outerGapCompensation}
+        bottom ${toString outerGapCompensation}
+      }
       center-focused-column "never"
 
       default-column-width {}
 
-      background-color "${c.bg}"
+      background-color "${c.background}"
 
       focus-ring {
         off
       }
 
       border {
-        width 2
-        active-color "${c.blue}"
-        inactive-color "${c.gray}"
-        urgent-color "${c.red}"
+        width ${toString g.border.width}
+        active-color "${c.accent}"
+        inactive-color "${c.border}"
+        urgent-color "${c.error}"
       }
 
+      // Hard, background-colored 2px outer border around the normal 1px window border.
       shadow {
-        off
+        on
+        softness 0
+        spread 3
+        offset x=0 y=0
+        color "${c.background}"
+        inactive-color "${c.background}"
       }
     }
 
@@ -77,12 +95,12 @@ in
     }
 
     output "eDP-1" {
-      scale 1.0
+      scale ${toString theme.display.scale}
     }
 
     overview {
       zoom 0.5
-      backdrop-color "${c.bg}"
+      backdrop-color "${c.background}"
     }
 
     gestures {
@@ -103,21 +121,17 @@ in
     spawn-at-startup "${pkgs.swayosd}/bin/swayosd-server"
     spawn-at-startup "${pkgs.swaybg}/bin/swaybg" "-i" "${theme.wallpaper}" "-m" "fill"
     spawn-at-startup "${pkgs.waybar}/bin/waybar"
-    spawn-at-startup "${pkgs.dbus}/bin/dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "DISPLAY=:12" "XDG_CURRENT_DESKTOP=niri" "XDG_SESSION_TYPE=wayland" "NIXOS_OZONE_WL=" "ELECTRON_OZONE_PLATFORM_HINT=x11" "ELECTRON_ENABLE_WAYLAND=0" "OZONE_PLATFORM=x11" "XCURSOR_SIZE=12" "XCURSOR_THEME=McMojave-cursors"
+    spawn-at-startup "${pkgs.dbus}/bin/dbus-update-activation-environment" "--systemd" "WAYLAND_DISPLAY" "DISPLAY=:12" "XDG_CURRENT_DESKTOP=niri" "XDG_SESSION_TYPE=wayland" "NIXOS_OZONE_WL=" "ELECTRON_OZONE_PLATFORM_HINT=x11" "ELECTRON_ENABLE_WAYLAND=0" "OZONE_PLATFORM=x11" "XCURSOR_SIZE=${toString cursor.size}" "XCURSOR_THEME=${cursor.name}"
     spawn-at-startup "${pkgs.systemd}/bin/systemctl" "--user" "import-environment" "WAYLAND_DISPLAY" "DISPLAY" "XDG_CURRENT_DESKTOP" "XDG_SESSION_TYPE" "NIXOS_OZONE_WL" "ELECTRON_OZONE_PLATFORM_HINT" "ELECTRON_ENABLE_WAYLAND" "OZONE_PLATFORM" "XCURSOR_SIZE" "XCURSOR_THEME"
     spawn-at-startup "${pkgs.systemd}/bin/systemctl" "--user" "restart" "swayidle.service"
     spawn-at-startup "${pkgs.systemd}/bin/systemctl" "--user" "restart" "kanshi.service"
-    spawn-at-startup "${pkgs.systemd}/bin/systemctl" "--user" "stop" "mako.service"
-    spawn-at-startup "${pkgs.systemd}/bin/systemctl" "--user" "restart" "swaync.service"
-    spawn-at-startup "${pkgs.systemd}/bin/systemctl" "--user" "restart" "swaync-system-info.service"
+    spawn-at-startup "${pkgs.systemd}/bin/systemctl" "--user" "restart" "mako.service"
     spawn-at-startup "${pkgs.gtklock}/bin/gtklock" "-d"
 
     binds {
       Mod+Return { spawn "${pkgs.alacritty}/bin/alacritty"; }
       Mod+Space { spawn "${config.home.homeDirectory}/.local/bin/rofi-bar-launcher" "drun"; }
       Mod+Alt+Space { spawn "${config.home.homeDirectory}/.local/bin/rofi-bar-launcher" "run"; }
-      Mod+N { spawn "${pkgs.swaynotificationcenter}/bin/swaync-client" "-t" "-sw"; }
-      Mod+Shift+N { spawn "${pkgs.swaynotificationcenter}/bin/swaync-client" "-d" "-sw"; }
       Mod+X { close-window; }
       Mod+Shift+R { spawn-sh "niri msg action load-config-file"; }
       Mod+Ctrl+Q { quit skip-confirmation=true; }
@@ -185,8 +199,8 @@ in
       Mod+WheelScrollLeft { focus-column-left; }
       Mod+WheelScrollRight { focus-column-right; }
 
-      Mod+MouseLeft { move-column-to-monitor-left; }
-      Mod+MouseRight { move-column-to-monitor-right; }
+      // Leave Mod+MouseLeft/Right unbound so niri's built-in
+      // Super+left-drag moves windows and Super+right-drag resizes them.
       Mod+MouseMiddle { close-window; }
 
       XF86AudioRaiseVolume { spawn "${pkgs.swayosd}/bin/swayosd-client" "--output-volume" "raise"; }

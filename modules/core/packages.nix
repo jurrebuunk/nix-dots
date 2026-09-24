@@ -38,6 +38,7 @@
     evolution
     teams-for-linux
     mpv
+    librepods
   ];
   
   programs.fuse.userAllowOther = true;

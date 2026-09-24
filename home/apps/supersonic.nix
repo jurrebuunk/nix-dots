@@ -1,14 +1,14 @@
 { config, lib, pkgs, theme, ... }:
 
 let
-  inherit (theme.colors) bg fg blue yellow gray;
+  c = theme.colors;
 
-  gray30 = "${gray}4D";
-  blue15 = "${blue}26";
-  yellow05 = "${yellow}0D";
+  border30 = "${c.border}4D";
+  accent15 = "${c.accent}26";
+  highlight05 = "${c.highlight}0D";
 
-  fontRegular = "${pkgs.nerd-fonts.caskaydia-mono}/share/fonts/truetype/NerdFonts/CaskaydiaMono/CaskaydiaMonoNerdFont-Regular.ttf";
-  fontBold = "${pkgs.nerd-fonts.caskaydia-mono}/share/fonts/truetype/NerdFonts/CaskaydiaMono/CaskaydiaMonoNerdFont-Bold.ttf";
+  fontRegular = "${pkgs.ibm-plex}/share/fonts/truetype/IBMPlexMono-Regular.ttf";
+  fontBold = "${pkgs.ibm-plex}/share/fonts/truetype/IBMPlexMono-Bold.ttf";
 in
 {
   home.packages = with pkgs; [
@@ -58,38 +58,38 @@ def set_key(src, section, key, value):
 
 text = set_key(text, "Application", "FontNormalTTF", f"\"{font_regular}\"")
 text = set_key(text, "Application", "FontBoldTTF", f"\"{font_bold}\"")
-text = set_key(text, "Theme", "ThemeFile", "\"hue-gradient.toml\"")
+text = set_key(text, "Theme", "ThemeFile", "\"system-design.toml\"")
 
 path.write_text(text)
 PY
   '';
 
-  xdg.configFile."supersonic/themes/hue-gradient.toml" = {
+  xdg.configFile."supersonic/themes/system-design.toml" = {
     force = true;
     text = ''
       [SupersonicTheme]
-      Name = "Hue Gradient"
-      Version = "0.2"
+      Name = "System Design"
+      Version = "0.3"
       SupportsDark = true
       SupportsLight = false
 
       [DarkColors]
-      PageBackground = "${bg}"
-      InputBackground = "${bg}"
-      InputBorder = "${gray30}"
-      MenuBackground = "${bg}"
-      OverlayBackground = "${bg}"
-      Pressed = "${blue15}"
-      Hyperlink = "${yellow}"
-      ListHeader = "${yellow05}"
-      PageHeader = "${bg}"
-      Background = "${bg}"
-      ScrollBar = "${gray30}"
-      Button = "${bg}"
-      DisabledButton = "${bg}"
-      Separator = "${gray30}"
-      Foreground = "${fg}"
-      Hover = "${blue15}"
+      PageBackground = "${c.background}"
+      InputBackground = "${c.background}"
+      InputBorder = "${border30}"
+      MenuBackground = "${c.background}"
+      OverlayBackground = "${c.background}"
+      Pressed = "${accent15}"
+      Hyperlink = "${c.accent}"
+      ListHeader = "${highlight05}"
+      PageHeader = "${c.background}"
+      Background = "${c.background}"
+      ScrollBar = "${border30}"
+      Button = "${c.background}"
+      DisabledButton = "${c.background}"
+      Separator = "${border30}"
+      Foreground = "${c.text}"
+      Hover = "${accent15}"
     '';
   };
 }

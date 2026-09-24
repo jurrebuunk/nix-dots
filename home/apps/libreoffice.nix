@@ -36,8 +36,8 @@
       <item oor:path="/org.openoffice.Office.Common/Font"><prop oor:name="FontAntiAliasingMinPixelHeight" oor:op="fuse"><value>8</value></prop></item>
       
       <!-- Set default fonts to match Office -->
-      <item oor:path="/org.openoffice.Office.Common/Font/SourceViewFont"><prop oor:name="FontName" oor:op="fuse"><value>Calibri</value></prop></item>
-      <item oor:path="/org.openoffice.Office.Common/Font/SourceViewFont"><prop oor:name="FontHeight" oor:op="fuse"><value>11</value></prop></item>
+      <item oor:path="/org.openoffice.Office.Common/Font/SourceViewFont"><prop oor:name="FontName" oor:op="fuse"><value>${theme.fonts.serif}</value></prop></item>
+      <item oor:path="/org.openoffice.Office.Common/Font/SourceViewFont"><prop oor:name="FontHeight" oor:op="fuse"><value>${toString theme.fonts.sizes.document}</value></prop></item>
       
       <!-- Enable recent documents in start center -->
       <item oor:path="/org.openoffice.Office.Common/History"><prop oor:name="PickListSize" oor:op="fuse"><value>25</value></prop></item>
