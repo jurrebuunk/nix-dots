@@ -93,11 +93,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790254157,
-        "narHash": "sha256-xWwEPbq/RK/tuD3HpuOzFswUPVRO/2d3k++nvEDHCko=",
+        "lastModified": 1790254718,
+        "narHash": "sha256-uy8Lxv4+RtVWFLz0vhUi2M3zfshGCnuzsEwrDi9REMU=",
         "ref": "refs/heads/main",
-        "rev": "504911f5fefa3bba5031c76fb3418fd750f02131",
-        "revCount": 7,
+        "rev": "5f1e4d91cfad3282712a73d9379315f98b59a338",
+        "revCount": 8,
         "type": "git",
         "url": "https://github.com/jurrebuunk/jurre-theme.git"
       },
