@@ -96,7 +96,10 @@ in
         sleep 0.05
       fi
 
-      ${pkgs.rofi}/bin/rofi -show "$mode"
+      ${pkgs.rofi}/bin/rofi \
+        -config "${config.xdg.configHome}/rofi/config.rasi" \
+        -theme "${config.xdg.dataHome}/rofi/themes/custom.rasi" \
+        -show "$mode"
       status=$?
       exit "$status"
     '';
