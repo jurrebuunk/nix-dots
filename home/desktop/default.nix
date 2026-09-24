@@ -1,17 +1,15 @@
-{ pkgs, ... }: 
+{ pkgs, inputs, ... }:
 
 {
-  # import configurations for user specific desktop environments
+  # Theme/styling modules are provided by the public jurre-theme flake.
+  # Local modules below keep machine/session behavior.
   imports = [
+    inputs.jurre-theme.homeManagerModules.desktop
+
     ./sway
     ./scroll.nix
     ./niri.nix
-    ./gtk.nix
-    ./mako.nix
-    ./swaync.nix
-    ./waybar.nix
-    ./swayosd.nix
-    ./rofi
+    ./rofi-experience.nix
     ./battery-notify.nix
     ./volume-control.nix
     ./brightness-control.nix

@@ -17,6 +17,10 @@
       url = "github:Diax170/scroll-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jurre-theme = {
+      url = "git+https://github.com/jurrebuunk/jurre-theme.git";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -47,7 +51,7 @@
           system = "x86_64-linux";
           specialArgs = {
             inherit inputs;
-            theme = import ./themes/theme.nix;
+            theme = inputs.jurre-theme.lib.themes.default;
           };
           modules = [
             ./hosts/nixos-usb/configuration.nix
@@ -61,7 +65,7 @@
               home-manager.backupFileExtension = "backup";
               home-manager.extraSpecialArgs = {
                 inherit inputs;
-                theme = import ./themes/theme.nix;
+                theme = inputs.jurre-theme.lib.themes.default;
               };
               home-manager.users.jurre = import ./home/default.nix;
             }

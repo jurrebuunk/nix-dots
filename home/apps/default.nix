@@ -1,79 +1,80 @@
-{ pkgs, theme, ... }:
+{ pkgs, inputs, theme, ... }:
 
 let
   c = theme.colors;
+  g = theme.geometry;
 
   obsidianThemeCss = ''
     .theme-dark {
-      --background-primary: ${c.bg};
-      --background-primary-alt: ${c.bg};
-      --background-secondary: ${c.bg};
-      --background-secondary-alt: ${c.bg};
-      --background-modifier-border: ${c.gray};
-      --background-modifier-border-hover: ${c.blue};
-      --background-modifier-form-field: ${c.bg};
-      --background-modifier-form-field-highlighted: ${c.bg};
-      --background-modifier-hover: ${c.gray};
-      --background-modifier-message: ${c.bg};
+      --background-primary: ${c.background};
+      --background-primary-alt: ${c.background};
+      --background-secondary: ${c.background};
+      --background-secondary-alt: ${c.background};
+      --background-modifier-border: ${c.border};
+      --background-modifier-border-hover: ${c.accent};
+      --background-modifier-form-field: ${c.background};
+      --background-modifier-form-field-highlighted: ${c.background};
+      --background-modifier-hover: ${c.border};
+      --background-modifier-message: ${c.background};
 
-      --text-normal: ${c.fg};
-      --text-muted: ${c.gray};
-      --text-faint: ${c.gray};
-      --text-accent: ${c.blue};
-      --text-accent-hover: ${c.yellow};
-      --text-on-accent: ${c.bg};
+      --text-normal: ${c.text};
+      --text-muted: ${c.textMuted};
+      --text-faint: ${c.textFaint};
+      --text-accent: ${c.accent};
+      --text-accent-hover: ${c.highlight};
+      --text-on-accent: ${c.background};
 
-      --interactive-normal: ${c.bg};
-      --interactive-hover: ${c.gray};
-      --interactive-accent: ${c.blue};
-      --interactive-accent-hover: ${c.yellow};
+      --interactive-normal: ${c.background};
+      --interactive-hover: ${c.surfaceAlt};
+      --interactive-accent: ${c.accent};
+      --interactive-accent-hover: ${c.highlight};
 
-      --link-color: ${c.blue};
-      --link-color-hover: ${c.yellow};
-      --link-external-color: ${c.blue};
+      --link-color: ${c.accent};
+      --link-color-hover: ${c.highlight};
+      --link-external-color: ${c.accent};
 
-      --titlebar-background: ${c.bg};
-      --titlebar-background-focused: ${c.bg};
-      --modal-background: ${c.bg};
-      --divider-color: ${c.gray};
-      --scrollbar-bg: ${c.bg};
-      --scrollbar-thumb-bg: ${c.gray};
-      --scrollbar-active-thumb-bg: ${c.blue};
+      --titlebar-background: ${c.background};
+      --titlebar-background-focused: ${c.background};
+      --modal-background: ${c.background};
+      --divider-color: ${c.border};
+      --scrollbar-bg: ${c.background};
+      --scrollbar-thumb-bg: ${c.border};
+      --scrollbar-active-thumb-bg: ${c.accent};
 
-      --tab-background-active: ${c.bg};
-      --tab-background-inactive: ${c.bg};
-      --tab-text-color-active: ${c.fg};
-      --tab-text-color-inactive: ${c.gray};
-      --tab-text-color-focused: ${c.fg};
+      --tab-background-active: ${c.background};
+      --tab-background-inactive: ${c.background};
+      --tab-text-color-active: ${c.text};
+      --tab-text-color-inactive: ${c.textMuted};
+      --tab-text-color-focused: ${c.text};
 
-      --nav-item-color: ${c.fg};
-      --nav-item-color-hover: ${c.fg};
-      --nav-item-color-active: ${c.fg};
-      --nav-item-color-selected: ${c.fg};
-      --nav-collapse-icon-color: ${c.fg};
-      --icon-color: ${c.fg};
-      --icon-color-hover: ${c.fg};
-      --icon-color-focused: ${c.fg};
-      --icon-color-active: ${c.fg};
-      --nav-indentation-guide-color: ${c.gray};
-      --divider-color: ${c.gray};
-      --frame-divider-color: ${c.gray};
-      --tab-outline-color: ${c.gray};
-      --background-modifier-border: ${c.gray};
-      --background-modifier-border-hover: ${c.gray};
+      --nav-item-color: ${c.text};
+      --nav-item-color-hover: ${c.text};
+      --nav-item-color-active: ${c.text};
+      --nav-item-color-selected: ${c.text};
+      --nav-collapse-icon-color: ${c.text};
+      --icon-color: ${c.text};
+      --icon-color-hover: ${c.text};
+      --icon-color-focused: ${c.text};
+      --icon-color-active: ${c.text};
+      --nav-indentation-guide-color: ${c.border};
+      --divider-color: ${c.border};
+      --frame-divider-color: ${c.border};
+      --tab-outline-color: ${c.border};
+      --background-modifier-border: ${c.border};
+      --background-modifier-border-hover: ${c.border};
 
-      --radius-s: 0px;
-      --radius-m: 0px;
-      --radius-l: 0px;
-      --radius-xl: 0px;
-      --radius-xxl: 0px;
-      --input-radius: 0px;
-      --button-radius: 0px;
-      --checkbox-radius: 0px;
-      --toggle-radius: 0px;
-      --tab-radius: 0px;
-      --modal-border-radius: 0px;
-      --window-radius: 0px;
+      --radius-s: ${g.radiusPx};
+      --radius-m: ${g.radiusPx};
+      --radius-l: ${g.radiusPx};
+      --radius-xl: ${g.radiusPx};
+      --radius-xxl: ${g.radiusPx};
+      --input-radius: ${g.radiusPx};
+      --button-radius: ${g.radiusPx};
+      --checkbox-radius: ${g.radiusPx};
+      --toggle-radius: ${g.radiusPx};
+      --tab-radius: ${g.radiusPx};
+      --modal-border-radius: ${g.radiusPx};
+      --window-radius: ${g.radiusPx};
     }
 
     .theme-dark,
@@ -111,17 +112,17 @@ let
     .clickable-icon,
     input,
     textarea {
-      border-radius: 0 !important;
-      box-shadow: none !important;
+      border-radius: ${g.radiusPx} !important;
+      box-shadow: ${g.boxShadow} !important;
     }
 
     .workspace-tab-header {
-      border-top-left-radius: 0 !important;
-      border-top-right-radius: 0 !important;
+      border-top-left-radius: ${g.radiusPx} !important;
+      border-top-right-radius: ${g.radiusPx} !important;
     }
 
     .workspace-tab-header.is-active {
-      border-radius: 0 !important;
+      border-radius: ${g.radiusPx} !important;
     }
 
     .nav-file-title,
@@ -147,41 +148,41 @@ let
 
     .markdown-preview-view h1,
     .markdown-source-view.mod-cm6 .cm-header-1 {
-      color: ${c.blue} !important;
+      color: ${c.accent} !important;
     }
 
     .markdown-preview-view h2,
     .markdown-source-view.mod-cm6 .cm-header-2 {
-      color: ${c.green} !important;
+      color: ${c.success} !important;
     }
 
     .markdown-preview-view h3,
     .markdown-source-view.mod-cm6 .cm-header-3 {
-      color: ${c.yellow} !important;
+      color: ${c.warning} !important;
     }
 
     .markdown-preview-view h4,
     .markdown-source-view.mod-cm6 .cm-header-4 {
-      color: ${c.orange} !important;
+      color: ${c.warning} !important;
     }
 
     .markdown-preview-view h5,
     .markdown-source-view.mod-cm6 .cm-header-5 {
-      color: ${c.magenta} !important;
+      color: ${c.secondary} !important;
     }
 
     .markdown-preview-view h6,
     .markdown-source-view.mod-cm6 .cm-header-6 {
-      color: ${c.cyan} !important;
+      color: ${c.accentSoft} !important;
     }
   '';
 in
 
 {
   imports = [
-    ./firefox.nix
+    inputs.jurre-theme.homeManagerModules.apps
+
     ./libreoffice.nix
-    ./alacritty.nix
     ./supersonic.nix
     ./agents
     ./thunar.nix

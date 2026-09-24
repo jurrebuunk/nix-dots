@@ -12,6 +12,7 @@
       
       # Core System Configuration
       ../../modules/core
+      inputs.jurre-theme.nixosModules.fonts
 
       # Desktop Environment Modules
       ../../modules/desktop/greeter.nix
@@ -41,6 +42,9 @@
   hardware.enableAllFirmware = true;
   environment.systemPackages = [ pkgs.displaylink ];
   boot.extraModulePackages = [ pkgs.v4l-utils ];
+
+  # Android container support.
+  virtualisation.waydroid.enable = true;
 
   # Niri needs xdg-desktop-portal-gnome for Wayland/PipeWire screen capture.
   programs.niri = {

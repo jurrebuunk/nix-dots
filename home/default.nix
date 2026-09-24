@@ -14,4 +14,6 @@
     homeDirectory = "/home/jurre";
     stateVersion = "24.05";
   };
+
+  programs.bash.enable = true;
 }
