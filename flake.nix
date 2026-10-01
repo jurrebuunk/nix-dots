@@ -31,14 +31,17 @@
             inherit system;
             config.allowUnfree = true;
           };
-          envs = import ./modules/development/envs.nix { inherit pkgs; };
         in
         {
-          python = pkgs.mkShell envs.python;
-          docker = pkgs.mkShell envs.docker;
-          net = pkgs.mkShell envs.net;
-          growpad = pkgs.mkShell envs.growpad;
-          meldcoach = pkgs.mkShell envs.meldcoach;
+          docker = pkgs.mkShell {
+            packages = with pkgs; [
+              docker-compose
+              lazydocker
+            ];
+            shellHook = ''
+              echo "🐳 Docker Tools Loaded"
+            '';
+          };
         }
       );
 

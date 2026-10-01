@@ -9,6 +9,9 @@ result
 result-*
 *.drv
 
+# Large local packages
+*.deb
+
 # Python
 __pycache__/
 *.py[cod]
