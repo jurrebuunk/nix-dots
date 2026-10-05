@@ -35,6 +35,7 @@ in
       xcursor-size ${toString cursor.size}
 
       shake {
+        on
         max-multiplier 4.5
         behavior "hold"
         sensitivity 2.0
