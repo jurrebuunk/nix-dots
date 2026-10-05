@@ -33,6 +33,17 @@ in
     cursor {
       xcursor-theme "${cursor.name}"
       xcursor-size ${toString cursor.size}
+
+      shake {
+        max-multiplier 4.5
+        behavior "hold"
+        sensitivity 2.0
+        cooldown-ms 400
+        stopped-threshold-ms 50
+        post-expand-delay-ms 250
+        shake-interval-ms 400
+        min-diagonal 100.0
+      }
     }
 
     hotkey-overlay {
@@ -92,6 +103,16 @@ in
 
     animations {
       slowdown 0.65
+
+      cursor-expand {
+        duration-ms 200
+        curve "ease-out-cubic"
+      }
+
+      cursor-shrink {
+        duration-ms 300
+        curve "ease-out-cubic"
+      }
     }
 
     output "eDP-1" {

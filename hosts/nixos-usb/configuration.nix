@@ -19,6 +19,7 @@
       ../../modules/desktop/wayland.nix
       ../../modules/desktop/waylock.nix
       ../../modules/desktop/swayosd.nix
+      ../../modules/desktop/niri-shake-pr.nix
       
       
       # Other Modules
