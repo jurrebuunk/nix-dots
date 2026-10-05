@@ -23,7 +23,6 @@
       
       # Other Modules
       ../../modules/development
-      ../../modules/proxmox
     ];
 
   # Bootloader
@@ -55,20 +54,8 @@
   services.printing.enable = false;
   services.avahi.enable = false;
   hardware.sane.enable = false;
-  
-  # Proxmox Management
-  custom.proxmox = {
-    enable = true;
-    host = "192.168.1.13";
-    user = "root@pam";
-    tokenId = "root@pam!nixos-laptop";
-    tokenSecret = "";
-  };
 
   age.identityPaths = [ "/home/jurre/.ssh/id_ed25519" ];
-  age.secrets.proxmox-token-secret.file = ../../secrets/proxmox-token-secret.age;
-
-  environment.sessionVariables.PROXMOX_TOKEN_SECRET_FILE = config.age.secrets.proxmox-token-secret.path;
 
   # Environment Variables
   environment.sessionVariables = {

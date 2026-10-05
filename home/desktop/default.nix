@@ -10,6 +10,5 @@
     ./kanshi.nix
     ./swayidle.nix
     ./rofi-experience.nix
-    ./battery-notify.nix
   ];
 }
