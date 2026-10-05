@@ -36,15 +36,14 @@ in
 
       shake {
         on
-        max-multiplier 8.0
-        behavior "intensity"
-        sensitivity 1.6
-        cooldown-ms 100
-        stopped-threshold-ms 120
-        shake-relax-ms 650
-        post-expand-delay-ms 100
-        shake-interval-ms 700
-        min-diagonal 60.0
+        max-multiplier 4.5
+        behavior "hold"
+        sensitivity 2.0
+        cooldown-ms 400
+        stopped-threshold-ms 50
+        post-expand-delay-ms 250
+        shake-interval-ms 400
+        min-diagonal 100.0
       }
     }
 
@@ -107,12 +106,12 @@ in
       slowdown 0.65
 
       cursor-expand {
-        duration-ms 220
+        duration-ms 200
         curve "ease-out-cubic"
       }
 
       cursor-shrink {
-        duration-ms 450
+        duration-ms 300
         curve "ease-out-cubic"
       }
     }

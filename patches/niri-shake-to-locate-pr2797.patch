@@ -706,10 +706,10 @@ index a856de9..c3868c8 100644
                          )
 diff --git a/src/cursor_scale.rs b/src/cursor_scale.rs
 new file mode 100644
-index 0000000..8d609e8
+index 0000000..3e21537
 --- /dev/null
 +++ b/src/cursor_scale.rs
-@@ -0,0 +1,461 @@
+@@ -0,0 +1,449 @@
 +// Inspiration: https://invent.kde.org/plasma/kwin/-/blob/96bc84d33d2a5913bfec17b96686b5f4bb4e41c8/src/plugins/shakecursor/shakedetector.cpp
 +//
 +// This module implements cursor scaling based on shake detection, inspired by KDE's shake cursor
@@ -982,29 +982,17 @@ index 0000000..8d609e8
 +            };
 +
 +            if cooldown_ok {
-+                // Grow in steps rather than jumping straight to the maximum.
-+                // This mimics KDE Plasma's feel better: the longer you keep
-+                // shaking, the larger the cursor gets, capped by max-multiplier.
-+                let intensity = (shake_factor / self.params.shake_sensitivity).clamp(1.0, 4.0);
-+                let grow_by = (0.35 + (intensity - 1.0) * 0.30).clamp(0.35, 1.25);
-+                let target_mult = (self.current_mult + grow_by).min(self.params.max_mult);
-+
-+                if target_mult > self.current_mult + 0.01 {
-+                    debug!(
-+                        "Starting expansion animation: {:.2} -> {:.2} (factor {:.2})",
-+                        self.current_mult, target_mult, shake_factor
-+                    );
-+                    let anim = Animation::new(
-+                        self.clock.clone(),
-+                        self.current_mult,
-+                        target_mult,
-+                        0.0,
-+                        self.params.expand_anim_config.0,
-+                    );
-+                    self.expand_anim = Some(anim);
-+                    // clear any previously scheduled pending decay
-+                    self.pending_decay_at = None;
-+                }
++                debug!("Starting expansion animation: {:.2} -> {:.2}", self.current_mult, self.params.max_mult);
++                let anim = Animation::new(
++                    self.clock.clone(),
++                    self.current_mult,
++                    self.params.max_mult,
++                    0.0,
++                    self.params.expand_anim_config.0,
++                );
++                self.expand_anim = Some(anim);
++                // clear any previously scheduled pending decay
++                self.pending_decay_at = None;
 +            } else {
 +                trace!("Expansion blocked by cooldown");
 +            }
