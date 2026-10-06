@@ -16,4 +16,14 @@
   };
 
   programs.bash.enable = true;
+
+  programs.touchdesigner-linux = {
+    enable = true;
+
+    plugins.td-hueControl = pkgs.fetchzip {
+      url = "https://github.com/SudoMagicCode/td-hueControl/releases/download/v1.1.10/package.zip";
+      hash = "sha256-C/qdze9cpK31HQlw9lZp19t8HYRf6PyeIG3ys520RIY=";
+      stripRoot = false;
+    };
+  };
 }
