@@ -191,8 +191,8 @@
         "tdlinux": "tdlinux"
       },
       "locked": {
-        "lastModified": 1791289740,
-        "narHash": "sha256-hNJ7YGYilYgnGtbn9pyQI8qspfSe6LJstEMwB1a+Taw=",
+        "lastModified": 1791289757,
+        "narHash": "sha256-l4XatKJnwCCqv75OOP8abwK3Jqg9f16dzpnByOAPlQw=",
         "path": "/home/jurre/touchdesigner-nix",
         "type": "path"
       },
