@@ -1,0 +1,3383 @@
+diff --git a/Cargo.lock b/Cargo.lock
+index e6e96c36..46efb772 100644
+--- a/Cargo.lock
++++ b/Cargo.lock
+@@ -99,7 +99,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "0f2a1bb052857d5dd49572219344a7332b31b76405648eabac5bc68978251bcd"
+ dependencies = [
+  "android-properties",
+- "bitflags",
++ "bitflags 2.13.2",
+  "cc",
+  "jni",
+  "libc",
+@@ -198,6 +198,12 @@ dependencies = [
+  "num-traits",
+ ]
+ 
++[[package]]
++name = "arrayref"
++version = "0.3.9"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "76a2e8124351fda1ef8aaaa3bbd7ebbcb486bbcd4225aca0aa0d84bb2db8fecb"
++
+ [[package]]
+ name = "arrayvec"
+ version = "0.7.8"
+@@ -405,6 +411,12 @@ version = "0.21.7"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "9d297deb1925b89f2ccc13d7635fa0714f12c87adce1c75356b39ca9b7178567"
+ 
++[[package]]
++name = "base64"
++version = "0.22.1"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "72b3254f16251a8381aa12e40e3c4d2f0199f8c6508fbecb9d91f575e0fbb8c6"
++
+ [[package]]
+ name = "bindgen"
+ version = "0.72.1"
+@@ -412,7 +424,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "993776b509cfb49c750f11b8f07a46fa23e0a1386ffc01fb1e7d343efc387895"
+ dependencies = [
+  "annotate-snippets",
+- "bitflags",
++ "bitflags 2.13.2",
+  "cexpr",
+  "clang-sys",
+  "itertools",
+@@ -439,6 +451,12 @@ version = "0.8.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "5e764a1d40d510daf35e07be9eb06e75770908c27d411ee6c92109c9840eaaf7"
+ 
++[[package]]
++name = "bitflags"
++version = "1.3.2"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
++
+ [[package]]
+ name = "bitflags"
+ version = "2.13.2"
+@@ -503,6 +521,12 @@ dependencies = [
+  "syn 3.0.5",
+ ]
+ 
++[[package]]
++name = "byteorder-lite"
++version = "0.1.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "8f1fe948ff07f4bd06c30984e69f5b4899c516a3ef74f34df92a2df2ab535495"
++
+ [[package]]
+ name = "bytes"
+ version = "1.12.1"
+@@ -515,7 +539,7 @@ version = "0.21.5"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "b01fe135c0bd16afe262b6dea349bd5ea30e6de50708cec639aae7c5c14cc7e4"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "cairo-sys-rs",
+  "glib",
+  "libc",
+@@ -539,7 +563,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "4dbf9978365bac10f54d1d4b04f7ce4427e51f71d61f2fe15e3fed5166474df7"
+ dependencies = [
+  "async-task",
+- "bitflags",
++ "bitflags 2.13.2",
+  "futures-io",
+  "nix",
+  "polling",
+@@ -693,6 +717,12 @@ version = "1.1.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "c8d4a3bb8b1e0c1050499d1815f5ab16d04f0959b233085fb31653fbfc9d98f9"
+ 
++[[package]]
++name = "color_quant"
++version = "1.1.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "3d7b894f5411737b7867f4827955924d7c254fc9f4d91a6aad6b097804b1018b"
++
+ [[package]]
+ name = "colorchoice"
+ version = "1.0.5"
+@@ -735,6 +765,15 @@ version = "0.3.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "9885fa71e26b8ab7855e2ec7cae6e9b380edff76cd052e07c683a0319d51b3a2"
+ 
++[[package]]
++name = "core_maths"
++version = "0.1.1"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "77745e017f5edba1a9c1d854f6f3a52dac8a12dd5af5d2f54aecf61e43d80d30"
++dependencies = [
++ "libm",
++]
++
+ [[package]]
+ name = "cpufeatures"
+ version = "0.3.1"
+@@ -796,6 +835,12 @@ version = "1.2.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "f27ae1dd37df86211c42e150270f82743308803d90a6f6e6651cd730d5e1732f"
+ 
++[[package]]
++name = "data-url"
++version = "0.3.2"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "be1e0bca6c3637f992fc1cc7cbc52a78c1ef6db076dbf1059c4323d6a2048376"
++
+ [[package]]
+ name = "diff"
+ version = "0.1.13"
+@@ -829,7 +874,7 @@ version = "0.3.1"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "1e0e367e4e7da84520dedcac1901e4da967309406d1e51017ae1abfb97adbd38"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "objc2",
+ ]
+ 
+@@ -871,7 +916,7 @@ version = "0.14.1"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "80bc8c5c6c2941f70a55c15f8d9f00f9710ebda3ffda98075f996a0e6c92756f"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "bytemuck",
+  "drm-ffi",
+  "drm-fourcc",
+@@ -966,6 +1011,15 @@ dependencies = [
+  "windows-sys 0.61.2",
+ ]
+ 
++[[package]]
++name = "euclid"
++version = "0.22.14"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "f1a05365e3b1c6d1650318537c7460c6923f1abdd272ad6842baa2b509957a06"
++dependencies = [
++ "num-traits",
++]
++
+ [[package]]
+ name = "event-listener"
+ version = "5.4.2"
+@@ -1028,6 +1082,12 @@ dependencies = [
+  "zlib-rs",
+ ]
+ 
++[[package]]
++name = "float-cmp"
++version = "0.9.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "98de4bbd547a563b716d8dfa9aad1cb19bfab00f4fa09a6a4ed21dbcf44ce9c4"
++
+ [[package]]
+ name = "fnv"
+ version = "1.0.7"
+@@ -1040,6 +1100,29 @@ version = "0.2.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "77ce24cb58228fbb8aa041425bb1050850ac19177686ea6e0f41a70416f56fdb"
+ 
++[[package]]
++name = "fontconfig-parser"
++version = "0.5.8"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "bbc773e24e02d4ddd8395fd30dc147524273a83e54e0f312d986ea30de5f5646"
++dependencies = [
++ "roxmltree",
++]
++
++[[package]]
++name = "fontdb"
++version = "0.22.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "a3a6f9af55fb97ad673fb7a69533eb2f967648a06fa21f8c9bb2cd6d33975716"
++dependencies = [
++ "fontconfig-parser",
++ "log",
++ "memmap2",
++ "slotmap",
++ "tinyvec",
++ "ttf-parser",
++]
++
+ [[package]]
+ name = "form_urlencoded"
+ version = "1.2.2"
+@@ -1132,7 +1215,7 @@ version = "0.18.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "ce852e998d3ca5e4a97014fb31c940dc5ef344ec7d364984525fd11e8a547e6a"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "drm",
+  "drm-fourcc",
+  "gbm-sys",
+@@ -1267,6 +1350,16 @@ dependencies = [
+  "rand_core 0.10.1",
+ ]
+ 
++[[package]]
++name = "gif"
++version = "0.13.3"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "4ae047235e33e2829703574b54fdec96bfbad892062d97fed2f76022287de61b"
++dependencies = [
++ "color_quant",
++ "weezl",
++]
++
+ [[package]]
+ name = "gio"
+ version = "0.21.5"
+@@ -1340,7 +1433,7 @@ version = "0.21.5"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "16de123c2e6c90ce3b573b7330de19be649080ec612033d397d72da265f1bd8b"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "futures-channel",
+  "futures-core",
+  "futures-executor",
+@@ -1656,6 +1749,22 @@ dependencies = [
+  "icu_properties",
+ ]
+ 
++[[package]]
++name = "image-webp"
++version = "0.1.3"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "f79afb8cbee2ef20f59ccd477a218c12a93943d075b492015ecb1bb81f8ee904"
++dependencies = [
++ "byteorder-lite",
++ "quick-error 2.0.1",
++]
++
++[[package]]
++name = "imagesize"
++version = "0.13.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "edcd27d72f2f071c64249075f42e205ff93c9a4c5f6c6da53e79ed9f9832c285"
++
+ [[package]]
+ name = "indexmap"
+ version = "2.14.2"
+@@ -1672,7 +1781,7 @@ version = "0.10.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "f9793345a65d71317763a33066b5d8351f8760dde8d4930fe9e39b5f14a7959d"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "input-sys",
+  "libc",
+  "log",
+@@ -1831,7 +1940,7 @@ version = "0.8.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "0fbe853b403ae61a04233030ae8a79d94975281ed9770a1f9e246732b534b28d"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "serde",
+ ]
+ 
+@@ -1856,7 +1965,7 @@ version = "3.2.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "04bee6ddc6071011314b1ce4f7705fef6c009401dba4fd22cb0009db6a177413"
+ dependencies = [
+- "base64",
++ "base64 0.21.7",
+  "chumsky",
+  "knuffel-derive",
+  "miette",
+@@ -1877,6 +1986,17 @@ dependencies = [
+  "syn 1.0.109",
+ ]
+ 
++[[package]]
++name = "kurbo"
++version = "0.11.3"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "c62026ae44756f8a599ba21140f350303d4f08dcdcc71b5ad9c9bb8128c13c62"
++dependencies = [
++ "arrayvec",
++ "euclid",
++ "smallvec",
++]
++
+ [[package]]
+ name = "lazy_static"
+ version = "1.5.0"
+@@ -1926,7 +2046,7 @@ version = "0.3.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "59fd96dbb2381ff31f314f07accbdf8550febdcc5cd8761ecaf7c1763361c359"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "libc",
+  "libdisplay-info-derive",
+  "libdisplay-info-sys",
+@@ -1976,7 +2096,7 @@ version = "0.1.23"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "8d8f1ea3f21fd3405dcaf6c9b5c1630af9afc422d9073ea39c5f6d6c772e08ed"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "libc",
+  "plain",
+  "redox_syscall",
+@@ -2008,7 +2128,7 @@ version = "0.10.1"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "882f7427e7989dcc9d388b7f05c4630390a1d7696f9ffa469cd4a7a48f0b4c40"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "cc",
+  "cookie-factory",
+  "libc",
+@@ -2177,7 +2297,7 @@ version = "0.9.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "c3f42e7bbe13d351b6bead8286a43aac9534b82bd3cc43e47037f012ebfd62d4"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "jni-sys 0.3.1",
+  "log",
+  "ndk-sys",
+@@ -2213,7 +2333,8 @@ dependencies = [
+  "async-channel",
+  "async-io",
+  "atomic",
+- "bitflags",
++ "base64 0.22.1",
++ "bitflags 2.13.2",
+  "bytemuck",
+  "calloop",
+  "calloop-wayland-source",
+@@ -2224,6 +2345,7 @@ dependencies = [
+  "drm-ffi",
+  "fastrand",
+  "futures-util",
++ "getrandom 0.3.4",
+  "git-version",
+  "glam",
+  "input",
+@@ -2239,12 +2361,13 @@ dependencies = [
+  "pangocairo",
+  "pipewire",
+  "pkg-config",
+- "png",
++ "png 0.18.1",
+  "portable-atomic",
+  "profiling",
+  "proptest",
+  "proptest-derive",
+  "rayon",
++ "resvg",
+  "sd-notify",
+  "serde",
+  "serde_json",
+@@ -2253,6 +2376,7 @@ dependencies = [
+  "tracing",
+  "tracing-subscriber",
+  "tracy-client",
++ "usvg",
+  "wayland-backend",
+  "wayland-client",
+  "wayland-scanner",
+@@ -2266,7 +2390,7 @@ dependencies = [
+ name = "niri-config"
+ version = "26.4.0"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "csscolorparser",
+  "diff",
+  "insta",
+@@ -2299,6 +2423,7 @@ dependencies = [
+  "libadwaita",
+  "niri",
+  "niri-config",
++ "png 0.18.1",
+  "smithay",
+  "tracing",
+  "tracing-subscriber",
+@@ -2310,7 +2435,7 @@ version = "0.31.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "cf20d2fde8ff38632c426f1165ed7436270b44f199fc55284c38276f9db47c3d"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "cfg-if",
+  "cfg_aliases",
+  "libc",
+@@ -2391,7 +2516,7 @@ version = "0.3.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "d49e936b501e5c5bf01fda3a9452ff86dc3ea98ad5f283e1455153142d97518c"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "objc2",
+  "objc2-core-foundation",
+  "objc2-foundation",
+@@ -2403,7 +2528,7 @@ version = "0.3.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "2a180dd8642fa45cdb7dd721cd4c11b1cadd4929ce112ebd8b9f5803cc79d536"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "block2",
+  "dispatch2",
+  "objc2",
+@@ -2415,7 +2540,7 @@ version = "0.3.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "e022c9d066895efa1345f8e33e584b9f958da2fd4cd116792e15e07e4720a807"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "libc",
+  "objc2-core-foundation",
+ ]
+@@ -2426,7 +2551,7 @@ version = "0.3.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "d425caf1df73233f29fd8a5c3e5edbc30d2d4307870f802d18f00d83dc5141a6"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "objc2-core-foundation",
+  "objc2-core-graphics",
+ ]
+@@ -2443,7 +2568,7 @@ version = "0.3.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "e3e0adef53c21f888deb4fa59fc59f7eb17404926ee8a6f59f5df0fd7f9f3272"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "block2",
+  "objc2",
+  "objc2-core-foundation",
+@@ -2455,7 +2580,7 @@ version = "0.3.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "d87d638e33c06f577498cbcc50491496a3ed4246998a7fbba7ccb98b1e7eab22"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "objc2",
+  "objc2-core-foundation",
+  "objc2-foundation",
+@@ -2669,6 +2794,12 @@ dependencies = [
+  "siphasher",
+ ]
+ 
++[[package]]
++name = "pico-args"
++version = "0.5.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "5be167a7af36ee22fe3115051bc51f6e6c7054c9348e28deb4f49bd6f705a315"
++
+ [[package]]
+ name = "pin-project"
+ version = "1.1.13"
+@@ -2712,7 +2843,7 @@ version = "0.10.1"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "bde71084c4e25959d68f1ea54daa75e5ecdb338e5caf0b5510143b79baa32d5c"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "libc",
+  "libspa",
+  "libspa-sys",
+@@ -2761,13 +2892,26 @@ version = "0.2.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "b4596b6d070b27117e987119b4dac604f3c58cfb0b191112e24771b2faeac1a6"
+ 
++[[package]]
++name = "png"
++version = "0.17.16"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "82151a2fc869e011c153adc57cf2789ccb8d9906ce52c0b39a6b5697749d7526"
++dependencies = [
++ "bitflags 1.3.2",
++ "crc32fast",
++ "fdeflate",
++ "flate2",
++ "miniz_oxide 0.8.9",
++]
++
+ [[package]]
+ name = "png"
+ version = "0.18.1"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "60769b8b31b2a9f263dae2776c37b1b28ae246943cf719eb6946a1db05128a61"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "crc32fast",
+  "fdeflate",
+  "flate2",
+@@ -2892,7 +3036,7 @@ checksum = "4b45fcc2344c680f5025fe57779faef368840d0bd1f42f216291f0dc4ace4744"
+ dependencies = [
+  "bit-set",
+  "bit-vec",
+- "bitflags",
++ "bitflags 2.13.2",
+  "num-traits",
+  "rand 0.9.5",
+  "rand_chacha",
+@@ -2920,6 +3064,12 @@ version = "1.2.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "a1d01941d82fa2ab50be1e79e6714289dd7cde78eba4c074bc5a4374f650dfe0"
+ 
++[[package]]
++name = "quick-error"
++version = "2.0.1"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "a993555f31e5a609f617c12db6250dedcac1b0a85076912c436e6fc9b2c8e6a3"
++
+ [[package]]
+ name = "quick-xml"
+ version = "0.41.0"
+@@ -3037,7 +3187,7 @@ version = "0.4.8"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "c5018d583d6d2f5499352aea8d177e9067d1eb03ab17c78169d5ba7a30001b15"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "libredox",
+ ]
+ 
+@@ -3047,7 +3197,7 @@ version = "0.9.4"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "737970939a87c6fa31e7acad13307bccbb017a073b695b6089a2c484f929e20e"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+ ]
+ 
+ [[package]]
+@@ -3122,6 +3272,38 @@ dependencies = [
+  "rustix 1.1.4",
+ ]
+ 
++[[package]]
++name = "resvg"
++version = "0.44.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "4a325d5e8d1cebddd070b13f44cec8071594ab67d1012797c121f27a669b7958"
++dependencies = [
++ "gif",
++ "image-webp",
++ "log",
++ "pico-args",
++ "rgb",
++ "svgtypes",
++ "tiny-skia",
++ "usvg",
++ "zune-jpeg",
++]
++
++[[package]]
++name = "rgb"
++version = "0.8.53"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "47b34b781b31e5d73e9fbc8689c70551fd1ade9a19e3e28cfec8580a79290cc4"
++dependencies = [
++ "bytemuck",
++]
++
++[[package]]
++name = "roxmltree"
++version = "0.20.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "6c20b6793b5c2fa6553b250154b78d6d0db37e72700ae35fad9387a46f487c97"
++
+ [[package]]
+ name = "rustc-hash"
+ version = "2.1.3"
+@@ -3143,7 +3325,7 @@ version = "0.38.44"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "fdb5bc1ae2baa591800df16c9ca78619bf65c0488b41b96ccec5d11220d8c154"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "errno",
+  "libc",
+  "linux-raw-sys 0.4.15",
+@@ -3156,7 +3338,7 @@ version = "1.1.4"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "b6fe4565b9518b83ef4f91bb47ce29620ca828bd32cb7e408f0062e9930ba190"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "errno",
+  "libc",
+  "linux-raw-sys 0.12.1",
+@@ -3176,11 +3358,29 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "cc6bf79ff24e648f6da1f8d1f011e9cac26491b619e6b9280f2b47f1774e6ee2"
+ dependencies = [
+  "fnv",
+- "quick-error",
++ "quick-error 1.2.3",
+  "tempfile",
+  "wait-timeout",
+ ]
+ 
++[[package]]
++name = "rustybuzz"
++version = "0.18.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "c85d1ccd519e61834798eb52c4e886e8c2d7d698dd3d6ce0b1b47eb8557f1181"
++dependencies = [
++ "bitflags 2.13.2",
++ "bytemuck",
++ "core_maths",
++ "log",
++ "smallvec",
++ "ttf-parser",
++ "unicode-bidi-mirroring",
++ "unicode-ccc",
++ "unicode-properties",
++ "unicode-script",
++]
++
+ [[package]]
+ name = "same-file"
+ version = "1.0.6"
+@@ -3369,6 +3569,15 @@ version = "2.7.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "bbbb5d9659141646ae647b42fe094daf6c6192d1620870b449d9557f748b2daa"
+ 
++[[package]]
++name = "simplecss"
++version = "0.2.2"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "7a9c6883ca9c3c7c90e888de77b7a5c849c779d25d74a1269b0218b14e8b136c"
++dependencies = [
++ "log",
++]
++
+ [[package]]
+ name = "siphasher"
+ version = "1.0.3"
+@@ -3381,6 +3590,15 @@ version = "0.4.12"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "0c790de23124f9ab44544d7ac05d60440adc586479ce501c1d6d7da3cd8c9cf5"
+ 
++[[package]]
++name = "slotmap"
++version = "1.1.1"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "bdd58c3c93c3d278ca835519292445cb4b0d4dc59ccfdf7ceadaab3f8aeb4038"
++dependencies = [
++ "version_check",
++]
++
+ [[package]]
+ name = "smallvec"
+ version = "1.16.0"
+@@ -3400,7 +3618,7 @@ source = "git+https://github.com/Smithay/smithay.git?rev=79bbed5e1199090d7871156
+ dependencies = [
+  "aliasable",
+  "appendlist",
+- "bitflags",
++ "bitflags 2.13.2",
+  "calloop",
+  "cc",
+  "cursor-icon",
+@@ -3451,7 +3669,7 @@ version = "0.21.1"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "74dc9ee14b0fdcb535f9556141bacac070c994a977d2240ee455d7438a617f00"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "calloop",
+  "calloop-wayland-source",
+  "cursor-icon",
+@@ -3501,6 +3719,15 @@ version = "1.1.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
+ 
++[[package]]
++name = "strict-num"
++version = "0.1.1"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "6637bab7722d379c8b41ba849228d680cc12d0a45ba1fa2b48f2a30577a06731"
++dependencies = [
++ "float-cmp",
++]
++
+ [[package]]
+ name = "strsim"
+ version = "0.11.1"
+@@ -3535,6 +3762,16 @@ dependencies = [
+  "is-terminal",
+ ]
+ 
++[[package]]
++name = "svgtypes"
++version = "0.15.3"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "68c7541fff44b35860c1a7a47a7cadf3e4a304c457b58f9870d9706ece028afc"
++dependencies = [
++ "kurbo",
++ "siphasher",
++]
++
+ [[package]]
+ name = "syn"
+ version = "1.0.109"
+@@ -3681,6 +3918,32 @@ dependencies = [
+  "cfg-if",
+ ]
+ 
++[[package]]
++name = "tiny-skia"
++version = "0.11.4"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "83d13394d44dae3207b52a326c0c85a8bf87f1541f23b0d143811088497b09ab"
++dependencies = [
++ "arrayref",
++ "arrayvec",
++ "bytemuck",
++ "cfg-if",
++ "log",
++ "png 0.17.16",
++ "tiny-skia-path",
++]
++
++[[package]]
++name = "tiny-skia-path"
++version = "0.11.4"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "9c9e7fc0c2e86a30b117d0462aa261b72b7a99b7ebd7deb3a14ceda95c5bdc93"
++dependencies = [
++ "arrayref",
++ "bytemuck",
++ "strict-num",
++]
++
+ [[package]]
+ name = "tinystr"
+ version = "0.8.4"
+@@ -3691,6 +3954,21 @@ dependencies = [
+  "zerovec",
+ ]
+ 
++[[package]]
++name = "tinyvec"
++version = "1.13.2"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "4cf0ded5c4e56918d8f8a339e1bb67d038d3bc6d144ac407904015ba2e4cde9b"
++dependencies = [
++ "tinyvec_macros",
++]
++
++[[package]]
++name = "tinyvec_macros"
++version = "0.1.1"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "1f3ccbac311fea05f86f61904b462b55fb3df8837a366dfc601a0161d0532f20"
++
+ [[package]]
+ name = "toml"
+ version = "1.1.6+spec-1.1.0"
+@@ -3825,6 +4103,15 @@ dependencies = [
+  "windows-targets 0.52.6",
+ ]
+ 
++[[package]]
++name = "ttf-parser"
++version = "0.24.1"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "5be21190ff5d38e8b4a2d3b6a3ae57f612cc39c96e83cedeaf7abc338a8bac4a"
++dependencies = [
++ "core_maths",
++]
++
+ [[package]]
+ name = "udev"
+ version = "0.9.3"
+@@ -3863,6 +4150,24 @@ dependencies = [
+  "version_check",
+ ]
+ 
++[[package]]
++name = "unicode-bidi"
++version = "0.3.18"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "5c1cb5db39152898a79168971543b1cb5020dff7fe43c8dc468b0885f5e29df5"
++
++[[package]]
++name = "unicode-bidi-mirroring"
++version = "0.3.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "64af057ad7466495ca113126be61838d8af947f41d93a949980b2389a118082f"
++
++[[package]]
++name = "unicode-ccc"
++version = "0.3.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "260bc6647b3893a9a90668360803a15f96b85a5257b1c3a0c3daf6ae2496de42"
++
+ [[package]]
+ name = "unicode-ident"
+ version = "1.0.24"
+@@ -3875,12 +4180,30 @@ version = "0.1.5"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "3b09c83c3c29d37506a3e260c08c03743a6bb66a9cd432c6934ab501a190571f"
+ 
++[[package]]
++name = "unicode-properties"
++version = "0.1.4"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "7df058c713841ad818f1dc5d3fd88063241cc61f49f5fbea4b951e8cf5a8d71d"
++
++[[package]]
++name = "unicode-script"
++version = "0.5.8"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "383ad40bb927465ec0ce7720e033cb4ca06912855fc35db31b5755d0de75b1ee"
++
+ [[package]]
+ name = "unicode-segmentation"
+ version = "1.13.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "c6f5d3c3b1bf09027a88a6bc961fc00497d651009560b5463668dc81b0fa87a8"
+ 
++[[package]]
++name = "unicode-vo"
++version = "0.1.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "b1d386ff53b415b7fe27b50bb44679e2cc4660272694b7b6f3326d8480823a94"
++
+ [[package]]
+ name = "unicode-width"
+ version = "0.1.14"
+@@ -3905,6 +4228,33 @@ dependencies = [
+  "serde",
+ ]
+ 
++[[package]]
++name = "usvg"
++version = "0.44.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "7447e703d7223b067607655e625e0dbca80822880248937da65966194c4864e6"
++dependencies = [
++ "base64 0.22.1",
++ "data-url",
++ "flate2",
++ "fontdb",
++ "imagesize",
++ "kurbo",
++ "log",
++ "pico-args",
++ "roxmltree",
++ "rustybuzz",
++ "simplecss",
++ "siphasher",
++ "strict-num",
++ "svgtypes",
++ "tiny-skia-path",
++ "unicode-bidi",
++ "unicode-script",
++ "unicode-vo",
++ "xmlwriter",
++]
++
+ [[package]]
+ name = "utf8_iter"
+ version = "1.0.4"
+@@ -4055,7 +4405,7 @@ version = "0.31.15"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "e3c36a0f861ad76d0901f2800b46321410d9f73f2ea88aac0650d86c32688073"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "rustix 1.1.4",
+  "wayland-backend",
+  "wayland-scanner",
+@@ -4067,7 +4417,7 @@ version = "0.3.0"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "625c5029dbd43d25e6aa9615e88b829a5cad13b2819c4ae129fdbb7c31ab4c7e"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "cursor-icon",
+  "wayland-backend",
+ ]
+@@ -4099,7 +4449,7 @@ version = "0.32.13"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "23d0c813de3daa2ed6520af85a3bd49b0e722a3078506899aa9686fea58dc4b6"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "wayland-backend",
+  "wayland-client",
+  "wayland-scanner",
+@@ -4112,7 +4462,7 @@ version = "20251230.0.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "91c6c3e7178e553d093d46999032bc79aafea9dedd71dd702c8ace7bbc25cf13"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "wayland-backend",
+  "wayland-client",
+  "wayland-protocols",
+@@ -4125,7 +4475,7 @@ version = "0.3.12"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "6e9567599ef23e09b8dad6e429e5738d4509dfc46b3b21f32841a304d16b29c8"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "wayland-backend",
+  "wayland-client",
+  "wayland-protocols",
+@@ -4139,7 +4489,7 @@ version = "0.3.12"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "2b6d8cf1eb2c1c31ed1f5643c88a6e53538129d4af80030c8cabd1f9fa884d91"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "wayland-backend",
+  "wayland-client",
+  "wayland-protocols",
+@@ -4152,7 +4502,7 @@ version = "0.3.12"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "eb04e52f7836d7c7976c78ca0250d61e33873c34156a2a1fc9474828ec268234"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "wayland-backend",
+  "wayland-client",
+  "wayland-protocols",
+@@ -4177,7 +4527,7 @@ version = "0.31.14"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "0dde9c29be0f723a573977de51ee455bf3dfa03652730a74f9dd3b337e374d75"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "downcast-rs",
+  "rustix 1.1.4",
+  "wayland-backend",
+@@ -4218,6 +4568,12 @@ dependencies = [
+  "wasm-bindgen",
+ ]
+ 
++[[package]]
++name = "weezl"
++version = "0.1.12"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "a28ac98ddc8b9274cb41bb4d9d4d5c425b6020c50c46f25559911905610b4a88"
++
+ [[package]]
+ name = "winapi"
+ version = "0.3.9"
+@@ -4418,7 +4774,7 @@ version = "0.31.0-beta.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "f431156a3e4f0f1b35eaaf37674e55838e3652908c8088f570466274d1902e2b"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "cfg_aliases",
+  "cursor-icon",
+  "dpi",
+@@ -4446,7 +4802,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "d5d60d944a564986b9311e325334cc22e7e4cf726dd0ff7475fd925404215af4"
+ dependencies = [
+  "android-activity",
+- "bitflags",
++ "bitflags 2.13.2",
+  "dpi",
+  "ndk",
+  "raw-window-handle",
+@@ -4461,7 +4817,7 @@ version = "0.31.0-beta.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "23343ec0ea7ac6aa72f38009a6ff66fb63bcf6395e0622fba72794d2a762ab42"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "block2",
+  "dispatch2",
+  "dpi",
+@@ -4503,7 +4859,7 @@ version = "0.31.0-beta.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "b8af6307236c51847199950c15cf80e0481a250bb96ce9132f5026df4ad3d0f9"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "cursor-icon",
+  "dpi",
+  "keyboard-types",
+@@ -4519,7 +4875,7 @@ version = "0.31.0-beta.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "278a8ae837902a3bc95dd2fd696d680da33f32130eecc29905358c9089cf6c50"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "dpi",
+  "libredox",
+  "orbclient",
+@@ -4536,7 +4892,7 @@ version = "0.31.0-beta.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "83315a3ea1739c8466cf23d35e3b0a2cb20c9515d8857666b633afef484740b5"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "block2",
+  "dispatch2",
+  "dpi",
+@@ -4557,7 +4913,7 @@ version = "0.31.0-beta.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "8b64ceed06de0c45886eef05102106abe1413e703384e337bc57c7e95b71f803"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "calloop",
+  "cursor-icon",
+  "dpi",
+@@ -4585,7 +4941,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "f539be45f95cc297bdfb80569aef38d925d64aec4133852a4d3fc5cb3660f1c9"
+ dependencies = [
+  "atomic-waker",
+- "bitflags",
++ "bitflags 2.13.2",
+  "concurrent-queue",
+  "cursor-icon",
+  "dpi",
+@@ -4607,7 +4963,7 @@ version = "0.31.0-beta.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "25fb480c41df01d351f656cbf3ad74013f8a9d22bb5b2dcab59f9167e7a0b6ec"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "cursor-icon",
+  "dpi",
+  "raw-window-handle",
+@@ -4626,7 +4982,7 @@ version = "0.31.0-beta.3"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "bb5746cd907e514b7895491a1c6f7d0cb70077f9e16928cd74ae6f987ffd96aa"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "bytemuck",
+  "calloop",
+  "cursor-icon",
+@@ -4721,7 +5077,7 @@ version = "0.4.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "d039de8032a9a8856a6be89cea3e5d12fdd82306ab7c94d74e6deab2460651c5"
+ dependencies = [
+- "bitflags",
++ "bitflags 2.13.2",
+  "dlib",
+  "log",
+  "once_cell",
+@@ -4740,6 +5096,12 @@ version = "0.8.29"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "e450f9b2ed1dff33c94c12589a87338689467b9c4f5d8a5710bd09a847d2c8a7"
+ 
++[[package]]
++name = "xmlwriter"
++version = "0.1.0"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "ec7a2a501ed189703dba8b08142f057e887dfc4b2cc4db2d343ac6376ba3e0b9"
++
+ [[package]]
+ name = "xshell"
+ version = "0.2.7"
+@@ -4976,6 +5338,21 @@ version = "1.0.23"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "29666d0abbfad1e3dc4dcf6144730dd3a3ab225bbbdac83319345b1b44ccfc1b"
+ 
++[[package]]
++name = "zune-core"
++version = "0.4.12"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "3f423a2c17029964870cfaabb1f13dfab7d092a62a29a89264f4d36990ca414a"
++
++[[package]]
++name = "zune-jpeg"
++version = "0.4.21"
++source = "registry+https://github.com/rust-lang/crates.io-index"
++checksum = "29ce2c8a9384ad323cf564b67da86e21d3cfdff87908bc1223ed5c99bc792713"
++dependencies = [
++ "zune-core",
++]
++
+ [[package]]
+ name = "zvariant"
+ version = "5.15.0"
+diff --git a/Cargo.toml b/Cargo.toml
+index 0daaa148..559b40cc 100644
+--- a/Cargo.toml
++++ b/Cargo.toml
+@@ -84,6 +84,8 @@ pipewire = { version = "0.10", optional = true, features = ["v0_3_33"] }
+ png = "0.18.1"
+ portable-atomic = "1"
+ profiling = "1.0.18"
++resvg = "0.44"
++usvg = "0.44"
+ sd-notify = "0.5.0"
+ serde.workspace = true
+ serde_json.workspace = true
+diff --git a/docs/wiki/Configuration:-Animations.md b/docs/wiki/Configuration:-Animations.md
+index f62dab3b..cea63177 100644
+--- a/docs/wiki/Configuration:-Animations.md
++++ b/docs/wiki/Configuration:-Animations.md
+@@ -46,6 +46,10 @@ animations {
+         spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+     }
+ 
++    cursor-enlarge {
++        spring damping-ratio=0.82 stiffness=400 epsilon=0.0001
++    }
++
+     exit-confirmation-open-close {
+         spring damping-ratio=0.6 stiffness=500 epsilon=0.01
+     }
+@@ -59,6 +63,10 @@ animations {
+         spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
+     }
+ 
++    magnifier {
++        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
++    }
++
+     recent-windows-close {
+         spring damping-ratio=1.0 stiffness=800 epsilon=0.001
+     }
+@@ -381,6 +389,20 @@ animations {
+ }
+ ```
+ 
++#### `cursor-enlarge`
++
++<sup>Since: 26.04</sup>
++
++The grow/shrink animation when the [shake-to-enlarge](./Configuration:-Miscellaneous.md#cursor) cursor feature triggers.
++
++```kdl
++animations {
++    cursor-enlarge {
++        spring damping-ratio=0.82 stiffness=400 epsilon=0.0001
++    }
++}
++```
++
+ #### `exit-confirmation-open-close`
+ 
+ <sup>Since: 25.08</sup>
+@@ -426,6 +448,20 @@ animations {
+ }
+ ```
+ 
++#### `magnifier`
++
++<sup>Since: 26.04</sup>
++
++The toggle zoom animation of the [screen magnifier](./Configuration:-Miscellaneous.md#magnifier).
++
++```kdl
++animations {
++    magnifier {
++        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
++    }
++}
++```
++
+ #### `recent-windows-close`
+ 
+ <sup>Since: 25.11</sup>
+diff --git a/docs/wiki/Configuration:-Key-Bindings.md b/docs/wiki/Configuration:-Key-Bindings.md
+index 73b94402..3bb643d9 100644
+--- a/docs/wiki/Configuration:-Key-Bindings.md
++++ b/docs/wiki/Configuration:-Key-Bindings.md
+@@ -430,3 +430,41 @@ binds {
+     Super+Alt+L allow-inhibiting=false { spawn "swaylock"; }
+ }
+ ```
++
++#### `toggle-magnifier`
++
++Toggle the screen magnifier on or off. When toggled on, the screen zooms in centered on the cursor. The zoom factor is configured via [`magnifier.zoom-factor`](./Configuration:-Miscellaneous.md#zoom-factor) (defaults to `2.0`). Toggling off smoothly animates back to normal.
++
++```kdl
++binds {
++    Mod+Shift+Z { toggle-magnifier; }
++}
++```
++
++<sup>Since: 26.04</sup>
++
++Adjust the screen magnifier zoom by the given delta. Positive values zoom in, negative values zoom out. The zoom ranges from `1.0` (no zoom) to `10.0`. Zooming down to `1.0` turns the magnifier off. This action responds instantly without animation, making it suitable for scroll wheel binds.
++
++```kdl
++binds {
++    Mod+WheelScrollUp   { adjust-magnifier-zoom 0.1; }
++    Mod+WheelScrollDown { adjust-magnifier-zoom -0.1; }
++}
++```
++
++#### `move-magnifier-left`, `move-magnifier-right`, `move-magnifier-up`, `move-magnifier-down`
++
++<sup>Since: next release</sup>
++
++Move the magnified view in the given direction.
++Each step moves the view by 1/20 of the visible area, whatever the zoom level, and holding the key repeats it.
++These actions only work while the magnifier is on with [`magnifier.track-cursor false`](./Configuration:-Miscellaneous.md#track-cursor); otherwise they do nothing.
++
++```kdl
++binds {
++    Mod+Ctrl+Alt+H { move-magnifier-left; }
++    Mod+Ctrl+Alt+J { move-magnifier-down; }
++    Mod+Ctrl+Alt+K { move-magnifier-up; }
++    Mod+Ctrl+Alt+L { move-magnifier-right; }
++}
++```
+diff --git a/docs/wiki/Configuration:-Miscellaneous.md b/docs/wiki/Configuration:-Miscellaneous.md
+index 7a2f42dd..6b123d69 100644
+--- a/docs/wiki/Configuration:-Miscellaneous.md
++++ b/docs/wiki/Configuration:-Miscellaneous.md
+@@ -22,6 +22,14 @@ cursor {
+ 
+     hide-when-typing
+     hide-after-inactive-ms 1000
++
++    shake-to-enlarge {
++        zoom-factor 2.5
++        hold-duration-ms 1500
++        threshold 2000
++        grow
++        grow-speed 0.01
++    }
+ }
+ 
+ overview {
+@@ -62,6 +70,13 @@ blur {
+     noise 0.02
+     saturation 1.5
+ }
++
++magnifier {
++    // off
++    zoom-factor 2.0
++    // track-cursor false
++    // scale-cursor false
++}
+ ```
+ 
+ ### `spawn-at-startup`
+@@ -196,6 +211,56 @@ cursor {
+ }
+ ```
+ 
++#### `shake-to-enlarge`
++
++Shaking the cursor rapidly will temporarily enlarge it, helping to locate the cursor on screen.
++
++This feature is enabled by default. To disable it, use `off`:
++
++```kdl
++cursor {
++    shake-to-enlarge {
++        off
++    }
++}
++```
++
++The following options are available inside `shake-to-enlarge`:
++
++- `off` — disable the feature.
++- `on` — explicitly enable the feature (useful to re-enable after overriding from an included configuration).
++- `zoom-factor` — how much to enlarge the cursor. Defaults to `3.0`.
++- `hold-duration-ms` — how long the cursor stays enlarged after you stop shaking, in milliseconds. Defaults to `1200`.
++- `threshold` — the shake energy threshold. Higher values make it harder to trigger. Defaults to `2000.0`.
++- `grow` — when enabled, continuing to shake while already enlarged will make the cursor grow increasingly larger with no upper limit. Defaults to `false`.
++- `grow-speed` — how much the zoom increases per shake trigger while already enlarged. Defaults to `0.01`. Only effective when `grow` is enabled.
++
++```kdl
++cursor {
++    shake-to-enlarge {
++        //off
++        zoom-factor 5
++        hold-duration-ms 1500
++        threshold 2000
++        grow
++        grow-speed 0.01
++    }
++}
++```
++
++The enlarge animation can be customized in the [`animations`](./Configuration:-Animations.md) section under `cursor-enlarge`:
++
++```kdl
++animations {
++    cursor-enlarge {
++        spring damping-ratio=0.82 stiffness=400 epsilon=0.0001
++    }
++}
++```
++
++> [!NOTE]
++> The shake gesture needs the cursor to move across a certain distance. Slow, precise movements will not trigger it. Adjust `threshold` if you find it too hard or too easy to trigger (lower values make it easier).
++
+ ### `overview`
+ 
+ <sup>Since: 25.05</sup>
+@@ -407,3 +472,60 @@ blur {
+     saturation 1.5
+ }
+ ```
++
++### `magnifier`
++
++Settings for the screen magnifier. Pressing a keyboard shortcut or scrolling a keybind can zoom in on the screen, with the cursor position as the zoom pivot.
++
++Set the `off` flag to completely disable the magnifier.
++
++```kdl
++magnifier {
++    off
++}
++```
++
++#### `zoom-factor`
++
++The zoom factor to use when toggling the magnifier on with a keyboard shortcut. Defaults to `2.0`.
++
++```kdl
++magnifier {
++    zoom-factor 2.5
++}
++```
++
++#### `track-cursor`
++
++When enabled (default), the magnifier follows the cursor position. Set to `false` to lock the magnification center to the cursor position at first activation, keeping the screen fixed regardless of cursor movement.
++When the magnifier is active with `track-cursor false`, hold the middle mouse button and drag to move the locked center, or use the [`move-magnifier-*`](./Configuration:-Key-Bindings.md#move-magnifier-left-move-magnifier-right-move-magnifier-up-move-magnifier-down) actions.
++
++```kdl
++magnifier {
++    zoom-factor 2.0
++    track-cursor false
++}
++```
++
++#### `scale-cursor`
++
++When enabled (default), the cursor scales along with the magnified screen. Set to `false` to keep the cursor at its native size, preventing it from becoming large and blurry when zoomed in.
++
++```kdl
++magnifier {
++    zoom-factor 2.0
++    scale-cursor false
++}
++```
++
++The toggle animation can be customized in the [`animations`](./Configuration:-Animations.md) section under `magnifier`:
++
++```kdl
++animations {
++    magnifier {
++        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
++    }
++}
++```
++
++For key bindings, see [`toggle-magnifier`](./Configuration:-Key-Bindings.md#toggle-magnifier) and [`adjust-magnifier-zoom`](./Configuration:-Key-Bindings.md#adjust-magnifier-zoom).
+diff --git a/niri-config/src/animations.rs b/niri-config/src/animations.rs
+index d50f4495..c6602b8e 100644
+--- a/niri-config/src/animations.rs
++++ b/niri-config/src/animations.rs
+@@ -23,7 +23,9 @@ pub struct Animations {
+     pub exit_confirmation_open_close: ExitConfirmationOpenCloseAnim,
+     pub screenshot_ui_open: ScreenshotUiOpenAnim,
+     pub overview_open_close: OverviewOpenCloseAnim,
++    pub magnifier: MagnifierAnim,
+     pub recent_windows_close: RecentWindowsCloseAnim,
++    pub cursor_enlarge: CursorEnlargeAnim,
+ }
+ 
+ impl Default for Animations {
+@@ -41,7 +43,9 @@ impl Default for Animations {
+             exit_confirmation_open_close: Default::default(),
+             screenshot_ui_open: Default::default(),
+             overview_open_close: Default::default(),
++            magnifier: Default::default(),
+             recent_windows_close: Default::default(),
++            cursor_enlarge: Default::default(),
+         }
+     }
+ }
+@@ -75,7 +79,11 @@ pub struct AnimationsPart {
+     #[knuffel(child)]
+     pub overview_open_close: Option<OverviewOpenCloseAnim>,
+     #[knuffel(child)]
++    pub magnifier: Option<MagnifierAnim>,
++    #[knuffel(child)]
+     pub recent_windows_close: Option<RecentWindowsCloseAnim>,
++    #[knuffel(child)]
++    pub cursor_enlarge: Option<CursorEnlargeAnim>,
+ }
+ 
+ impl MergeWith<AnimationsPart> for Animations {
+@@ -101,7 +109,9 @@ impl MergeWith<AnimationsPart> for Animations {
+             exit_confirmation_open_close,
+             screenshot_ui_open,
+             overview_open_close,
++            magnifier,
+             recent_windows_close,
++            cursor_enlarge,
+         );
+     }
+ }
+@@ -382,6 +392,38 @@ impl Default for RecentWindowsCloseAnim {
+     }
+ }
+ 
++#[derive(Debug, Clone, Copy, PartialEq)]
++pub struct CursorEnlargeAnim(pub Animation);
++
++impl Default for CursorEnlargeAnim {
++    fn default() -> Self {
++        Self(Animation {
++            off: false,
++            kind: Kind::Spring(SpringParams {
++                damping_ratio: 0.82,
++                stiffness: 400,
++                epsilon: 0.0001,
++            }),
++        })
++    }
++}
++
++#[derive(Debug, Clone, Copy, PartialEq)]
++pub struct MagnifierAnim(pub Animation);
++
++impl Default for MagnifierAnim {
++    fn default() -> Self {
++        Self(Animation {
++            off: false,
++            kind: Kind::Spring(SpringParams {
++                damping_ratio: 1.,
++                stiffness: 800,
++                epsilon: 0.0001,
++            }),
++        })
++    }
++}
++
+ impl<S> knuffel::Decode<S> for WorkspaceSwitchAnim
+ where
+     S: knuffel::traits::ErrorSpan,
+@@ -592,6 +634,36 @@ where
+     }
+ }
+ 
++impl<S> knuffel::Decode<S> for CursorEnlargeAnim
++where
++    S: knuffel::traits::ErrorSpan,
++{
++    fn decode_node(
++        node: &knuffel::ast::SpannedNode<S>,
++        ctx: &mut knuffel::decode::Context<S>,
++    ) -> Result<Self, DecodeError<S>> {
++        let default = Self::default().0;
++        Ok(Self(Animation::decode_node(node, ctx, default, |_, _| {
++            Ok(false)
++        })?))
++    }
++}
++
++impl<S> knuffel::Decode<S> for MagnifierAnim
++where
++    S: knuffel::traits::ErrorSpan,
++{
++    fn decode_node(
++        node: &knuffel::ast::SpannedNode<S>,
++        ctx: &mut knuffel::decode::Context<S>,
++    ) -> Result<Self, DecodeError<S>> {
++        let default = Self::default().0;
++        Ok(Self(Animation::decode_node(node, ctx, default, |_, _| {
++            Ok(false)
++        })?))
++    }
++}
++
+ impl Animation {
+     pub fn new_off() -> Self {
+         Self {
+diff --git a/niri-config/src/binds.rs b/niri-config/src/binds.rs
+index d02aa595..78e3fe76 100644
+--- a/niri-config/src/binds.rs
++++ b/niri-config/src/binds.rs
+@@ -363,6 +363,12 @@ pub enum Action {
+     #[knuffel(skip)]
+     StopCast(u64),
+     ToggleOverview,
++    ToggleMagnifier,
++    AdjustMagnifierZoom(#[knuffel(argument)] f64),
++    MoveMagnifierLeft,
++    MoveMagnifierRight,
++    MoveMagnifierUp,
++    MoveMagnifierDown,
+     OpenOverview,
+     CloseOverview,
+     #[knuffel(skip)]
+@@ -702,6 +708,12 @@ impl From<niri_ipc::Action> for Action {
+             niri_ipc::Action::ClearDynamicCastTarget {} => Self::ClearDynamicCastTarget,
+             niri_ipc::Action::StopCast { session_id } => Self::StopCast(session_id),
+             niri_ipc::Action::ToggleOverview {} => Self::ToggleOverview,
++            niri_ipc::Action::ToggleMagnifier {} => Self::ToggleMagnifier,
++            niri_ipc::Action::AdjustMagnifierZoom { delta } => Self::AdjustMagnifierZoom(delta),
++            niri_ipc::Action::MoveMagnifierLeft {} => Self::MoveMagnifierLeft,
++            niri_ipc::Action::MoveMagnifierRight {} => Self::MoveMagnifierRight,
++            niri_ipc::Action::MoveMagnifierUp {} => Self::MoveMagnifierUp,
++            niri_ipc::Action::MoveMagnifierDown {} => Self::MoveMagnifierDown,
+             niri_ipc::Action::OpenOverview {} => Self::OpenOverview,
+             niri_ipc::Action::CloseOverview {} => Self::CloseOverview,
+             niri_ipc::Action::ToggleWindowUrgent { id } => Self::ToggleWindowUrgent(id),
+diff --git a/niri-config/src/lib.rs b/niri-config/src/lib.rs
+index 22e0d3db..a22695ea 100644
+--- a/niri-config/src/lib.rs
++++ b/niri-config/src/lib.rs
+@@ -83,6 +83,7 @@ pub struct Config {
+     pub blur: Blur,
+     pub gestures: Gestures,
+     pub overview: Overview,
++    pub magnifier: Magnifier,
+     pub environment: Environment,
+     pub xwayland_satellite: XwaylandSatellite,
+     pub window_rules: Vec<WindowRule>,
+@@ -204,6 +205,7 @@ where
+                 "blur" => m_merge!(blur),
+                 "gestures" => m_merge!(gestures),
+                 "overview" => m_merge!(overview),
++                "magnifier" => m_merge!(magnifier),
+                 "xwayland-satellite" => m_merge!(xwayland_satellite),
+                 "switch-events" => m_merge!(switch_events),
+                 "debug" => m_merge!(debug),
+@@ -1516,6 +1518,16 @@ mod tests {
+                 hide_after_inactive_ms: Some(
+                     3000,
+                 ),
++                shake_to_enlarge: Some(
++                    ShakeToEnlarge {
++                        off: false,
++                        zoom_factor: 3.0,
++                        hold_duration_ms: 1200,
++                        threshold: 2000.0,
++                        grow: false,
++                        grow_speed: 0.01,
++                    },
++                ),
+             },
+             screenshot_path: ScreenshotPath(
+                 Some(
+@@ -1659,6 +1671,18 @@ mod tests {
+                         ),
+                     },
+                 ),
++                magnifier: MagnifierAnim(
++                    Animation {
++                        off: false,
++                        kind: Spring(
++                            SpringParams {
++                                damping_ratio: 1.0,
++                                stiffness: 800,
++                                epsilon: 0.0001,
++                            },
++                        ),
++                    },
++                ),
+                 recent_windows_close: RecentWindowsCloseAnim(
+                     Animation {
+                         off: true,
+@@ -1671,6 +1695,18 @@ mod tests {
+                         ),
+                     },
+                 ),
++                cursor_enlarge: CursorEnlargeAnim(
++                    Animation {
++                        off: false,
++                        kind: Spring(
++                            SpringParams {
++                                damping_ratio: 0.82,
++                                stiffness: 400,
++                                epsilon: 0.0001,
++                            },
++                        ),
++                    },
++                ),
+             },
+             blur: Blur {
+                 off: false,
+@@ -1726,6 +1762,12 @@ mod tests {
+                     },
+                 },
+             },
++            magnifier: Magnifier {
++                off: false,
++                zoom_factor: 2.0,
++                track_cursor: true,
++                scale_cursor: true,
++            },
+             environment: Environment(
+                 [
+                     EnvironmentVariable {
+diff --git a/niri-config/src/misc.rs b/niri-config/src/misc.rs
+index 66a200ca..58973a0e 100644
+--- a/niri-config/src/misc.rs
++++ b/niri-config/src/misc.rs
+@@ -20,6 +20,60 @@ pub struct Cursor {
+     pub xcursor_size: u8,
+     pub hide_when_typing: bool,
+     pub hide_after_inactive_ms: Option<u32>,
++    pub shake_to_enlarge: Option<ShakeToEnlarge>,
++}
++
++#[derive(Debug, Clone, Copy, PartialEq)]
++pub struct ShakeToEnlarge {
++    pub off: bool,
++    pub zoom_factor: f64,
++    pub hold_duration_ms: u32,
++    pub threshold: f64,
++    pub grow: bool,
++    pub grow_speed: f64,
++}
++
++impl Default for ShakeToEnlarge {
++    fn default() -> Self {
++        Self {
++            off: false,
++            zoom_factor: 3.0,
++            hold_duration_ms: 1200,
++            threshold: 2000.0,
++            grow: false,
++            grow_speed: 0.01,
++        }
++    }
++}
++
++#[derive(knuffel::Decode, Debug, Clone, PartialEq)]
++pub struct ShakeToEnlargePart {
++    #[knuffel(child)]
++    pub off: bool,
++    #[knuffel(child)]
++    pub on: bool,
++    #[knuffel(child, unwrap(argument))]
++    pub zoom_factor: Option<FloatOrInt<0, { i32::MAX }>>,
++    #[knuffel(child, unwrap(argument))]
++    pub hold_duration_ms: Option<u32>,
++    #[knuffel(child, unwrap(argument))]
++    pub threshold: Option<FloatOrInt<0, { i32::MAX }>>,
++    #[knuffel(child)]
++    pub grow: Option<Flag>,
++    #[knuffel(child, unwrap(argument))]
++    pub grow_speed: Option<FloatOrInt<0, { i32::MAX }>>,
++}
++
++impl MergeWith<ShakeToEnlargePart> for ShakeToEnlarge {
++    fn merge_with(&mut self, part: &ShakeToEnlargePart) {
++        self.off |= part.off;
++        if part.on {
++            self.off = false;
++        }
++
++        merge!((self, part), zoom_factor, threshold, grow_speed, grow);
++        merge_clone!((self, part), hold_duration_ms);
++    }
+ }
+ 
+ impl Default for Cursor {
+@@ -29,6 +83,7 @@ impl Default for Cursor {
+             xcursor_size: 24,
+             hide_when_typing: false,
+             hide_after_inactive_ms: None,
++            shake_to_enlarge: Some(ShakeToEnlarge::default()),
+         }
+     }
+ }
+@@ -43,6 +98,8 @@ pub struct CursorPart {
+     pub hide_when_typing: Option<Flag>,
+     #[knuffel(child, unwrap(argument))]
+     pub hide_after_inactive_ms: Option<u32>,
++    #[knuffel(child)]
++    pub shake_to_enlarge: Option<ShakeToEnlargePart>,
+ }
+ 
+ impl MergeWith<CursorPart> for Cursor {
+@@ -50,6 +107,13 @@ impl MergeWith<CursorPart> for Cursor {
+         merge_clone!((self, part), xcursor_theme, xcursor_size);
+         merge!((self, part), hide_when_typing);
+         merge_clone_opt!((self, part), hide_after_inactive_ms);
++        if let Some(x) = &part.shake_to_enlarge {
++            if let Some(s) = &mut self.shake_to_enlarge {
++                s.merge_with(x);
++            } else {
++                self.shake_to_enlarge = Some(ShakeToEnlarge::from_part(x));
++            }
++        }
+     }
+ }
+ 
+@@ -118,6 +182,49 @@ impl MergeWith<ClipboardPart> for Clipboard {
+     }
+ }
+ 
++#[derive(Debug, Clone, Copy, PartialEq)]
++pub struct Magnifier {
++    pub off: bool,
++    pub zoom_factor: f64,
++    pub track_cursor: bool,
++    pub scale_cursor: bool,
++}
++
++impl Default for Magnifier {
++    fn default() -> Self {
++        Self {
++            off: false,
++            zoom_factor: 2.0,
++            track_cursor: true,
++            scale_cursor: true,
++        }
++    }
++}
++
++#[derive(knuffel::Decode, Debug, Clone, PartialEq)]
++pub struct MagnifierPart {
++    #[knuffel(child)]
++    pub off: bool,
++    #[knuffel(child)]
++    pub on: bool,
++    #[knuffel(child, unwrap(argument))]
++    pub zoom_factor: Option<FloatOrInt<0, { i32::MAX }>>,
++    #[knuffel(child)]
++    pub track_cursor: Option<Flag>,
++    #[knuffel(child)]
++    pub scale_cursor: Option<Flag>,
++}
++
++impl MergeWith<MagnifierPart> for Magnifier {
++    fn merge_with(&mut self, part: &MagnifierPart) {
++        self.off |= part.off;
++        if part.on {
++            self.off = false;
++        }
++        merge!((self, part), zoom_factor, track_cursor, scale_cursor);
++    }
++}
++
+ #[derive(Debug, Clone, Copy, PartialEq)]
+ pub struct Overview {
+     pub zoom: f64,
+diff --git a/niri-ipc/src/lib.rs b/niri-ipc/src/lib.rs
+index dfbe59a0..f3a0290c 100644
+--- a/niri-ipc/src/lib.rs
++++ b/niri-ipc/src/lib.rs
+@@ -910,6 +910,30 @@ pub enum Action {
+     },
+     /// Toggle (open/close) the Overview.
+     ToggleOverview {},
++    /// Toggle the screen magnifier.
++    ToggleMagnifier {},
++    /// Adjust screen magnifier zoom factor.
++    AdjustMagnifierZoom {
++        /// Amount to adjust the zoom factor by (positive = zoom in, negative = zoom out).
++        #[cfg_attr(feature = "clap", arg(allow_hyphen_values = true))]
++        delta: f64,
++    },
++    /// Move the magnified view left.
++    ///
++    /// Only works while the magnifier is on with `track-cursor false`.
++    MoveMagnifierLeft {},
++    /// Move the magnified view right.
++    ///
++    /// Only works while the magnifier is on with `track-cursor false`.
++    MoveMagnifierRight {},
++    /// Move the magnified view up.
++    ///
++    /// Only works while the magnifier is on with `track-cursor false`.
++    MoveMagnifierUp {},
++    /// Move the magnified view down.
++    ///
++    /// Only works while the magnifier is on with `track-cursor false`.
++    MoveMagnifierDown {},
+     /// Open the Overview.
+     OpenOverview {},
+     /// Close the Overview.
+diff --git a/src/cursor.rs b/src/cursor.rs
+index a856de94..da2fb65c 100644
+--- a/src/cursor.rs
++++ b/src/cursor.rs
+@@ -1,8 +1,9 @@
+ use std::cell::RefCell;
+ use std::collections::HashMap;
+ use std::env;
+-use std::fs::File;
++use std::fs;
+ use std::io::Read;
++use std::path::Path;
+ use std::rc::Rc;
+ 
+ use anyhow::{anyhow, Context};
+@@ -154,8 +155,9 @@ impl CursorManager {
+         self.current_cursor = cursor;
+     }
+ 
+-    /// Load the cursor with the given `name` from the file system picking the closest
+-    /// one to the given `size`.
++    /// Load the cursor with the given `name` from the file system, picking the closest
++    /// size to the given `size`. Falls back to rendering SVG files when an exact XCursor
++    /// size match is not available.
+     fn load_xcursor(theme: &CursorTheme, name: &str, size: i32) -> anyhow::Result<XCursor> {
+         let _span = tracy_client::span!("load_xcursor");
+ 
+@@ -163,13 +165,26 @@ impl CursorManager {
+             .load_icon(name)
+             .ok_or_else(|| anyhow!("no default icon"))?;
+ 
+-        let mut file = File::open(path).context("error opening cursor icon file")?;
++        let mut file = fs::File::open(&path).context("error opening cursor icon file")?;
+         let mut buf = vec![];
+         file.read_to_end(&mut buf)
+             .context("error reading cursor icon file")?;
+ 
+         let mut images = parse_xcursor(&buf).context("error parsing cursor icon file")?;
+ 
++        // If none of the XCursor images match the requested size closely,
++        // try rendering from SVG.
++        let best_size = images
++            .iter()
++            .min_by_key(|image| (size - image.size as i32).abs())
++            .map(|image| image.size as i32)
++            .unwrap_or(0);
++        if (size - best_size).abs() > 3 {
++            if let Some(svg_image) = Self::load_svg(&path, name, size) {
++                images.push(svg_image);
++            }
++        }
++
+         let (width, height) = images
+             .iter()
+             .min_by_key(|image| (size - image.size as i32).abs())
+@@ -186,6 +201,41 @@ impl CursorManager {
+         })
+     }
+ 
++    /// Try to render an SVG cursor at the given size.
++    ///
++    /// Looks for `<name>.svg` in the same directory as the XCursor file,
++    /// and falls back to `<icon_path>.svg`.
++    fn load_svg(xcursor_path: &Path, name: &str, size: i32) -> Option<Image> {
++        let dir = xcursor_path.parent()?;
++
++        // Try <cursors_dir>/<name>.svg first, then <xcursor_path>.svg
++        let svg_path = dir.join(format!("{name}.svg"));
++        let svg_path = if svg_path.exists() {
++            svg_path
++        } else {
++            let alt = xcursor_path.with_extension("svg");
++            if alt.exists() {
++                alt
++            } else {
++                return None;
++            }
++        };
++
++        let svg_data = fs::read_to_string(&svg_path).ok()?;
++        let (width, height, pixels_rgba, xhot, yhot) =
++            crate::render_helpers::svg::render_cursor(&svg_data, size as u32)?;
++        Some(Image {
++            size: size as u32,
++            width,
++            height,
++            xhot,
++            yhot,
++            delay: 0,
++            pixels_rgba,
++            pixels_argb: vec![],
++        })
++    }
++
+     /// Set the common XCURSOR env variables.
+     fn ensure_env(theme: &str, size: u8) {
+         env::set_var("XCURSOR_THEME", theme);
+diff --git a/src/input/mod.rs b/src/input/mod.rs
+index e0f47c88..9567ea2b 100644
+--- a/src/input/mod.rs
++++ b/src/input/mod.rs
+@@ -2291,6 +2291,25 @@ impl State {
+             Action::StopCast(session_id) => {
+                 self.niri.stop_cast(CastSessionId::from(session_id));
+             }
++            Action::ToggleMagnifier => {
++                self.niri.toggle_magnifier();
++                self.niri.queue_redraw_all();
++            }
++            Action::AdjustMagnifierZoom(delta) => {
++                self.niri.adjust_magnifier_zoom(delta);
++            }
++            Action::MoveMagnifierLeft => {
++                self.niri.move_magnifier_center(-1., 0.);
++            }
++            Action::MoveMagnifierRight => {
++                self.niri.move_magnifier_center(1., 0.);
++            }
++            Action::MoveMagnifierUp => {
++                self.niri.move_magnifier_center(0., -1.);
++            }
++            Action::MoveMagnifierDown => {
++                self.niri.move_magnifier_center(0., 1.);
++            }
+             Action::ToggleOverview => {
+                 self.niri.layout.toggle_overview();
+                 self.niri.queue_redraw_all();
+@@ -2453,9 +2472,10 @@ impl State {
+ 
+         let pos = pointer.current_location();
+ 
+-        // We have an output, so we can compute the new location and focus.
+         let mut new_pos = pos + event.delta();
+ 
++        self.niri.pointer_motion_absolute_shake(new_pos);
++
+         // We received an event for the regular pointer, so show it now.
+         self.niri.pointer_visibility = PointerVisibility::Visible;
+         self.niri.tablet_cursor_location = None;
+@@ -2705,6 +2725,8 @@ impl State {
+ 
+         let pointer = self.niri.seat.get_pointer().unwrap();
+ 
++        self.niri.pointer_motion_absolute_shake(pos);
++
+         if let Some(output) = self.niri.screenshot_ui.selection_output() {
+             let geom = self.niri.global_space.output_geometry(output).unwrap();
+             let point = (pos - geom.loc.to_f64())
+@@ -3064,12 +3086,7 @@ impl State {
+             if button_state == ButtonState::Pressed {
+                 let pos = pointer.current_location();
+ 
+-                // If we'll be moving the existing selection, use the selection output.
+-                let output = if mod_down {
+-                    self.niri.screenshot_ui.selection_output()
+-                } else {
+-                    self.niri.output_under(pos).map(|(out, _)| out)
+-                };
++                let output = self.niri.output_under(pos).map(|(out, _)| out);
+ 
+                 if let Some(output) = output.cloned() {
+                     let geom = self.niri.global_space.output_geometry(&output).unwrap();
+@@ -3077,11 +3094,7 @@ impl State {
+                         .to_physical(output.current_scale().fractional_scale())
+                         .to_i32_round();
+ 
+-                    if self
+-                        .niri
+-                        .screenshot_ui
+-                        .pointer_down(output, point, None, mod_down)
+-                    {
++                    if self.niri.screenshot_ui.pointer_down(output, point, None) {
+                         self.niri.queue_redraw_all();
+                     }
+                 }
+@@ -3431,7 +3444,10 @@ impl State {
+                 }
+             }
+ 
+-            if is_mru_open || self.niri.mods_with_finger_scroll_binds.contains(&modifiers) {
++            if is_mru_open
++                || self.niri.mods_with_finger_scroll_binds.contains(&modifiers)
++                || self.niri.mods_with_wheel_binds.contains(&modifiers)
++            {
+                 let ticks = self
+                     .niri
+                     .horizontal_finger_scroll_tracker
+@@ -3446,16 +3462,37 @@ impl State {
+                         Trigger::TouchpadScrollLeft,
+                         mods,
+                     )
++                    .or_else(|| {
++                        find_configured_bind(
++                            bindings.clone(),
++                            mod_key,
++                            Trigger::WheelScrollLeft,
++                            mods,
++                        )
++                    })
+                     .filter(|bind| {
+                         !self.niri.screenshot_ui.is_open()
+                             || allowed_during_screenshot(&bind.action)
+                     });
+-                    let bind_right =
+-                        find_configured_bind(bindings, mod_key, Trigger::TouchpadScrollRight, mods)
+-                            .filter(|bind| {
+-                                !self.niri.screenshot_ui.is_open()
+-                                    || allowed_during_screenshot(&bind.action)
+-                            });
++                    let bind_right = find_configured_bind(
++                        bindings.clone(),
++                        mod_key,
++                        Trigger::TouchpadScrollRight,
++                        mods,
++                    )
++                    .or_else(|| {
++                        find_configured_bind(
++                            bindings.clone(),
++                            mod_key,
++                            Trigger::WheelScrollRight,
++                            mods,
++                        )
++                    })
++                    .filter(|bind| {
++                        !self.niri.screenshot_ui.is_open()
++                            || allowed_during_screenshot(&bind.action)
++                    });
++                    drop(bindings);
+                     drop(config);
+ 
+                     if let Some(right) = bind_right {
+@@ -3484,16 +3521,37 @@ impl State {
+                         Trigger::TouchpadScrollUp,
+                         mods,
+                     )
++                    .or_else(|| {
++                        find_configured_bind(
++                            bindings.clone(),
++                            mod_key,
++                            Trigger::WheelScrollUp,
++                            mods,
++                        )
++                    })
+                     .filter(|bind| {
+                         !self.niri.screenshot_ui.is_open()
+                             || allowed_during_screenshot(&bind.action)
+                     });
+-                    let bind_down =
+-                        find_configured_bind(bindings, mod_key, Trigger::TouchpadScrollDown, mods)
+-                            .filter(|bind| {
+-                                !self.niri.screenshot_ui.is_open()
+-                                    || allowed_during_screenshot(&bind.action)
+-                            });
++                    let bind_down = find_configured_bind(
++                        bindings.clone(),
++                        mod_key,
++                        Trigger::TouchpadScrollDown,
++                        mods,
++                    )
++                    .or_else(|| {
++                        find_configured_bind(
++                            bindings.clone(),
++                            mod_key,
++                            Trigger::WheelScrollDown,
++                            mods,
++                        )
++                    })
++                    .filter(|bind| {
++                        !self.niri.screenshot_ui.is_open()
++                            || allowed_during_screenshot(&bind.action)
++                    });
++                    drop(bindings);
+                     drop(config);
+ 
+                     if let Some(down) = bind_down {
+@@ -3709,11 +3767,7 @@ impl State {
+                                 .to_physical(output.current_scale().fractional_scale())
+                                 .to_i32_round();
+ 
+-                            if self
+-                                .niri
+-                                .screenshot_ui
+-                                .pointer_down(output, point, None, mod_down)
+-                            {
++                            if self.niri.screenshot_ui.pointer_down(output, point, None) {
+                                 self.niri.queue_redraw_all();
+                             }
+                         }
+@@ -4313,12 +4367,7 @@ impl State {
+         let mod_down = mods.contains(mod_key.to_modifiers());
+ 
+         if self.niri.screenshot_ui.is_open() {
+-            // If we'll be moving the existing selection, use the selection output.
+-            let output = if mod_down {
+-                self.niri.screenshot_ui.selection_output()
+-            } else {
+-                under.output.as_ref()
+-            };
++            let output = under.output.as_ref();
+ 
+             if let Some(output) = output.cloned() {
+                 let geom = self.niri.global_space.output_geometry(&output).unwrap();
+@@ -4329,7 +4378,7 @@ impl State {
+                 if self
+                     .niri
+                     .screenshot_ui
+-                    .pointer_down(output, point, Some(slot), mod_down)
++                    .pointer_down(output, point, Some(slot))
+                 {
+                     self.niri.queue_redraw_all();
+                 }
+@@ -4842,6 +4891,13 @@ fn allowed_during_screenshot(action: &Action) -> bool {
+             // Intended for binds such as volume up/down, lock the screen, etc.
+             | Action::Spawn(_)
+             | Action::SpawnSh(_)
++            // Magnifier can be toggled, adjusted and moved during screenshot.
++            | Action::ToggleMagnifier
++            | Action::AdjustMagnifierZoom(_)
++            | Action::MoveMagnifierLeft
++            | Action::MoveMagnifierRight
++            | Action::MoveMagnifierUp
++            | Action::MoveMagnifierDown
+             // The screenshot UI can handle these.
+             | Action::MoveColumnLeft
+             | Action::MoveColumnLeftOrToMonitorLeft
+diff --git a/src/niri.rs b/src/niri.rs
+index abebcc2e..7e04bdfd 100644
+--- a/src/niri.rs
++++ b/src/niri.rs
+@@ -22,7 +22,9 @@ use niri_config::{
+ use smithay::backend::allocator::Fourcc;
+ use smithay::backend::input::{InputTime, Keycode};
+ use smithay::backend::renderer::damage::OutputDamageTracker;
+-use smithay::backend::renderer::element::memory::MemoryRenderBufferRenderElement;
++use smithay::backend::renderer::element::memory::{
++    MemoryRenderBuffer, MemoryRenderBufferRenderElement,
++};
+ use smithay::backend::renderer::element::surface::WaylandSurfaceRenderElement;
+ use smithay::backend::renderer::element::utils::{
+     select_dmabuf_feedback, CropRenderElement, Relocate, RelocateRenderElement,
+@@ -166,7 +168,7 @@ use crate::render_helpers::primary_gpu_texture::PrimaryGpuTextureRenderElement;
+ use crate::render_helpers::renderer::NiriRenderer;
+ use crate::render_helpers::solid_color::{SolidColorBuffer, SolidColorRenderElement};
+ use crate::render_helpers::surface::push_elements_from_surface_tree;
+-use crate::render_helpers::texture::TextureBuffer;
++use crate::render_helpers::texture::{TextureBuffer, TextureRenderElement};
+ use crate::render_helpers::xray::{Xray, XrayPos};
+ use crate::render_helpers::{
+     encompassing_geo, render_to_dmabuf, render_to_encompassing_texture, render_to_shm,
+@@ -200,6 +202,9 @@ const CLEAR_COLOR_LOCKED: [f32; 4] = [0.3, 0.1, 0.1, 1.];
+ // should be ~1.995 seconds.
+ const FRAME_CALLBACK_THROTTLE: Option<Duration> = Some(Duration::from_millis(995));
+ 
++/// Fraction of the visible area that one move-magnifier step moves the magnified view by.
++const MAGNIFIER_MOVE_STEP: f64 = 0.05;
++
+ pub struct Niri {
+     pub config: Rc<RefCell<Config>>,
+ 
+@@ -286,6 +291,21 @@ pub struct Niri {
+     /// Cursor capture sessions, same as above.
+     pub image_copy_cursor_sessions: Vec<ImageCopyCursorSession>,
+ 
++    // Shake-to-enlarge tracking
++    pub pointer_shake_energy: f64,
++    pub pointer_last_position: Option<smithay::utils::Point<f64, smithay::utils::Logical>>,
++    pub pointer_last_time: Option<std::time::Instant>,
++    pub pointer_enlarged_until: Option<std::time::Instant>,
++    pub pointer_scale_animation: Option<crate::animation::Animation>,
++    pub pointer_grow_zoom: f64,
++
++    // Magnifier
++    pub magnifier_active: bool,
++    pub magnifier_zoom: f64,
++    pub magnifier_animation: Option<crate::animation::Animation>,
++    pub magnifier_capture: Cell<bool>,
++    pub magnifier_center: RefCell<Option<(WeakOutput, Point<i32, Physical>)>>,
++
+     // Smithay state.
+     pub compositor_state: CompositorState,
+     pub xdg_shell_state: XdgShellState,
+@@ -1735,6 +1755,22 @@ impl State {
+             xwls_changed = true;
+         }
+ 
++        let old_magnifier_off = old_config.magnifier.off;
++        let old_magnifier_zoom = old_config.magnifier.zoom_factor;
++        let old_shake_off = old_config
++            .cursor
++            .shake_to_enlarge
++            .as_ref()
++            .is_none_or(|s| s.off);
++
++        let new_magnifier_off = config.magnifier.off;
++        let new_magnifier_zoom = config.magnifier.zoom_factor;
++        let new_shake_off = config
++            .cursor
++            .shake_to_enlarge
++            .as_ref()
++            .is_none_or(|s| s.off);
++
+         *old_config = config;
+ 
+         if let Some(outputs) = preserved_output_config {
+@@ -1744,6 +1780,15 @@ impl State {
+         // Release the borrow.
+         drop(old_config);
+ 
++        self.niri.reconcile_magnifier_config(
++            old_magnifier_off,
++            old_magnifier_zoom,
++            new_magnifier_off,
++            new_magnifier_zoom,
++        );
++        self.niri
++            .reconcile_shake_config(old_shake_off, new_shake_off);
++
+         // Now with a &mut self we can reload the xkb config.
+         if let Some(mut xkb) = reload_xkb {
+             let mut set_xkb_config = true;
+@@ -2628,6 +2673,7 @@ impl Niri {
+             )
+             .unwrap();
+ 
++        let magnifier_zoom_factor = config_.magnifier.zoom_factor;
+         drop(config_);
+         let mut niri = Self {
+             config,
+@@ -2662,6 +2708,19 @@ impl Niri {
+             tablets: HashMap::new(),
+             touch: HashSet::new(),
+ 
++            pointer_shake_energy: 0.0,
++            pointer_last_position: None,
++            pointer_last_time: None,
++            pointer_enlarged_until: None,
++            pointer_scale_animation: None,
++            pointer_grow_zoom: 1.0,
++
++            magnifier_active: false,
++            magnifier_zoom: magnifier_zoom_factor,
++            magnifier_animation: None,
++            magnifier_capture: Cell::new(false),
++            magnifier_center: RefCell::new(None),
++
+             compositor_state,
+             xdg_shell_state,
+             xdg_decoration_state,
+@@ -3816,6 +3875,356 @@ impl Niri {
+         state.lock_surface.as_ref().map(|s| s.wl_surface()).cloned()
+     }
+ 
++    pub fn pointer_motion_absolute_shake(
++        &mut self,
++        pos: smithay::utils::Point<f64, smithay::utils::Logical>,
++    ) {
++        let (hold_duration_ms, threshold, is_off, grow, grow_speed, zoom_factor) =
++            if let Some(shake_conf) = self.config.borrow().cursor.shake_to_enlarge.as_ref() {
++                (
++                    shake_conf.hold_duration_ms,
++                    shake_conf.threshold,
++                    shake_conf.off,
++                    shake_conf.grow,
++                    shake_conf.grow_speed,
++                    shake_conf.zoom_factor,
++                )
++            } else {
++                return;
++            };
++
++        if is_off {
++            return;
++        }
++
++        let now = std::time::Instant::now();
++        let distance = if let Some(last_pos) = self.pointer_last_position {
++            let dx = pos.x - last_pos.x;
++            let dy = pos.y - last_pos.y;
++            (dx * dx + dy * dy).sqrt()
++        } else {
++            0.0
++        };
++
++        if let Some(last_time) = self.pointer_last_time {
++            let dt = now.duration_since(last_time).as_secs_f64();
++            // Decay energy: half-life of ~0.23 seconds
++            let decay = (-dt * 3.0).exp();
++            self.pointer_shake_energy *= decay;
++        }
++        self.pointer_shake_energy += distance;
++        self.pointer_last_time = Some(now);
++        self.pointer_last_position = Some(pos);
++
++        let effective_threshold = threshold.max(1.0);
++        let growing = self.pointer_shake_energy > effective_threshold;
++        if growing {
++            let already_enlarged = self
++                .pointer_enlarged_until
++                .map(|t| now < t)
++                .unwrap_or(false);
++
++            if grow {
++                // KDE-like progressive growth: start close to the normal cursor size,
++                // then grow while the user keeps shaking. In grow mode, treat
++                // `zoom-factor` as the configured maximum rather than jumping to it
++                // on the initial trigger.
++                let max_zoom = zoom_factor.max(1.0);
++                let current = if already_enlarged {
++                    self.pointer_grow_zoom.max(1.0)
++                } else {
++                    1.0
++                };
++                self.pointer_grow_zoom = (current + grow_speed).min(max_zoom);
++            } else {
++                // Non-grow mode jumps/animates to the configured fixed size.
++                self.pointer_grow_zoom = zoom_factor;
++            }
++
++            self.pointer_enlarged_until =
++                Some(now + std::time::Duration::from_millis(hold_duration_ms as u64));
++        }
++
++        self.update_pointer_scale_animation(growing);
++    }
++
++    pub fn update_pointer_scale_animation(&mut self, growing: bool) {
++        let (zoom_factor, is_off) =
++            if let Some(shake_conf) = self.config.borrow().cursor.shake_to_enlarge.as_ref() {
++                (shake_conf.zoom_factor, shake_conf.off)
++            } else {
++                return;
++            };
++
++        if is_off {
++            return;
++        }
++
++        let now = std::time::Instant::now();
++        let enlarged = self
++            .pointer_enlarged_until
++            .map(|t| now < t)
++            .unwrap_or(false);
++        let current_scale = self
++            .pointer_scale_animation
++            .as_ref()
++            .map(|a| a.value())
++            .unwrap_or(1.0);
++
++        let target_scale = if enlarged {
++            if growing {
++                if self
++                    .config
++                    .borrow()
++                    .cursor
++                    .shake_to_enlarge
++                    .as_ref()
++                    .is_some_and(|shake_conf| shake_conf.grow)
++                {
++                    self.pointer_grow_zoom.max(1.0)
++                } else {
++                    self.pointer_grow_zoom.max(zoom_factor)
++                }
++            } else {
++                current_scale
++            }
++        } else {
++            1.0
++        };
++
++        if self.pointer_scale_animation.is_none()
++            || (self.pointer_scale_animation.as_ref().unwrap().to() - target_scale).abs() > 0.01
++        {
++            if target_scale != 1.0 || current_scale != 1.0 {
++                let anim_config = niri_config::Animation {
++                    off: false,
++                    kind: self.config.borrow().animations.cursor_enlarge.0.kind,
++                };
++                let anim = crate::animation::Animation::new(
++                    self.clock.clone(),
++                    current_scale,
++                    target_scale,
++                    0.0,
++                    anim_config,
++                );
++                self.pointer_scale_animation = Some(anim);
++                self.queue_redraw_all();
++            }
++        }
++    }
++
++    pub fn toggle_magnifier(&mut self) {
++        let (off, zoom_factor, anim_config) = {
++            let config = self.config.borrow();
++            (
++                config.magnifier.off,
++                config.magnifier.zoom_factor,
++                config.animations.magnifier.0,
++            )
++        };
++        if off {
++            return;
++        }
++        self.magnifier_active = !self.magnifier_active;
++
++        if self.magnifier_active {
++            *self.magnifier_center.borrow_mut() = None;
++        }
++
++        let from = self.magnifier_animation.as_ref().map_or(
++            if self.magnifier_active {
++                1.
++            } else {
++                self.magnifier_zoom
++            },
++            |a| a.value(),
++        );
++        let to = if self.magnifier_active {
++            self.magnifier_zoom = zoom_factor;
++            self.magnifier_zoom
++        } else {
++            1.
++        };
++
++        self.magnifier_animation = Some(crate::animation::Animation::new(
++            self.clock.clone(),
++            from,
++            to,
++            0.,
++            anim_config,
++        ));
++        self.queue_redraw_all();
++    }
++
++    pub fn update_magnifier_animation(&mut self) {
++        if let Some(anim) = &self.magnifier_animation {
++            if anim.is_done() {
++                self.magnifier_animation = None;
++            }
++        }
++    }
++
++    pub fn adjust_magnifier_zoom(&mut self, delta: f64) {
++        let off = {
++            let config = self.config.borrow();
++            config.magnifier.off
++        };
++        if off {
++            return;
++        }
++
++        if !self.magnifier_active {
++            self.magnifier_active = true;
++            self.magnifier_zoom = 1.0;
++            *self.magnifier_center.borrow_mut() = None;
++        }
++
++        self.magnifier_zoom = (self.magnifier_zoom + delta).clamp(1.0, 10.0);
++        if self.magnifier_zoom <= 1.0 {
++            self.magnifier_active = false;
++            self.magnifier_zoom = 1.0;
++        }
++
++        self.magnifier_animation = None;
++        self.queue_redraw_all();
++    }
++
++    pub fn can_drag_magnifier_center(&self) -> bool {
++        let config = self.config.borrow();
++        self.magnifier_active
++            && !self.magnifier_capture.get()
++            && !config.magnifier.off
++            && !config.magnifier.track_cursor
++            && self.magnifier_zoom > 1.0
++    }
++
++    pub fn begin_magnifier_center_drag(
++        &mut self,
++        location: Point<f64, Logical>,
++    ) -> Option<(Output, Point<i32, Physical>)> {
++        if !self.can_drag_magnifier_center() {
++            return None;
++        }
++
++        {
++            let borrowed = self.magnifier_center.borrow();
++            if let Some((weak, center)) = borrowed.as_ref() {
++                let output = weak.upgrade()?;
++                let output_geo = self.global_space.output_geometry(&output)?;
++                if output_geo.to_f64().contains(location) {
++                    let center = self.clamp_magnifier_center_to_output(&output, *center);
++                    return Some((output, center));
++                }
++
++                return None;
++            }
++        }
++
++        let Some((output, pos_within_output)) = self.output_under(location) else {
++            return None;
++        };
++        let output = output.clone();
++        let output_scale = Scale::from(output.current_scale().fractional_scale());
++        let center = pos_within_output.to_physical_precise_round(output_scale);
++
++        *self.magnifier_center.borrow_mut() = Some((output.downgrade(), center));
++        Some((output, center))
++    }
++
++    pub fn set_magnifier_center(&mut self, output: &Output, center: Point<i32, Physical>) -> bool {
++        if !self.can_drag_magnifier_center() {
++            return false;
++        }
++
++        let center = self.clamp_magnifier_center_to_output(output, center);
++        *self.magnifier_center.borrow_mut() = Some((output.downgrade(), center));
++        self.queue_redraw(&output);
++        true
++    }
++
++    /// Moves the locked magnifier center by `dx` and `dy` steps.
++    pub fn move_magnifier_center(&mut self, dx: f64, dy: f64) {
++        if !self.can_drag_magnifier_center() {
++            return;
++        }
++
++        let locked = self
++            .magnifier_center
++            .borrow()
++            .as_ref()
++            .and_then(|(weak, center)| Some((weak.upgrade()?, *center)));
++        let (output, center) = match locked {
++            Some(locked) => locked,
++            None => {
++                // The center locks on the first magnified frame. If that frame hasn't happened
++                // yet, start from the pointer, like compute_magnifier_params() would.
++                let pointer_pos = self
++                    .tablet_cursor_location
++                    .unwrap_or_else(|| self.seat.get_pointer().unwrap().current_location());
++                let Some((output, pos_within_output)) = self.output_under(pointer_pos) else {
++                    return;
++                };
++                let output_scale = Scale::from(output.current_scale().fractional_scale());
++                let center = pos_within_output.to_physical_precise_round(output_scale);
++                (output.clone(), center)
++            }
++        };
++
++        let size = output.current_mode().unwrap().size;
++        let size = output.current_transform().transform_size(size);
++        let zoom = self.magnifier_zoom;
++        let delta = Point::<f64, Physical>::from((
++            dx * magnifier_move_step(size.w, zoom),
++            dy * magnifier_move_step(size.h, zoom),
++        ));
++        let center = (center.to_f64() + delta).to_i32_round();
++        self.set_magnifier_center(&output, center);
++    }
++
++    fn clamp_magnifier_center_to_output(
++        &self,
++        output: &Output,
++        center: Point<i32, Physical>,
++    ) -> Point<i32, Physical> {
++        let size = output.current_mode().unwrap().size;
++        let size = output.current_transform().transform_size(size);
++        let max_x = (size.w - 1).max(0);
++        let max_y = (size.h - 1).max(0);
++
++        Point::from((center.x.clamp(0, max_x), center.y.clamp(0, max_y)))
++    }
++
++    fn reconcile_magnifier_config(
++        &mut self,
++        was_off: bool,
++        was_zoom: f64,
++        now_off: bool,
++        now_zoom: f64,
++    ) {
++        if !was_off && now_off && self.magnifier_active {
++            self.magnifier_active = false;
++            self.magnifier_animation = None;
++            *self.magnifier_center.borrow_mut() = None;
++            self.queue_redraw_all();
++        }
++
++        if self.magnifier_active && (now_zoom - was_zoom).abs() > f64::EPSILON {
++            self.magnifier_zoom = now_zoom;
++            self.magnifier_animation = None;
++            self.queue_redraw_all();
++        }
++    }
++
++    fn reconcile_shake_config(&mut self, was_off: bool, now_off: bool) {
++        if !was_off && now_off {
++            self.pointer_scale_animation = None;
++            self.pointer_enlarged_until = None;
++            self.pointer_grow_zoom = 1.0;
++            self.pointer_shake_energy = 0.0;
++            self.queue_redraw_all();
++        }
++    }
++
+     /// Schedules an immediate redraw on all outputs if one is not already scheduled.
+     pub fn queue_redraw_all(&mut self) {
+         for state in self.output_state.values_mut() {
+@@ -3855,17 +4264,103 @@ impl Niri {
+         let output_pos = self.global_space.output_geometry(output).unwrap().loc;
+ 
+         // Check whether we need to draw the tablet cursor or the regular cursor.
+-        let pointer_pos = self
++        let mut pointer_pos = self
+             .tablet_cursor_location
+             .unwrap_or_else(|| self.seat.get_pointer().unwrap().current_location());
+-        let pointer_pos = pointer_pos - output_pos.to_f64();
++        pointer_pos -= output_pos.to_f64();
++
++        // When magnifier's scale-cursor is disabled, pre-transform the cursor
++        // position so it moves correctly without RescaleElement wrapping.
++        // Skip when capturing screenshots (magnifier is disabled for the capture).
++        {
++            let config = self.config.borrow();
++            if !config.magnifier.scale_cursor
++                && !config.magnifier.off
++                && !self.magnifier_capture.get()
++            {
++                drop(config);
++                if let Some((zoom, center)) = self.compute_magnifier_params(output) {
++                    let output_scale_f = output_scale.fractional_scale();
++                    let center_logical = center.to_f64().to_logical(output_scale_f);
++                    let cx = center_logical.x;
++                    let cy = center_logical.y;
++                    pointer_pos.x = cx + (pointer_pos.x - cx) * zoom;
++                    pointer_pos.y = cy + (pointer_pos.y - cy) * zoom;
++                }
++            }
++        }
+ 
+         // Get the render cursor to draw.
+-        let cursor_scale = output_scale.integer_scale();
++        // When shake-to-enlarge is active, load a larger cursor image so the
++        // RescaleRenderElement downscales rather than upscales, avoiding blur.
++        let output_int_scale = output_scale.integer_scale();
++        let load_mult = self
++            .pointer_scale_animation
++            .as_ref()
++            .map(|a| a.value())
++            .filter(|z| (*z - 1.0).abs() > 0.001)
++            .map(|z| (z.ceil() as i32).max(1))
++            .unwrap_or(1);
++        let cursor_scale = (output_int_scale * load_mult).max(1);
+         let render_cursor = self.cursor_manager.get_render_cursor(cursor_scale);
+ 
++        // Pre-extract frame widths for adjusted zoom calculation.
++        let enlarged_frame_width = if let RenderCursor::Named { cursor: ref c, .. } = &render_cursor
++        {
++            let (_, f) = c.frame(0);
++            Some(f.width)
++        } else {
++            None
++        };
++        let normal_frame_width = if load_mult > 1 {
++            match self.cursor_manager.get_render_cursor(output_int_scale) {
++                RenderCursor::Named { cursor, .. } => {
++                    let (_, f) = cursor.frame(0);
++                    Some(f.width)
++                }
++                _ => None,
++            }
++        } else {
++            None
++        };
++
+         let output_scale = Scale::from(output.current_scale().fractional_scale());
+ 
++        let mut push = |elem: PointerRenderElements<R>| {
++            if let Some(anim) = &self.pointer_scale_animation {
++                let zoom = anim.value();
++                if (zoom - 1.0).abs() > 0.001 {
++                    let pivot = pointer_pos.to_physical_precise_round(output_scale);
++                    match elem {
++                        PointerRenderElements::Wayland(e) => {
++                            push(PointerRenderElements::RescaledWayland(
++                                RescaleRenderElement::from_element(e, pivot, zoom),
++                            ));
++                            return;
++                        }
++                        PointerRenderElements::NamedPointer(e) => {
++                            // Compute adjusted zoom based on actual loaded image sizes.
++                            let adjusted_zoom = match (enlarged_frame_width, normal_frame_width) {
++                                (Some(ew), Some(nw)) if nw > 0 => zoom * nw as f64 / ew as f64,
++                                _ => zoom / load_mult as f64,
++                            }
++                            .max(0.0);
++                            if (adjusted_zoom - 1.0).abs() > 0.001 && adjusted_zoom > 0.01 {
++                                push(PointerRenderElements::RescaledNamedPointer(
++                                    RescaleRenderElement::from_element(e, pivot, adjusted_zoom),
++                                ));
++                            } else {
++                                push(PointerRenderElements::NamedPointer(e));
++                            }
++                            return;
++                        }
++                        _ => {}
++                    }
++                }
++            }
++            push(elem);
++        };
++
+         match render_cursor {
+             RenderCursor::Hidden => (),
+             RenderCursor::Surface { surface, hotspot } => {
+@@ -3888,11 +4383,24 @@ impl Niri {
+                 cursor,
+             } => {
+                 let (idx, frame) = cursor.frame(self.start_time.elapsed().as_millis() as u32);
+-                let hotspot = XCursor::hotspot(frame).to_logical(scale);
++                let hotspot = XCursor::hotspot(frame).to_logical(output_int_scale);
+                 let pointer_pos =
+                     (pointer_pos - hotspot.to_f64()).to_physical_precise_round(output_scale);
+ 
+-                let texture = self.cursor_texture_cache.get(icon, scale, &cursor, idx);
++                // When shake-to-enlarge loads a larger cursor, build the texture
++                // directly with output_int_scale to preserve the full pixel data.
++                let texture = if load_mult > 1 {
++                    MemoryRenderBuffer::from_slice(
++                        &frame.pixels_rgba,
++                        Fourcc::Argb8888,
++                        (frame.width as i32, frame.height as i32),
++                        output_int_scale,
++                        Transform::Normal,
++                        None,
++                    )
++                } else {
++                    self.cursor_texture_cache.get(icon, scale, &cursor, idx)
++                };
+                 match MemoryRenderBufferRenderElement::from_buffer(
+                     renderer,
+                     pointer_pos,
+@@ -4317,9 +4825,73 @@ impl Niri {
+         self.render(ctx, output, include_pointer, &mut |elem| {
+             elements.push(elem)
+         });
++
+         elements
+     }
+ 
++    pub fn compute_magnifier_params(&self, output: &Output) -> Option<(f64, Point<i32, Physical>)> {
++        if self.magnifier_capture.get() {
++            return None;
++        }
++        let config = self.config.borrow();
++        if config.magnifier.off {
++            return None;
++        }
++        let magnifier_anim_ongoing = self
++            .magnifier_animation
++            .as_ref()
++            .map(|a| !a.is_done())
++            .unwrap_or(false);
++        if !self.magnifier_active && !magnifier_anim_ongoing {
++            return None;
++        }
++        let zoom = if magnifier_anim_ongoing {
++            self.magnifier_animation.as_ref().unwrap().value()
++        } else {
++            self.magnifier_zoom
++        };
++        if (zoom - 1.0).abs() <= 0.001 {
++            return None;
++        }
++        let pointer_pos = self
++            .tablet_cursor_location
++            .unwrap_or_else(|| self.seat.get_pointer().unwrap().current_location());
++        let output_geo = self.global_space.output_geometry(output).unwrap();
++
++        if config.magnifier.track_cursor {
++            if !output_geo.to_f64().contains(pointer_pos) {
++                return None;
++            }
++            let pointer_on_output = pointer_pos - output_geo.loc.to_f64();
++            let output_scale = Scale::from(output.current_scale().fractional_scale());
++            let pivot = pointer_on_output.to_physical_precise_round(output_scale);
++            Some((zoom, pivot))
++        } else {
++            // Fixed center: capture on first activation, then lock per-output.
++            let center = {
++                let borrowed = self.magnifier_center.borrow();
++                borrowed.as_ref().and_then(|(weak, c)| {
++                    if weak.upgrade().as_ref() == Some(output) {
++                        Some(*c)
++                    } else {
++                        None
++                    }
++                })
++            };
++            if let Some(c) = center {
++                return Some((zoom, c));
++            }
++            if !output_geo.to_f64().contains(pointer_pos) {
++                return None;
++            }
++            let pointer_on_output = pointer_pos - output_geo.loc.to_f64();
++            let output_scale = Scale::from(output.current_scale().fractional_scale());
++            let c = pointer_on_output.to_physical_precise_round(output_scale);
++            *self.magnifier_center.borrow_mut() = Some((output.downgrade(), c));
++            Some((zoom, c))
++        }
++    }
++
+     pub fn render<R: NiriRenderer>(
+         &self,
+         mut ctx: RenderCtx<R>,
+@@ -4345,7 +4917,25 @@ impl Niri {
+         let state = self.output_state.get(output).unwrap();
+         ctx.xray = Some(&state.xray);
+ 
+-        self.render_inner(ctx, output, include_pointer, push);
++        if let Some((zoom, pivot)) = self.compute_magnifier_params(output) {
++            let scale_cursor = self.config.borrow().magnifier.scale_cursor;
++            let mut magnifier_push = |elem| {
++                if !scale_cursor {
++                    match &elem {
++                        OutputRenderElements::Pointer(_) => {
++                            push(elem);
++                            return;
++                        }
++                        _ => {}
++                    }
++                }
++                let rescaled = RescaleRenderElement::from_element(Box::new(elem), pivot, zoom);
++                push(OutputRenderElements::Magnified(rescaled))
++            };
++            self.render_inner(ctx, output, include_pointer, &mut magnifier_push);
++        } else {
++            self.render_inner(ctx, output, include_pointer, push);
++        }
+ 
+         self.clear_xray_elements(output);
+     }
+@@ -4429,8 +5019,53 @@ impl Niri {
+ 
+         // If the screenshot UI is open, draw it.
+         if self.screenshot_ui.is_open() {
+-            self.screenshot_ui
+-                .render_output(output, ctx.target, &mut |elem| push(elem.into()));
++            if self.compute_magnifier_params(output).is_some() {
++                // When the magnifier is active, render all screenshot UI elements
++                // to a single texture first. This avoids per-element rounding gaps
++                // that RescaleRenderElement::geometry() creates with to_i32_round().
++                let size = output.current_mode().unwrap().size;
++                let transform = output.current_transform();
++                let size = transform.transform_size(size);
++                let scale = Scale::from(output.current_scale().fractional_scale());
++
++                let mut ui_elements: Vec<ScreenshotUiRenderElement> = Vec::new();
++                self.screenshot_ui
++                    .render_output(output, ctx.target, &mut |elem| ui_elements.push(elem));
++
++                let renderer = ctx.renderer.as_gles_renderer();
++
++                let res = render_to_texture(
++                    renderer,
++                    size,
++                    scale,
++                    transform,
++                    Fourcc::Abgr8888,
++                    ui_elements.iter().rev(),
++                );
++
++                if let Ok((texture, _sync)) = res {
++                    let tex_buffer = TextureBuffer::from_texture(
++                        renderer,
++                        texture,
++                        scale,
++                        transform,
++                        Vec::new(),
++                    );
++                    let tex_elem =
++                        PrimaryGpuTextureRenderElement(TextureRenderElement::from_texture_buffer(
++                            tex_buffer,
++                            (0., 0.),
++                            1.,
++                            None,
++                            None,
++                            Kind::Unspecified,
++                        ));
++                    push(OutputRenderElements::Texture(tex_elem));
++                }
++            } else {
++                self.screenshot_ui
++                    .render_output(output, ctx.target, &mut |elem| push(elem.into()));
++            }
+ 
+             // Add the backdrop for outputs that were connected while the screenshot UI was open.
+             push(backdrop);
+@@ -4755,6 +5390,24 @@ impl Niri {
+ 
+         let mut res = RenderResult::Skipped;
+         if self.monitors_active {
++            // Check if shake-to-enlarge hold duration expired and update animation.
++            self.update_pointer_scale_animation(false);
++            self.update_magnifier_animation();
++            let pointer_anim_ongoing = self
++                .pointer_scale_animation
++                .as_ref()
++                .map(|a| !a.is_done())
++                .unwrap_or(false)
++                || self
++                    .pointer_enlarged_until
++                    .map(|t| std::time::Instant::now() < t)
++                    .unwrap_or(false);
++            let magnifier_anim_ongoing = self
++                .magnifier_animation
++                .as_ref()
++                .map(|a| !a.is_done())
++                .unwrap_or(false);
++
+             let state = self.output_state.get_mut(output).unwrap();
+             state.unfinished_animations_remain = self.layout.are_animations_ongoing(Some(output));
+             state.unfinished_animations_remain |=
+@@ -4769,6 +5422,9 @@ impl Niri {
+                 .cursor_manager
+                 .is_current_cursor_animated(output.current_scale().integer_scale());
+ 
++            state.unfinished_animations_remain |= pointer_anim_ongoing;
++            state.unfinished_animations_remain |= magnifier_anim_ongoing;
++
+             // Also check layer surfaces.
+             if !state.unfinished_animations_remain {
+                 state.unfinished_animations_remain |= layer_map_for_output(output)
+@@ -6032,6 +6688,7 @@ impl Niri {
+                     target,
+                     xray: None,
+                 };
++                let was_magnifier_capture = self.magnifier_capture.replace(true);
+                 let elements = self.render_to_vec(ctx, &output, false);
+                 let elements = elements.iter().rev();
+ 
+@@ -6057,6 +6714,8 @@ impl Niri {
+                     self.render_pointer(renderer, &output, &mut |elem| pointer.push(elem));
+                 }
+ 
++                self.magnifier_capture.set(was_magnifier_capture);
++
+                 let res_pointer = if pointer.is_empty() {
+                     None
+                 } else {
+@@ -6140,6 +6799,8 @@ impl Niri {
+     ) -> anyhow::Result<()> {
+         let _span = tracy_client::span!("Niri::screenshot_window");
+ 
++        let was_magnifier_capture = self.magnifier_capture.replace(true);
++
+         let scale = Scale::from(output.current_scale().fractional_scale());
+         let alpha =
+             if mapped.sizing_mode().is_fullscreen() || mapped.is_ignoring_opacity_window_rule() {
+@@ -6193,6 +6854,8 @@ impl Niri {
+             elements,
+         )?;
+ 
++        self.magnifier_capture.set(was_magnifier_capture);
++
+         self.save_screenshot(geo.size, pixels, write_to_disk, path)
+             .context("error saving screenshot")
+     }
+@@ -7111,6 +7774,8 @@ niri_render_elements! {
+     PointerRenderElements<R> => {
+         Wayland = WaylandSurfaceRenderElement<R>,
+         NamedPointer = MemoryRenderBufferRenderElement<R>,
++        RescaledWayland = RescaleRenderElement<WaylandSurfaceRenderElement<R>>,
++        RescaledNamedPointer = RescaleRenderElement<MemoryRenderBufferRenderElement<R>>,
+     }
+ }
+ 
+@@ -7141,5 +7806,168 @@ niri_render_elements! {
+         Texture = PrimaryGpuTextureRenderElement,
+         // Used for the CPU-rendered panels.
+         RelocatedMemoryBuffer = RelocateRenderElement<MemoryRenderBufferRenderElement<R>>,
++        Magnified = RescaleRenderElement<Box<OutputRenderElements<R>>>,
++    }
++}
++
++impl<R: NiriRenderer> smithay::backend::renderer::element::Element
++    for Box<OutputRenderElements<R>>
++{
++    fn id(&self) -> &smithay::backend::renderer::element::Id {
++        (**self).id()
++    }
++
++    fn current_commit(&self) -> smithay::backend::renderer::utils::CommitCounter {
++        (**self).current_commit()
++    }
++
++    fn geometry(
++        &self,
++        scale: smithay::utils::Scale<f64>,
++    ) -> smithay::utils::Rectangle<i32, smithay::utils::Physical> {
++        (**self).geometry(scale)
++    }
++
++    fn transform(&self) -> smithay::utils::Transform {
++        (**self).transform()
++    }
++
++    fn src(&self) -> smithay::utils::Rectangle<f64, smithay::utils::Buffer> {
++        (**self).src()
++    }
++
++    fn damage_since(
++        &self,
++        scale: smithay::utils::Scale<f64>,
++        commit: Option<smithay::backend::renderer::utils::CommitCounter>,
++    ) -> smithay::backend::renderer::utils::DamageSet<i32, smithay::utils::Physical> {
++        (**self).damage_since(scale, commit)
++    }
++
++    fn opaque_regions(
++        &self,
++        scale: smithay::utils::Scale<f64>,
++    ) -> smithay::backend::renderer::utils::OpaqueRegions<i32, smithay::utils::Physical> {
++        (**self).opaque_regions(scale)
++    }
++
++    fn alpha(&self) -> f32 {
++        (**self).alpha()
++    }
++
++    fn kind(&self) -> smithay::backend::renderer::element::Kind {
++        (**self).kind()
++    }
++
++    fn is_framebuffer_effect(&self) -> bool {
++        (**self).is_framebuffer_effect()
++    }
++}
++
++impl
++    smithay::backend::renderer::element::RenderElement<
++        smithay::backend::renderer::gles::GlesRenderer,
++    > for Box<OutputRenderElements<smithay::backend::renderer::gles::GlesRenderer>>
++{
++    fn capture_framebuffer(
++        &self,
++        frame: &mut smithay::backend::renderer::gles::GlesFrame<'_, '_>,
++        src: smithay::utils::Rectangle<f64, smithay::utils::Buffer>,
++        dst: smithay::utils::Rectangle<i32, smithay::utils::Physical>,
++        cache: &smithay::utils::user_data::UserDataMap,
++    ) -> Result<(), smithay::backend::renderer::gles::GlesError> {
++        smithay::backend::renderer::element::RenderElement::<
++            smithay::backend::renderer::gles::GlesRenderer,
++        >::capture_framebuffer(&**self, frame, src, dst, cache)
++    }
++
++    fn draw(
++        &self,
++        frame: &mut smithay::backend::renderer::gles::GlesFrame<'_, '_>,
++        src: smithay::utils::Rectangle<f64, smithay::utils::Buffer>,
++        dst: smithay::utils::Rectangle<i32, smithay::utils::Physical>,
++        damage: &[smithay::utils::Rectangle<i32, smithay::utils::Physical>],
++        opaque_regions: &[smithay::utils::Rectangle<i32, smithay::utils::Physical>],
++        cache: Option<&smithay::utils::user_data::UserDataMap>,
++    ) -> Result<(), smithay::backend::renderer::gles::GlesError> {
++        smithay::backend::renderer::element::RenderElement::<
++            smithay::backend::renderer::gles::GlesRenderer,
++        >::draw(&**self, frame, src, dst, damage, opaque_regions, cache)
++    }
++
++    fn underlying_storage(
++        &self,
++        renderer: &mut smithay::backend::renderer::gles::GlesRenderer,
++    ) -> Option<smithay::backend::renderer::element::UnderlyingStorage<'_>> {
++        (**self).underlying_storage(renderer)
++    }
++}
++
++impl<'render>
++    smithay::backend::renderer::element::RenderElement<crate::backend::tty::TtyRenderer<'render>>
++    for Box<OutputRenderElements<crate::backend::tty::TtyRenderer<'render>>>
++{
++    fn capture_framebuffer(
++        &self,
++        frame: &mut crate::backend::tty::TtyFrame<'render, '_, '_>,
++        src: smithay::utils::Rectangle<f64, smithay::utils::Buffer>,
++        dst: smithay::utils::Rectangle<i32, smithay::utils::Physical>,
++        cache: &smithay::utils::user_data::UserDataMap,
++    ) -> Result<(), crate::backend::tty::TtyRendererError<'render>> {
++        smithay::backend::renderer::element::RenderElement::<
++            crate::backend::tty::TtyRenderer<'render>,
++        >::capture_framebuffer(&**self, frame, src, dst, cache)
++    }
++
++    fn draw(
++        &self,
++        frame: &mut crate::backend::tty::TtyFrame<'render, '_, '_>,
++        src: smithay::utils::Rectangle<f64, smithay::utils::Buffer>,
++        dst: smithay::utils::Rectangle<i32, smithay::utils::Physical>,
++        damage: &[smithay::utils::Rectangle<i32, smithay::utils::Physical>],
++        opaque_regions: &[smithay::utils::Rectangle<i32, smithay::utils::Physical>],
++        cache: Option<&smithay::utils::user_data::UserDataMap>,
++    ) -> Result<(), crate::backend::tty::TtyRendererError<'render>> {
++        smithay::backend::renderer::element::RenderElement::<
++            crate::backend::tty::TtyRenderer<'render>,
++        >::draw(&**self, frame, src, dst, damage, opaque_regions, cache)
++    }
++
++    fn underlying_storage(
++        &self,
++        renderer: &mut crate::backend::tty::TtyRenderer<'render>,
++    ) -> Option<smithay::backend::renderer::element::UnderlyingStorage<'_>> {
++        (**self).underlying_storage(renderer)
++    }
++}
++/// Returns how far one move-magnifier step moves the center across an output `size` pixels long.
++///
++/// The magnifier center is the zoom pivot rather than the middle of the view: moving it by `d`
++/// moves the view by `d * (1 - 1 / zoom)`. Dividing by that keeps a step at the same fraction of
++/// the visible area at any zoom level.
++fn magnifier_move_step(size: i32, zoom: f64) -> f64 {
++    let visible = f64::from(size) / zoom;
++    visible * MAGNIFIER_MOVE_STEP / (1. - 1. / zoom)
++}
++
++#[cfg(test)]
++mod magnifier_tests {
++    use super::*;
++
++    #[test]
++    fn move_step_is_the_same_share_of_the_view_at_any_zoom() {
++        let size = 2560;
++        for zoom in [1.2, 2., 3., 10.] {
++            // Zooming around pivot p shows the area starting at p * (1 - 1 / zoom).
++            let view_x = |pivot: f64| pivot * (1. - 1. / zoom);
++
++            let pivot = 1000.;
++            let moved = view_x(pivot + magnifier_move_step(size, zoom)) - view_x(pivot);
++            let visible = f64::from(size) / zoom;
++            assert!(
++                (moved - visible * MAGNIFIER_MOVE_STEP).abs() < 1e-9,
++                "zoom {zoom}"
++            );
++        }
+     }
+ }
+diff --git a/src/protocols/foreign_toplevel.rs b/src/protocols/foreign_toplevel.rs
+index f16e5ac9..85ad713b 100644
+--- a/src/protocols/foreign_toplevel.rs
++++ b/src/protocols/foreign_toplevel.rs
+@@ -5,11 +5,13 @@ use std::sync::Arc;
+ use arrayvec::ArrayVec;
+ use smithay::output::Output;
+ use smithay::reexports::wayland_protocols::ext::foreign_toplevel_list::v1::server::{
+-    ext_foreign_toplevel_handle_v1::{self, ExtForeignToplevelHandleV1}, ext_foreign_toplevel_list_v1::{self, ExtForeignToplevelListV1},
++    ext_foreign_toplevel_handle_v1::{self, ExtForeignToplevelHandleV1},
++    ext_foreign_toplevel_list_v1::{self, ExtForeignToplevelListV1},
+ };
+ use smithay::reexports::wayland_protocols::xdg::shell::server::xdg_toplevel;
+ use smithay::reexports::wayland_protocols_wlr::foreign_toplevel::v1::server::{
+-    zwlr_foreign_toplevel_handle_v1::{self, ZwlrForeignToplevelHandleV1}, zwlr_foreign_toplevel_manager_v1::{self, ZwlrForeignToplevelManagerV1},
++    zwlr_foreign_toplevel_handle_v1::{self, ZwlrForeignToplevelHandleV1},
++    zwlr_foreign_toplevel_manager_v1::{self, ZwlrForeignToplevelManagerV1},
+ };
+ use smithay::reexports::wayland_server::backend::ClientId;
+ use smithay::reexports::wayland_server::protocol::wl_output::WlOutput;
+@@ -19,13 +21,13 @@ use smithay::reexports::wayland_server::{
+ };
+ use smithay::wayland::{Dispatch2, GlobalDispatch2};
+ use smithay::wayland::shell::xdg::{
+-    ToplevelState, ToplevelStateSet, XdgToplevelSurfaceRoleAttributes
++    ToplevelState, ToplevelStateSet, XdgToplevelSurfaceRoleAttributes,
+ };
+ 
+ use crate::niri::State;
+ use crate::protocols::EmptyData;
+-use crate::window::mapped::MappedId;
+ use crate::utils::with_toplevel_role_and_current;
++use crate::window::mapped::MappedId;
+ 
+ const EXT_LIST_VERSION: u32 = 1;
+ const WLR_MANAGEMENT_VERSION: u32 = 3;
+diff --git a/src/render_helpers/mod.rs b/src/render_helpers/mod.rs
+index 3ae027c8..4e88ef2d 100644
+--- a/src/render_helpers/mod.rs
++++ b/src/render_helpers/mod.rs
+@@ -48,6 +48,7 @@ pub mod shadow;
+ pub mod snapshot;
+ pub mod solid_color;
+ pub mod surface;
++pub mod svg;
+ pub mod texture;
+ pub mod xray;
+ 
+diff --git a/src/render_helpers/svg.rs b/src/render_helpers/svg.rs
+new file mode 100644
+index 00000000..82f3d2c3
+--- /dev/null
++++ b/src/render_helpers/svg.rs
+@@ -0,0 +1,49 @@
++use resvg::tiny_skia::{Pixmap, Transform};
++use usvg::{Options, Tree};
++
++/// Renders an SVG cursor at the requested target size.
++///
++/// Returns `(width, height, pixels_rgba, xhot, yhot)`.
++pub fn render_cursor(svg_data: &str, target_size: u32) -> Option<(u32, u32, Vec<u8>, u32, u32)> {
++    let opts = Options::default();
++    let tree = Tree::from_str(svg_data, &opts).ok()?;
++
++    let svg_size = tree.size();
++    let scale_w = target_size as f32 / svg_size.width();
++    let scale_h = target_size as f32 / svg_size.height();
++    let scale = scale_w.min(scale_h);
++
++    let width = (svg_size.width() * scale).ceil() as u32;
++    let height = (svg_size.height() * scale).ceil() as u32;
++
++    let mut pixmap = Pixmap::new(width, height)?;
++
++    let transform = Transform::from_scale(scale, scale);
++    resvg::render(&tree, transform, &mut pixmap.as_mut());
++
++    let pixels_rgba = pixmap.data().to_vec();
++
++    let (xhot, yhot) = parse_hotspot(svg_data);
++    let xhot = (xhot as f32 * scale).round() as u32;
++    let yhot = (yhot as f32 * scale).round() as u32;
++
++    debug!(
++        "rendered SVG cursor: {width}x{height} (target {target_size}), hotspot ({xhot}, {yhot})"
++    );
++
++    Some((width, height, pixels_rgba, xhot, yhot))
++}
++
++fn parse_hotspot(svg_data: &str) -> (u32, u32) {
++    for line in svg_data.lines() {
++        if let Some(pos) = line.find("Hotspot:") {
++            let rest = &line[pos + 8..].trim();
++            if let Some((x_str, y_str)) = rest.split_once(',') {
++                let x: u32 = x_str.trim().parse().ok().unwrap_or(0);
++                let y: u32 = y_str.trim().parse().ok().unwrap_or(0);
++                return (x.min(128), y.min(128));
++            }
++        }
++    }
++    (1, 1)
++}
+diff --git a/src/screencasting/mod.rs b/src/screencasting/mod.rs
+index 232b584b..5aeba1a4 100644
+--- a/src/screencasting/mod.rs
++++ b/src/screencasting/mod.rs
+@@ -7,7 +7,9 @@ use anyhow::Context as _;
+ use calloop::LoopHandle;
+ use smithay::backend::allocator::format::FormatSet;
+ use smithay::backend::allocator::gbm::GbmDevice;
+-use smithay::backend::renderer::element::utils::{Relocate, RelocateRenderElement};
++use smithay::backend::renderer::element::utils::{
++    Relocate, RelocateRenderElement, RescaleRenderElement,
++};
+ use smithay::backend::renderer::gles::GlesRenderer;
+ use smithay::desktop::Window;
+ use smithay::output::Output;
+@@ -587,9 +589,32 @@ impl Niri {
+                     // happily appear anywhere outside the output video source in OBS.
+                     if output_geo.contains(pointer_loc) {
+                         pointer_pos = pointer_loc - output_geo.loc;
++                        let mut visual_pointer_pos = pointer_pos;
++                        if let Some((zoom, center)) = self.compute_magnifier_params(output) {
++                            let output_scale_f = output.current_scale().fractional_scale();
++                            let center_logical = center.to_f64().to_logical(output_scale_f);
++                            let cx = center_logical.x;
++                            let cy = center_logical.y;
++                            visual_pointer_pos.x = cx + (pointer_pos.x - cx) * zoom;
++                            visual_pointer_pos.y = cy + (pointer_pos.y - cy) * zoom;
++                        }
++
+                         self.render_pointer(renderer, output, &mut |elem| {
+-                            elements.push(elem.into())
++                            let magnifier_params = self.compute_magnifier_params(output);
++                            let scale_cursor = self.config.borrow().magnifier.scale_cursor;
++
++                            if let Some((zoom, center)) = magnifier_params {
++                                if scale_cursor {
++                                    elements.push(CastRenderElement::MagnifiedPointer(
++                                        RescaleRenderElement::from_element(elem, center, zoom),
++                                    ));
++                                    return;
++                                }
++                            }
++                            elements.push(elem.into());
+                         });
++
++                        pointer_pos = visual_pointer_pos;
+                     }
+                 }
+ 
+@@ -629,6 +654,8 @@ impl Niri {
+     ) {
+         let _span = tracy_client::span!("Niri::render_windows_for_screen_cast");
+ 
++        let was_magnifier_capture = self.magnifier_capture.replace(true);
++
+         let scale = Scale::from(output.current_scale().fractional_scale());
+ 
+         let mut casts_to_stop = vec![];
+@@ -704,6 +731,8 @@ impl Niri {
+         for id in casts_to_stop {
+             self.stop_cast(id);
+         }
++
++        self.magnifier_capture.set(was_magnifier_capture);
+     }
+ 
+     pub fn stop_cast(&mut self, session_id: CastSessionId) {
+@@ -801,5 +830,6 @@ niri_render_elements! {
+         Window = WindowCastRenderElements<R>,
+         Pointer = PointerRenderElements<R>,
+         RelocatedPointer = RelocateRenderElement<PointerRenderElements<R>>,
++        MagnifiedPointer = RescaleRenderElement<PointerRenderElements<R>>,
+     }
+ }
+diff --git a/src/screencasting/pw_utils.rs b/src/screencasting/pw_utils.rs
+index a4d2aa95..77ab4753 100644
+--- a/src/screencasting/pw_utils.rs
++++ b/src/screencasting/pw_utils.rs
+@@ -72,8 +72,8 @@ const SHM_BYTES_PER_PIXEL: usize = 4;
+ 
+ const CURSOR_FORMAT: spa_video_format = SPA_VIDEO_FORMAT_BGRA;
+ const CURSOR_BPP: u32 = 4;
+-const CURSOR_WIDTH: u32 = 384;
+-const CURSOR_HEIGHT: u32 = 384;
++const CURSOR_WIDTH: u32 = 1024;
++const CURSOR_HEIGHT: u32 = 1024;
+ const CURSOR_BITMAP_SIZE: usize = (CURSOR_WIDTH * CURSOR_HEIGHT * CURSOR_BPP) as usize;
+ const CURSOR_META_SIZE: usize =
+     mem::size_of::<spa_meta_cursor>() + mem::size_of::<spa_meta_bitmap>() + CURSOR_BITMAP_SIZE;
+diff --git a/src/ui/screenshot_ui.rs b/src/ui/screenshot_ui.rs
+index a1586361..65c9833e 100644
+--- a/src/ui/screenshot_ui.rs
++++ b/src/ui/screenshot_ui.rs
+@@ -852,7 +852,6 @@ impl ScreenshotUi {
+         output: Output,
+         point: Point<i32, Physical>,
+         slot: Option<TouchSlot>,
+-        move_existing: bool,
+     ) -> bool {
+         let Self::Open {
+             selection,
+@@ -887,23 +886,6 @@ impl ScreenshotUi {
+             return false;
+         }
+ 
+-        if move_existing {
+-            if output != selection.0 {
+-                return false;
+-            }
+-
+-            *button = Button::Down {
+-                touch_slot: slot,
+-                on_capture_button: false,
+-                last_pos: (output, point),
+-                move_state: Some(MoveState {
+-                    pointer_offset: point - selection.1,
+-                    touch_slot: slot,
+-                }),
+-            };
+-            return true;
+-        }
+-
+         let Some(output_data) = output_data.get(&output) else {
+             return false;
+         };

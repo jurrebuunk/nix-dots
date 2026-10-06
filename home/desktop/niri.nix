@@ -120,26 +120,10 @@ in
       backdrop-color "${c.background}"
     }
 
-    grid-overview {
-      gap 20
-      padding 80
-      focused-column-scale 1.04
-      default-mod-action false
-    }
-
     magnifier {
       zoom-factor 3
       track-cursor true
       scale-cursor true
-      move-step 0.08
-
-      binds {
-        Mod+H { move-magnifier-left; }
-        Mod+J { move-magnifier-down; }
-        Mod+K { move-magnifier-up; }
-        Mod+L { move-magnifier-right; }
-        Escape { toggle-magnifier; }
-      }
     }
 
     gestures {
@@ -210,8 +194,7 @@ in
       // Best-effort mappings for sway-only layout actions.
       Mod+A { center-column; }
       Mod+E { toggle-column-tabbed-display; }
-      Mod+G hotkey-overlay-title="toggle grid overview" repeat=false { toggle-grid-overview; }
-      Mod+Shift+G { consume-window-into-column; }
+      Mod+G { consume-window-into-column; }
       Mod+S { set-column-display "tabbed"; }
       Mod+W { toggle-column-tabbed-display; }
 
