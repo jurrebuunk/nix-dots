@@ -60,13 +60,30 @@
             ./hosts/nixos-usb/configuration.nix
             inputs.agenix.nixosModules.default
             inputs.nix-index-database.nixosModules.default
-            inputs.touchdesigner-nix.nixosModules.default
+            inputs.touchdesigner-nix.nixosModules.touchdesigner
+            inputs.touchdesigner-nix.nixosModules.obsVirtualCamera
+            {
+              programs.touchdesigner-linux = {
+                enable = true;
+                users = [ "jurre" ];
+
+                obsVirtualCamera = {
+                  enable = true;
+                  videoNr = 2;
+                  cardLabel = "OBS Virtual Camera";
+                  exclusiveCaps = false;
+                };
+              };
+            }
 
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
+              home-manager.sharedModules = [
+                inputs.touchdesigner-nix.homeManagerModules.touchdesigner
+              ];
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 theme = inputs.flatwork-ui.lib.themes.default;

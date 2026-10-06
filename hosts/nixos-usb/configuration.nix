@@ -39,7 +39,11 @@
   # Hardware / Drivers
   services.xserver.videoDrivers = [ "intel" ];
   hardware.enableAllFirmware = true;
-  environment.systemPackages = [ pkgs.displaylink pkgs.v4l-utils ];
+  environment.systemPackages = with pkgs; [
+    displaylink
+    v4l-utils
+    obs-studio
+  ];
 
   # Android container support.
   virtualisation.waydroid.enable = true;
