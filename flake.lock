@@ -148,7 +148,8 @@
         "flatwork-ui": "flatwork-ui",
         "home-manager": "home-manager_2",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "touchdesigner-nix": "touchdesigner-nix"
       }
     },
     "systems": {
@@ -164,6 +165,40 @@
         "owner": "nix-systems",
         "repo": "default",
         "type": "github"
+      }
+    },
+    "tdlinux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790331499,
+        "narHash": "sha256-sgrET1QSh+kruvMwgFjQZkw2NudLKBhZyVVSohMb/X4=",
+        "owner": "ismail-bahloul",
+        "repo": "TouchDesigner-Linux",
+        "rev": "cc3aac1070164842a6ead5df7dfc9e9156d77ba2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ismail-bahloul",
+        "repo": "TouchDesigner-Linux",
+        "type": "github"
+      }
+    },
+    "touchdesigner-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "tdlinux": "tdlinux"
+      },
+      "locked": {
+        "lastModified": 1791283595,
+        "narHash": "sha256-VmIHjJ5Cgkoe3RyJsLEIeFWFsGIVwfox13etvNmhOLg=",
+        "path": "/home/jurre/touchdesigner-nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/jurre/touchdesigner-nix",
+        "type": "path"
       }
     }
   },

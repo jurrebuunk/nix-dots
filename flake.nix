@@ -17,6 +17,10 @@
       url = "github:jurrebuunk/flatwork-ui";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    touchdesigner-nix = {
+      url = "path:/home/jurre/touchdesigner-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -56,6 +60,7 @@
             ./hosts/nixos-usb/configuration.nix
             inputs.agenix.nixosModules.default
             inputs.nix-index-database.nixosModules.default
+            inputs.touchdesigner-nix.nixosModules.default
 
             home-manager.nixosModules.home-manager
             {

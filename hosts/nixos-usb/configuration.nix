@@ -39,8 +39,7 @@
   # Hardware / Drivers
   services.xserver.videoDrivers = [ "intel" ];
   hardware.enableAllFirmware = true;
-  environment.systemPackages = [ pkgs.displaylink ];
-  boot.extraModulePackages = [ pkgs.v4l-utils ];
+  environment.systemPackages = [ pkgs.displaylink pkgs.v4l-utils ];
 
   # Android container support.
   virtualisation.waydroid.enable = true;
