@@ -34,16 +34,13 @@ in
       xcursor-theme "${cursor.name}"
       xcursor-size ${toString cursor.size}
 
-      shake {
+      shake-to-enlarge {
         on
-        max-multiplier 4.5
-        behavior "hold"
-        sensitivity 2.0
-        cooldown-ms 400
-        stopped-threshold-ms 50
-        post-expand-delay-ms 250
-        shake-interval-ms 400
-        min-diagonal 100.0
+        grow
+        grow-speed 0.01
+        threshold 2000
+        hold-duration-ms 1500
+        zoom-factor 5
       }
     }
 
@@ -105,14 +102,12 @@ in
     animations {
       slowdown 0.65
 
-      cursor-expand {
-        duration-ms 200
-        curve "ease-out-cubic"
+      cursor-enlarge {
+        spring damping-ratio=0.82 stiffness=400 epsilon=0.0001
       }
 
-      cursor-shrink {
-        duration-ms 300
-        curve "ease-out-cubic"
+      magnifier {
+        spring damping-ratio=1.0 stiffness=800 epsilon=0.0001
       }
     }
 
@@ -123,6 +118,28 @@ in
     overview {
       zoom 0.5
       backdrop-color "${c.background}"
+    }
+
+    grid-overview {
+      gap 20
+      padding 80
+      focused-column-scale 1.04
+      default-mod-action false
+    }
+
+    magnifier {
+      zoom-factor 3
+      track-cursor false
+      scale-cursor false
+      move-step 0.08
+
+      binds {
+        Mod+H { move-magnifier-left; }
+        Mod+J { move-magnifier-down; }
+        Mod+K { move-magnifier-up; }
+        Mod+L { move-magnifier-right; }
+        Escape { toggle-magnifier; }
+      }
     }
 
     gestures {
@@ -193,7 +210,8 @@ in
       // Best-effort mappings for sway-only layout actions.
       Mod+A { center-column; }
       Mod+E { toggle-column-tabbed-display; }
-      Mod+G { consume-window-into-column; }
+      Mod+G hotkey-overlay-title="toggle grid overview" repeat=false { toggle-grid-overview; }
+      Mod+Shift+G { consume-window-into-column; }
       Mod+S { set-column-display "tabbed"; }
       Mod+W { toggle-column-tabbed-display; }
 
@@ -220,6 +238,13 @@ in
       Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
       Mod+WheelScrollLeft { focus-column-left; }
       Mod+WheelScrollRight { focus-column-right; }
+      Mod+Alt+WheelScrollUp cooldown-ms=50 { adjust-magnifier-zoom 0.2; }
+      Mod+Alt+WheelScrollDown cooldown-ms=50 { adjust-magnifier-zoom -0.2; }
+      Mod+Shift+Z repeat=false { toggle-magnifier; }
+      Mod+Ctrl+Alt+H { move-magnifier-left; }
+      Mod+Ctrl+Alt+J { move-magnifier-down; }
+      Mod+Ctrl+Alt+K { move-magnifier-up; }
+      Mod+Ctrl+Alt+L { move-magnifier-right; }
 
       // Leave Mod+MouseLeft/Right unbound so niri's built-in
       // Super+left-drag moves windows and Super+right-drag resizes them.
