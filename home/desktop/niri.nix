@@ -129,8 +129,8 @@ in
 
     magnifier {
       zoom-factor 3
-      track-cursor false
-      scale-cursor false
+      track-cursor true
+      scale-cursor true
       move-step 0.08
 
       binds {
