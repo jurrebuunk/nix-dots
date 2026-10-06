@@ -22,7 +22,9 @@ in
         niri = prev.niri.overrideAttrs (old: {
           inherit version;
           src = niriSrc;
-          patches = [ ];
+          patches = [
+            ../../patches/shorin-progressive-shake.patch
+          ];
           cargoHash = "sha256-tBApUDTVMnOTemx251sVVgq7FH8PhDnmdxI1Il+vVmU=";
           cargoDeps = final.rustPlatform.fetchCargoVendor {
             pname = "niri";
