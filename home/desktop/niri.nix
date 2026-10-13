@@ -52,6 +52,12 @@ in
       mod-key "Super"
       mod-key-nested "Alt"
 
+      // Lower repeat delay so hold-to-dictate starts quickly after a tap.
+      keyboard {
+        repeat-delay 180
+        repeat-rate 35
+      }
+
       touchpad {
         tap
         dwt
@@ -210,7 +216,8 @@ in
 
       Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
 
-      XF86Launch8 { spawn "${pkgs.alacritty}/bin/alacritty" "--class" "Hermes" "--title" "Hermes" "-e" "bash" "-lc" "clear; exec env HERMES_TUI=0 hermes chat"; }
+      // Was Hermes. Now opens Nemotron input; tap opens/focuses, hold starts listening via key-repeat.
+      XF86Launch8 cooldown-ms=250 { spawn "${config.home.homeDirectory}/nemotron-asr-typing-demo/scripts/run-gtk-keybind.sh"; }
 
       Print { screenshot; }
       Ctrl+Print { screenshot-screen; }
