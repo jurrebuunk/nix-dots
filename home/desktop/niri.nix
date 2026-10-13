@@ -52,10 +52,10 @@ in
       mod-key "Super"
       mod-key-nested "Alt"
 
-      // Lower repeat delay so hold-to-dictate starts quickly after a tap.
+      // Low repeat delay/rate for near-instant hold-to-dictate heartbeat.
       keyboard {
-        repeat-delay 180
-        repeat-rate 35
+        repeat-delay 120
+        repeat-rate 50
       }
 
       touchpad {
@@ -217,7 +217,7 @@ in
       Mod+Escape { toggle-keyboard-shortcuts-inhibit; }
 
       // Was Hermes. Now opens Nemotron input; tap opens/focuses, hold starts listening via key-repeat.
-      XF86Launch8 cooldown-ms=250 { spawn "${config.home.homeDirectory}/nemotron-asr-typing-demo/scripts/run-gtk-keybind.sh"; }
+      XF86Launch8 cooldown-ms=40 { spawn "${config.home.homeDirectory}/nemotron-asr-typing-demo/scripts/run-gtk-keybind.sh"; }
 
       Print { screenshot; }
       Ctrl+Print { screenshot-screen; }
