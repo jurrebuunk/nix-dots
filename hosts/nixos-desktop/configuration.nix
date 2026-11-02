@@ -98,8 +98,6 @@ in
     isNormalUser = true;
     description = "Jurre";
     extraGroups = [ "wheel" "networkmanager" "lp" "scanner" ];
-    # Bootstrap password only: change using `passwd` after first login.
-    initialHashedPassword = "$y$j9T$y7vfsYNRkJlDZvaJSCDNl1$o4FA44c3IJsrkLPwyQMmlLEKkmyZ9e6YGYPWDDWhLbA";
     openssh.authorizedKeys.keys = managementKeys;
   };
   users.users.root = {
