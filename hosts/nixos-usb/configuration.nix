@@ -40,7 +40,6 @@
   services.xserver.videoDrivers = [ "intel" ];
   hardware.enableAllFirmware = true;
   environment.systemPackages = with pkgs; [
-    displaylink
     v4l-utils
     obs-studio
   ];

@@ -19,7 +19,7 @@
     vlc
     screen
     alacritty
-    gemini-cli
+    antigravity-cli
     rclone
     fuse3
     vscode

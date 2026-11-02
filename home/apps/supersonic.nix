@@ -12,7 +12,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    supersonic-wayland
+    supersonic
   ];
 
   home.activation.supersonicConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''

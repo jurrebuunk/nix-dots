@@ -3,7 +3,7 @@
 {
   # Install LibreOffice with all language support
   home.packages = with pkgs; [
-    libreoffice-fresh
+    libreoffice
   ];
 
   # Configure LibreOffice to look and feel like Windows Office
@@ -102,5 +102,5 @@
 
   # Additional LibreOffice configuration
   home.file.".config/libreoffice/4/user/autocorr/acor_en-US.dat".source = 
-    "${pkgs.libreoffice-fresh}/lib/libreoffice/share/autocorr/acor_en-US.dat";
+    "${pkgs.libreoffice}/lib/libreoffice/share/autocorr/acor_en-US.dat";
 }

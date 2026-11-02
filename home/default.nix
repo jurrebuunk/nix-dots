@@ -17,6 +17,8 @@
 
   programs.bash.enable = true;
 
+  programs.firefox.configPath = ".mozilla/firefox";
+
   programs.touchdesigner-linux = {
     enable = true;
 

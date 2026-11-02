@@ -22,6 +22,7 @@
   systemd.services.tailscale-priority = {
     description = "Prioritize local network routes over Tailscale";
     after = [ "network-online.target" "tailscaled.service" ];
+    wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";

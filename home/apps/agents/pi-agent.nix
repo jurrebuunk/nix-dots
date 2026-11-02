@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 let
-  piToolDisplayPackageSource = "git:github.com/MasuRii/pi-tool-display@91cef7580078371f8dc49a8607222807ad6a424d";
   piMcpAdapterPackageSource = "npm:pi-mcp-adapter";
 
   codebaseDocsSkill = pkgs.fetchFromGitHub {
@@ -11,10 +10,18 @@ let
     hash = "sha256-qzvhtYVe+iezis9OZFA+MSmHYYDI4N/0wHt/8T9+JeU=";
   };
 
+  impeccableSkill = pkgs.fetchFromGitHub {
+    owner = "pbakaus";
+    repo = "impeccable";
+    rev = "d631a8827f99414d2b6daba4ef08b7f8701751d7";
+    hash = "sha256-0QpNzNnSon34/VVPPaitnSTBjpu9qJGXJzCJctS4gM0=";
+  };
+
   agentSkills = pkgs.runCommand "pi-agent-skills" { } ''
     cp -R ${./skills} $out
     chmod -R u+w $out
     ln -s ${codebaseDocsSkill} $out/codebase-docs
+    ln -s ${impeccableSkill}/.pi/skills/impeccable $out/impeccable
   '';
 
   piA2ACommunication = pkgs.runCommand "pi-a2a-communication-extension" { } ''
@@ -34,6 +41,8 @@ let
   '';
 in
 {
+  home.packages = [ pkgs.pi-coding-agent ];
+
   # Pi itself stays normally configured. This module exposes repo-owned skills
   # and a globally auto-discovered extension through Pi's discovery directories.
   home.file.".pi/agent/skills".source = agentSkills;
@@ -43,15 +52,12 @@ in
   # manage them through Pi's package list in settings.json. Pi installs missing
   # packages on startup.
   #
-  # - pi-tool-display: compact OpenCode-style tool rendering.
   # - pi-mcp-adapter: third-party MCP bridge used by `/mcp setup` and
   #   `/mcp-auth`, including the Notion MCP setup flow.
   #
-  # Also remove any legacy pi-cc-tools package entries so the old tool-collapse /
-  # grouped-tool UI extension cannot be loaded again.
+  # Remove custom tool-display packages so Pi uses its default tool UI.
   home.activation.piAgentPackages = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     settings_file="${config.home.homeDirectory}/.pi/agent/settings.json"
-    pi_tool_display_package="${piToolDisplayPackageSource}"
     pi_mcp_adapter_package="${piMcpAdapterPackageSource}"
 
     ${pkgs.coreutils}/bin/mkdir -p "$(${pkgs.coreutils}/bin/dirname "$settings_file")"
@@ -61,7 +67,6 @@ in
 
     tmp_file="$(${pkgs.coreutils}/bin/mktemp)"
     ${pkgs.jq}/bin/jq \
-      --arg piToolDisplayPackage "$pi_tool_display_package" \
       --arg piMcpAdapterPackage "$pi_mcp_adapter_package" '
       def sourceOf: if type == "string" then . else (.source // "") end;
       def isPiCcTools:
@@ -95,7 +100,7 @@ in
       )
       | .packages = (
         ((.packages // []) | map(select((isPiCcTools or isPiToolDisplay or isPiMcpAdapter) | not)))
-        + [$piToolDisplayPackage, $piMcpAdapterPackage]
+        + [$piMcpAdapterPackage]
       )
     ' "$settings_file" > "$tmp_file"
     ${pkgs.coreutils}/bin/mv "$tmp_file" "$settings_file"
