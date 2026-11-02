@@ -19,7 +19,7 @@ in
         patchedNiriSrc = final.applyPatches {
           src = niriSrc;
           patches = [
-            ../../patches/niri-shake-magnifier-only.patch
+            ../../../patches/niri-shake-magnifier-only.patch
           ];
         };
       in

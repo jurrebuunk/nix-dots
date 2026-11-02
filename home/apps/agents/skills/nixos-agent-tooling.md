@@ -189,20 +189,20 @@ For this repo:
 
 When changing user applications or dotfiles, prefer Home Manager modules under `/home/jurre/nixos/home/`.
 
-When changing system services/packages, prefer NixOS modules under `/home/jurre/nixos/modules/` or host config under `/home/jurre/nixos/hosts/nixos-usb/`.
+When changing system services/packages, prefer NixOS modules under `/home/jurre/nixos/modules/` or host config under `/home/jurre/nixos/hosts/probookg8/`.
 
 Validate before suggesting activation:
 
 ```bash
 cd /home/jurre/nixos
 nix flake check
-sudo nixos-rebuild dry-run --flake .#nixos-usb
+sudo nixos-rebuild dry-run --flake .#probookg8
 ```
 
 Activation command:
 
 ```bash
-sudo nixos-rebuild switch --flake /home/jurre/nixos#nixos-usb
+sudo nixos-rebuild switch --flake /home/jurre/nixos#probookg8
 ```
 
 ## Safety and cleanup

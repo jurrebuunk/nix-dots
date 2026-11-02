@@ -20,6 +20,33 @@ It also defines Nixy's operating style for this laptop: a calm, Nix-native assis
 | `flake.lock` | Locks dependencies                    |
 | `NIXY.md`    | Assistant persona and working style   |
 
+## Hosts
+
+| Hostname / flake target | Configuration | Rebuild |
+| --- | --- | --- |
+| `surface3` | `hosts/surface3/` | `sudo nixos-rebuild switch --flake .#surface3` |
+| `probookg8` | `hosts/probookg8/` | `sudo nixos-rebuild switch --flake .#probookg8` |
+
+Run rebuild commands from this repository on the corresponding machine.
+
+### Host-local core modules
+
+Each host imports its own `hosts/<hostname>/core/` directory. These are independent system configurations, not a shared baseline:
+
+- `hosts/probookg8/core/`: boot/kernel, Intel hardware, hibernation, networking, audio workarounds, Bluetooth, users, applications, services, Nix settings, overlays, and Python tools.
+- `hosts/surface3/core/`: boot/Surface kernel, hardware, power and sensor workarounds, networking, audio, Bluetooth, users/SSH, applications, services, and Nix settings.
+
+`configuration.nix` selects the host's hardware, core, shared desktop, optional development modules, and original state version. Blueman and pavucontrol belong only to the ProBook's package configuration. Tailscale and its routing/resume hooks have been removed.
+
+### Desktop modules
+
+Desktop environments are shared, opt-in NixOS modules:
+
+- `modules/desktop/niri/`: Niri, greetd, portals, locking, OSD, and the patched compositor; imported by `probookg8`.
+- `modules/desktop/gnome/`: GNOME, GDM, graphics support, and GNOME Tweaks; imported by `surface3`.
+
+Hardware workarounds and power policies stay in `hosts/`. Home Manager desktop and monitor settings are unchanged.
+
 ## Usage
 
 1. Clone the repository:
@@ -80,7 +107,7 @@ This repo includes `agenix` for encrypted secrets:
 
 - Recipient definitions live in `secrets/secrets.nix`
 - Encrypted secret files live in `secrets/*.age`
-- NixOS wiring is enabled in `flake.nix` and `hosts/nixos-usb/configuration.nix`
+- NixOS wiring is enabled in `flake.nix` and `hosts/probookg8/configuration.nix`
 
 Common commands:
 
@@ -89,7 +116,7 @@ Common commands:
 nix run github:ryantm/agenix -- -e secrets/proxmox-token-secret.age
 
 # Rebuild and activate
-sudo nixos-rebuild switch --flake .#nixos-usb
+sudo nixos-rebuild switch --flake .#probookg8
 ```
 
 ## Purpose

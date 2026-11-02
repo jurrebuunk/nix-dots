@@ -1,0 +1,164 @@
+{
+  "nodes": {
+    "agenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1790734419,
+        "narHash": "sha256-n7wew722m1OTBT9DOIMxNX/NF4zfsSUABAO5eW3wikE=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "3daa710894355fa2fad8243380af373a2b4046ef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
+    "flatwork-ui": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791914192,
+        "narHash": "sha256-Ay/SscUwVyLBQR3ED34Ta9Lu55h90otYSCTOrnLZewI=",
+        "owner": "jurrebuunk",
+        "repo": "flatwork-ui",
+        "rev": "c217473882c9d386770a50d5cc73dcb49950dd92",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jurrebuunk",
+        "repo": "flatwork-ui",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791642191,
+        "narHash": "sha256-0bK0A59rVUn1SRZzo4cNi4VSqAe7vR1gL2/MZl53Frw=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "c58f54c733a7894d84fa2fdff26cc12088c4b78c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "linux-surface": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793103252,
+        "narHash": "sha256-687H05hC6HDdOhJPG9C/bOszSdQy/YCWyf688mMytos=",
+        "owner": "linux-surface",
+        "repo": "linux-surface",
+        "rev": "8c62d84193a38bd097238b192a4f7262db8a9f7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "linux-surface",
+        "repo": "linux-surface",
+        "rev": "8c62d84193a38bd097238b192a4f7262db8a9f7e",
+        "type": "github"
+      }
+    },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1791711434,
+        "narHash": "sha256-LpIhxnuO0tYeZ4k7BbNMxsPs2zJpB4hWXO1jdhUuE7Q=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "9a2dd40780eeab8543aa97c59c26f11267025616",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1791734076,
+        "narHash": "sha256-i5qk1kLiit98rRbh1AXmWBNT9QXC/y4l5Wk/u5EdpDQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "7fd4004d0511991fff3a0524856a9be09e28c5f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "agenix": "agenix",
+        "flatwork-ui": "flatwork-ui",
+        "home-manager": "home-manager",
+        "linux-surface": "linux-surface",
+        "nix-index-database": "nix-index-database",
+        "nixpkgs": "nixpkgs",
+        "touchdesigner-nix": "touchdesigner-nix"
+      }
+    },
+    "tdlinux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790331499,
+        "narHash": "sha256-sgrET1QSh+kruvMwgFjQZkw2NudLKBhZyVVSohMb/X4=",
+        "owner": "ismail-bahloul",
+        "repo": "TouchDesigner-Linux",
+        "rev": "cc3aac1070164842a6ead5df7dfc9e9156d77ba2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ismail-bahloul",
+        "repo": "TouchDesigner-Linux",
+        "type": "github"
+      }
+    },
+    "touchdesigner-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "tdlinux": "tdlinux"
+      },
+      "locked": {
+        "lastModified": 1791294857,
+        "narHash": "sha256-zilQ4uUIb8ZN//s+/ZTljVUdkjiKsnfM3zzMvINkS4o=",
+        "path": "/home/jurre/touchdesigner-nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/jurre/touchdesigner-nix",
+        "type": "path"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -120,42 +120,7 @@
         "home-manager": "home-manager",
         "linux-surface": "linux-surface",
         "nix-index-database": "nix-index-database",
-        "nixpkgs": "nixpkgs",
-        "touchdesigner-nix": "touchdesigner-nix"
-      }
-    },
-    "tdlinux": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1790331499,
-        "narHash": "sha256-sgrET1QSh+kruvMwgFjQZkw2NudLKBhZyVVSohMb/X4=",
-        "owner": "ismail-bahloul",
-        "repo": "TouchDesigner-Linux",
-        "rev": "cc3aac1070164842a6ead5df7dfc9e9156d77ba2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ismail-bahloul",
-        "repo": "TouchDesigner-Linux",
-        "type": "github"
-      }
-    },
-    "touchdesigner-nix": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "tdlinux": "tdlinux"
-      },
-      "locked": {
-        "lastModified": 1791294857,
-        "narHash": "sha256-zilQ4uUIb8ZN//s+/ZTljVUdkjiKsnfM3zzMvINkS4o=",
-        "path": "/home/jurre/touchdesigner-nix",
-        "type": "path"
-      },
-      "original": {
-        "path": "/home/jurre/touchdesigner-nix",
-        "type": "path"
+        "nixpkgs": "nixpkgs"
       }
     }
   },

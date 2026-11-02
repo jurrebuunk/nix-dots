@@ -1,0 +1,14 @@
+{ ... }:
+
+{
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PermitRootLogin = "prohibit-password";
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      X11Forwarding = false;
+    };
+  };
+}
