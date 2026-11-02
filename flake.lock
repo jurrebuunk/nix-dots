@@ -60,6 +60,23 @@
         "type": "github"
       }
     },
+    "linux-surface": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1793103252,
+        "narHash": "sha256-687H05hC6HDdOhJPG9C/bOszSdQy/YCWyf688mMytos=",
+        "owner": "linux-surface",
+        "repo": "linux-surface",
+        "rev": "8c62d84193a38bd097238b192a4f7262db8a9f7e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "linux-surface",
+        "repo": "linux-surface",
+        "rev": "8c62d84193a38bd097238b192a4f7262db8a9f7e",
+        "type": "github"
+      }
+    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -101,6 +118,7 @@
         "agenix": "agenix",
         "flatwork-ui": "flatwork-ui",
         "home-manager": "home-manager",
+        "linux-surface": "linux-surface",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
         "touchdesigner-nix": "touchdesigner-nix"

@@ -21,6 +21,12 @@
       url = "path:/home/jurre/touchdesigner-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    linux-surface = {
+      # Pinned to match the kernelVersion/patchSeries baked into
+      # hosts/nixos-desktop/surface-kernel.nix. Bump both together.
+      url = "github:linux-surface/linux-surface/8c62d84193a38bd097238b192a4f7262db8a9f7e";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
@@ -90,6 +96,17 @@
               };
               home-manager.users.jurre = import ./home/default.nix;
             }
+          ];
+        };
+
+        nixos-desktop = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+            inherit (inputs) linux-surface;
+          };
+          modules = [
+            ./hosts/nixos-desktop/configuration.nix
           ];
         };
       };
